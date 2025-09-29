@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ คู่มือการเตรียมเครื่องมือ: VS Code และ C++ Compiler | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .setup-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step-card {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .step-header {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .step-content {
+            padding: 2rem;
+        }
+        
+        .step-content h3 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .step-content h4 {
+            color: #047857;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .step-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .step-content ul, .step-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .step-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-line;
+            font-weight: 600;
+        }
+        
+        .highlight-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #fef7f0;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .os-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 8px 8px 0 0;
+            margin: 1rem 0 0 0;
+        }
+        
+        .os-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .os-tab.active {
+            background: #10b981;
+            color: white;
+        }
+        
+        .os-content {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 8px 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .download-button {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        
+        .download-button:hover {
+            background: #047857;
+            transform: translateY(-1px);
+        }
+        
+        .verification-section {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .verification-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .check-item h4 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .check-item p {
+            color: rgba(255,255,255,0.9);
+            margin: 0.5rem 0 0 0;
+        }
+        
+        .check-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🛠️ คู่มือการเตรียมเครื่องมือ</h1>
+            <p class="subtitle">VS Code และ C++ Compiler สำหรับการแข่งขัน สอวน. คอมพิวเตอร์</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html" class="active">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="setup-content">
+            <div class="hero">
+                <h2>🎯 ทำไมต้องเตรียมเครื่องมือให้ดี?</h2>
+                <p>นี่คือขั้นตอนสำคัญที่สุดในการเริ่มต้นเขียนโปรแกรมสำหรับการแข่งขัน สอวน. คอมพิวเตอร์ เพราะเราจะใช้เครื่องมือเหล่านี้ตั้งแต่เริ่มต้นจนจบการแข่งขัน</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    1. ติดตั้ง Visual Studio Code (VS Code)
+                </div>
+                <div class="step-content">
+                    <p>VS Code คือ Source Code Editor ที่มีประสิทธิภาพสูง รองรับภาษา C++ ได้ดีเยี่ยม และมีฟีเจอร์สำหรับการ Debugging ที่จะช่วยให้คุณค้นหาข้อผิดพลาดได้ง่ายขึ้น</p>
+                    
+                    <h4>📥 การดาวน์โหลด</h4>
+                    <p>เข้าไปที่เว็บไซต์ทางการของ Visual Studio Code</p>
+                    <a href="https://code.visualstudio.com/" class="download-button" target="_blank">ดาวน์โหลด VS Code</a>
+                    
+                    <h4>⚙️ การติดตั้ง</h4>
+                    <ol>
+                        <li>ดาวน์โหลดไฟล์ติดตั้งสำหรับระบบปฏิบัติการของคุณ (Windows, macOS, หรือ Linux)</li>
+                        <li>ดำเนินการติดตั้งตามปกติ</li>
+                        <li><strong>ข้อแนะนำ:</strong> ให้เลือกช่อง "Add 'Open with Code' action to Windows Explorer file context menu" (สำหรับ Windows) เพื่อให้เปิดไฟล์โปรเจกต์ได้สะดวก</li>
+                    </ol>
+                    
+                    <div class="highlight-box">
+                        <p><strong>💡 เคล็ดลับ:</strong> VS Code เป็นโปรแกรมฟรี และมีการอัปเดตเป็นประจำ ควรเปิดใช้ Auto Update เพื่อให้ได้ฟีเจอร์ใหม่ ๆ เสมอ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    2. ติดตั้ง C++ Compiler
+                </div>
+                <div class="step-content">
+                    <p>คอมไพเลอร์ (Compiler) คือโปรแกรมที่ทำหน้าที่แปลชุดคำสั่งภาษา C++ ที่เราเขียน (Source Code) ให้กลายเป็นภาษาเครื่อง (Machine Code) ที่คอมพิวเตอร์เข้าใจและสามารถประมวลผลได้</p>
+                    
+                    <div class="os-tabs">
+                        <div class="os-tab active" onclick="showOS('windows')">🪟 Windows</div>
+                        <div class="os-tab" onclick="showOS('macos')">🍎 macOS</div>
+                        <div class="os-tab" onclick="showOS('linux')">🐧 Linux</div>
+                    </div>
+                    
+                    <div id="windows-content" class="os-content">
+                        <h4>สำหรับผู้ใช้งาน Windows</h4>
+                        <p>เราจะใช้ <strong>MinGW-w64</strong> ซึ่งเป็นชุดเครื่องมือพัฒนา (Toolchain) ที่ได้รับความนิยมในการเขียน C++ บน Windows และใช้งานร่วมกับ VS Code ได้ดี</p>
+                        
+                        <h4>📥 การดาวน์โหลด MinGW-w64</h4>
+                        <p>ค้นหาและดาวน์โหลดชุดติดตั้ง MinGW-w64 (แนะนำให้ใช้เวอร์ชันที่มี g++ ล่าสุด)</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>💡 คำแนะนำ:</strong> หลายคนมักใช้ชุดติดตั้งของ <strong>TDM-GCC</strong> หรือ <strong>MSYS2</strong> ซึ่งจะรวม MinGW-w64 เข้ามาด้วย เลือกติดตั้งชุดใดชุดหนึ่งก็ได้ที่ทำให้คุณได้โปรแกรม g++ และ gdb มา</p>
+                        </div>
+                        
+                        <h4>🔧 การเพิ่ม Path (ส่วนที่สำคัญที่สุด)</h4>
+                        <p>หลังจากติดตั้งเสร็จสิ้น คุณต้องแน่ใจว่าได้เพิ่มพาธ (Path) ของโฟลเดอร์ที่เก็บไฟล์ g++.exe และ gdb.exe เข้าไปใน Environment Variables ของ Windows แล้ว</p>
+                        
+                        <p>โดยทั่วไป โฟลเดอร์ที่ต้องเพิ่มมักจะอยู่ในลักษณะ:</p>
+                        <div class="code-block">
+C:\MinGW\bin<br>
+หรือ<br>
+C:\mingw64\bin
+                        </div>
+                    </div>
+                    
+                    <div id="macos-content" class="os-content" style="display: none;">
+                        <h4>สำหรับผู้ใช้งาน macOS</h4>
+                        <p>ติดตั้ง <strong>Xcode Command Line Tools</strong> ด้วยคำสั่ง:</p>
+                        
+                        <div class="code-block">
+xcode-select --install
+                        </div>
+                        
+                        <p>คำสั่งนี้จะติดตั้ง GCC compiler และเครื่องมือพัฒนาที่จำเป็นอื่น ๆ</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>💡 เคล็ดลับ:</strong> หากคุณมี Homebrew ติดตั้งอยู่แล้ว สามารถใช้คำสั่ง <code>brew install gcc</code> เพื่อติดตั้ง GCC เวอร์ชันล่าสุดได้</p>
+                        </div>
+                    </div>
+                    
+                    <div id="linux-content" class="os-content" style="display: none;">
+                        <h4>สำหรับผู้ใช้งาน Linux</h4>
+                        <p>สำหรับ Ubuntu/Debian ให้ติดตั้ง <strong>build-essential</strong> ด้วยคำสั่ง:</p>
+                        
+                        <div class="code-block">
+sudo apt update<br>
+sudo apt install build-essential
+                        </div>
+                        
+                        <p>สำหรับ CentOS/RHEL/Fedora:</p>
+                        <div class="code-block">
+sudo yum groupinstall "Development Tools"<br>
+# หรือสำหรับ Fedora<br>
+sudo dnf groupinstall "Development Tools"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verification-section">
+                <h3>🔍 3. การตรวจสอบความพร้อม (Verification)</h3>
+                <p>หลังจากติดตั้ง VS Code และ Compiler เสร็จแล้ว ให้เปิด Terminal (หรือ Command Prompt) ขึ้นมาอีกครั้ง และตรวจสอบ 2 คำสั่งนี้:</p>
+                
+                <div class="check-item">
+                    <div class="check-icon">🔧</div>
+                    <div>
+                        <h4>ตรวจสอบ Compiler:</h4>
+                        <div class="code-block">g++ --version</div>
+                        <p><strong>ผลลัพธ์ที่คาดหวัง:</strong> แสดงเวอร์ชันของ Compiler</p>
+                    </div>
+                </div>
+                
+                <div class="check-item">
+                    <div class="check-icon">🐛</div>
+                    <div>
+                        <h4>ตรวจสอบ Debugger:</h4>
+                        <div class="code-block">gdb --version</div>
+                        <p><strong>ผลลัพธ์ที่คาดหวัง:</strong> แสดงเวอร์ชันของ GDB (GNU Debugger)</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box" style="background: rgba(255,255,255,0.1); border-left-color: white;">
+                    <p style="color: white;"><strong>✅ สำเร็จ!</strong> ถ้าคุณสามารถเรียกใช้คำสั่งทั้งสองได้และเห็นเวอร์ชันอย่างถูกต้อง แสดงว่าเครื่องมือของคุณพร้อมสำหรับการเริ่มต้นเขียนโปรแกรม C++ แล้ว!</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    🚨 การแก้ไขปัญหาที่พบบ่อย
+                </div>
+                <div class="step-content">
+                    <h4>❌ ปัญหา: พิมพ์ g++ --version แล้วไม่ขึ้น</h4>
+                    <div class="warning-box">
+                        <p><strong>สาเหตุ:</strong> ระบบไม่พบ g++ หรือพาธยังไม่ได้ตั้งค่าถูกต้อง</p>
+                        <p><strong>วิธีแก้:</strong></p>
+                        <ul>
+                            <li>ตรวจสอบว่าได้ติดตั้ง MinGW-w64 หรือ Compiler แล้วจริง ๆ</li>
+                            <li>ตรวจสอบพาธใน Environment Variables ว่าชี้ไปยังโฟลเดอร์ bin ที่ถูกต้อง</li>
+                            <li>ปิดแล้วเปิด Command Prompt ใหม่หลังจากแก้ไขพาธ</li>
+                            <li>ลองรีสตาร์ทเครื่องหากยังไม่ได้</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>❌ ปัญหา: VS Code ไม่สามารถ Compile ไฟล์ได้</h4>
+                    <div class="warning-box">
+                        <p><strong>วิธีแก้:</strong></p>
+                        <ul>
+                            <li>ตรวจสอบว่าได้ติดตั้ง C/C++ Extension แล้ว</li>
+                            <li>ตรวจสอบการตั้งค่า tasks.json และ launch.json</li>
+                            <li>ลองสร้างไฟล์ C++ ง่าย ๆ ทดสอบก่อน</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="day1.html" class="btn btn-secondary">← กลับวันที่ 1</a>
+                <a href="vscode-setup.html" class="btn btn-primary">ตั้งค่า VS Code →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+
+    <script>
+        function showOS(os) {
+            // Hide all content
+            document.getElementById('windows-content').style.display = 'none';
+            document.getElementById('macos-content').style.display = 'none';
+            document.getElementById('linux-content').style.display = 'none';
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.os-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected content and activate tab
+            document.getElementById(os + '-content').style.display = 'block';
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

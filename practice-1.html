@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 ฝึกปฏิบัติ 1: การแก้โจทย์เบื้องต้น | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .practice-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .process-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .process-step {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 150px;
+            border: 2px solid #10b981;
+            font-weight: 600;
+            color: #047857;
+        }
+        
+        .process-arrow {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .problem-card {
+            background: white;
+            border: 3px solid #10b981;
+            border-radius: 20px;
+            margin: 3rem 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .problem-header {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .problem-header h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .problem-type {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .problem-content {
+            padding: 2rem;
+        }
+        
+        .problem-statement {
+            background: #f0fdf4;
+            border-left: 5px solid #10b981;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .problem-statement h4 {
+            color: #047857;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .conditions-list {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .conditions-list h5 {
+            color: #374151;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .conditions-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .conditions-list li {
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+        }
+        
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .example-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .example-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .example-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .example-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .input-value {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #3b82f6;
+            background: #f1f5f9;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .output-value {
+            font-family: 'Courier New', monospace;
+            color: #047857;
+            background: #f0fdf4;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .algorithm-section {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .algorithm-section h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .algorithm-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .algorithm-steps {
+            counter-reset: step-counter;
+        }
+        
+        .algorithm-step {
+            counter-increment: step-counter;
+            background: white;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .algorithm-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f59e0b;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .solution-code {
+            background: #1a202c;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .solution-header {
+            background: #047857;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 15px 15px 0 0;
+            margin: -2rem -2rem 1rem -2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .solution-header h5 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .code-lang {
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+        
+        .code-content {
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .output-demo {
+            background: #0f172a;
+            color: #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            border: 2px solid #10b981;
+        }
+        
+        .output-demo::before {
+            content: "💻 ตัวอย่างการทำงาน:";
+            color: #10b981;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .practice-instructions {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+        
+        .practice-instructions h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .instruction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .instruction-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .instruction-number {
+            background: rgba(255,255,255,0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .instruction-item h5 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .instruction-item p {
+            color: rgba(255,255,255,0.9);
+            margin: 0;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+        
+        .keyboard-shortcut {
+            background: rgba(0,0,0,0.3);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+        }
+        
+        .tips-section {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .tips-section h3 {
+            color: #047857;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .tip-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+        }
+        
+        .tip-item h5 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .tip-item p {
+            color: #065f46;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .completion-message {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .completion-message h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .code-content {
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📝 ฝึกปฏิบัติ 1: การแก้โจทย์เบื้องต้น</h1>
+            <p class="subtitle">นำความรู้ทั้งหมดมาประยุกต์ใช้ในการแก้ปัญหาจริง</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+                <li><a href="cpp-basics.html">พื้นฐาน C++</a></li>
+                <li><a href="conditional-statements.html">คำสั่งเงื่อนไข</a></li>
+                <li><a href="loops.html">การวนซ้ำ (Loops)</a></li>
+                <li><a href="practice-1.html" class="active">ฝึกปฏิบัติ 1</a></li>
+                <li><a href="arrays.html">อาร์เรย์ (Arrays)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="practice-content">
+            <div class="breadcrumb">
+                <a href="loops.html">การวนซ้ำ (Loops)</a> > <span>ฝึกปฏิบัติ 1: การแก้โจทย์เบื้องต้น</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 เป้าหมายของบทนี้</h2>
+                <p>ชั่วโมงนี้เราจะเน้นการนำเครื่องมือทั้งหมดที่เราเรียนมา (VS Code, I/O, If/Else, Loops) มาใช้ในการเขียนโปรแกรมเพื่อแก้ปัญหา</p>
+                
+                <div class="process-flow">
+                    <div class="process-step">อ่านโจทย์<br>ให้เข้าใจ</div>
+                    <div class="process-arrow">➡️</div>
+                    <div class="process-step">คิดวิเคราะห์<br>(Algorithm)</div>
+                    <div class="process-arrow">➡️</div>
+                    <div class="process-step">เขียนโค้ด<br>(Coding)</div>
+                </div>
+                
+                <p><strong>หลักการสำคัญที่สุด:</strong> อ่านโจทย์ให้เข้าใจ → คิดวิเคราะห์ (Algorithm) → เขียนโค้ด (Coding)</p>
+            </div>
+
+            <!-- Problem 1 -->
+            <div class="problem-card">
+                <div class="problem-header">
+                    <h3>โจทย์ที่ 1: การคำนวณและตัดสินใจ</h3>
+                    <div class="problem-type">ใช้ I/O, If/Else</div>
+                </div>
+                <div class="problem-content">
+                    <div class="problem-statement">
+                        <h4>🚗 โจทย์: ตรวจสอบความเร็วและบทลงโทษ</h4>
+                        <p>จงเขียนโปรแกรมรับค่าความเร็วรถยนต์ (เป็นจำนวนเต็ม) และตรวจสอบเงื่อนไขดังต่อไปนี้:</p>
+                    </div>
+
+                    <div class="conditions-list">
+                        <h5>📋 เงื่อนไขการตรวจสอบ:</h5>
+                        <ul>
+                            <li><strong>หากความเร็ว ไม่เกิน 90 กม./ชม.</strong> ให้แสดงผลว่า "ขับขี่ปลอดภัย"</li>
+                            <li><strong>หากความเร็ว เกิน 90 กม./ชม. แต่ ไม่เกิน 120 กม./ชม.</strong> ให้แสดงผลว่า "ขับเร็วเกินกำหนด: ปรับ 500 บาท"</li>
+                            <li><strong>หากความเร็ว เกิน 120 กม./ชม.</strong> ให้แสดงผลว่า "ขับเร็วอันตราย: ปรับ 1,000 บาทและพักใบขับขี่"</li>
+                        </ul>
+                    </div>
+
+                    <h5>📊 ตัวอย่าง Input/Output:</h5>
+                    <table class="example-table">
+                        <thead>
+                            <tr>
+                                <th>Input (ความเร็ว)</th>
+                                <th>Output (ผลลัพธ์)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="input-value">85</span></td>
+                                <td><span class="output-value">ขับขี่ปลอดภัย</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="input-value">105</span></td>
+                                <td><span class="output-value">ขับเร็วเกินกำหนด: ปรับ 500 บาท</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="input-value">130</span></td>
+                                <td><span class="output-value">ขับเร็วอันตราย: ปรับ 1,000 บาทและพักใบขับขี่</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="algorithm-section">
+                        <h4><span class="algorithm-icon">🧠</span>แนวคิดในการแก้ปัญหา:</h4>
+                        <div class="algorithm-steps">
+                            <div class="algorithm-step">รับค่าความเร็วเข้ามาเก็บในตัวแปรชนิด int</div>
+                            <div class="algorithm-step">ใช้โครงสร้าง if-else if-else เพื่อตรวจสอบเงื่อนไขจากความเร็วที่สูงที่สุดลงมา หรือจากความเร็วที่ต่ำที่สุดขึ้นไป</div>
+                        </div>
+                    </div>
+
+                    <div class="solution-code">
+                        <div class="solution-header">
+                            <h5>💡 ตัวอย่างคำตอบ</h5>
+                            <span class="code-lang">C++</span>
+                        </div>
+                        <div class="code-content">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> speed;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"กรุณาใส่ความเร็ว (กม./ชม.): "</span>;
+    cin <span class="operator">&gt;&gt;</span> speed;
+
+    <span class="keyword">if</span> (speed <span class="operator">&lt;=</span> <span class="number">90</span>) {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"ขับขี่ปลอดภัย"</span> <span class="operator">&lt;&lt;</span> endl;
+    } <span class="keyword">else if</span> (speed <span class="operator">&lt;=</span> <span class="number">120</span>) {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"ขับเร็วเกินกำหนด: ปรับ 500 บาท"</span> <span class="operator">&lt;&lt;</span> endl;
+    } <span class="keyword">else</span> {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"ขับเร็วอันตราย: ปรับ 1,000 บาทและพักใบขับขี่"</span> <span class="operator">&lt;&lt;</span> endl;
+    }
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem 2 -->
+            <div class="problem-card">
+                <div class="problem-header">
+                    <h3>โจทย์ที่ 2: การวนซ้ำเพื่อคำนวณ</h3>
+                    <div class="problem-type">ใช้ Loop, I/O</div>
+                </div>
+                <div class="problem-content">
+                    <div class="problem-statement">
+                        <h4>➕ โจทย์: คำนวณผลรวมของตัวเลขเป็นชุด</h4>
+                        <p>จงเขียนโปรแกรมที่รับตัวเลขจำนวนเต็ม N เข้ามา (สมมติว่า N ไม่เกิน 100) หลังจากนั้นให้รับตัวเลขอีก N ตัวตามมา แล้วคำนวณและแสดงผลรวมของตัวเลขทั้ง N ตัวนั้น</p>
+                    </div>
+
+                    <h5>📊 ตัวอย่าง Input/Output:</h5>
+                    <table class="example-table">
+                        <thead>
+                            <tr>
+                                <th>Input</th>
+                                <th>Output</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="input-value">3</span> (จำนวนตัวเลข N)<br>
+                                    <span class="input-value">10</span> (ตัวที่ 1)<br>
+                                    <span class="input-value">20</span> (ตัวที่ 2)<br>
+                                    <span class="input-value">5</span> (ตัวที่ 3)
+                                </td>
+                                <td><span class="output-value">ผลรวม: 35</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="algorithm-section">
+                        <h4><span class="algorithm-icon">🧠</span>แนวคิดในการแก้ปัญหา:</h4>
+                        <div class="algorithm-steps">
+                            <div class="algorithm-step">ประกาศตัวแปรสำหรับเก็บ ผลรวม (Sum) และตั้งค่าเริ่มต้นเป็น 0</div>
+                            <div class="algorithm-step">รับค่า N (จำนวนครั้งที่จะต้องวนซ้ำ)</div>
+                            <div class="algorithm-step">ใช้ for loop วนซ้ำตั้งแต่ i=1 ถึง N</div>
+                            <div class="algorithm-step">ภายใน Loop ให้: รับตัวเลขตัวถัดไปเข้ามา และ นำตัวเลขที่รับมา บวกเพิ่ม เข้าไปในตัวแปรผลรวม (Sum)</div>
+                            <div class="algorithm-step">หลังจาก Loop จบ ให้แสดงผลค่า Sum</div>
+                        </div>
+                    </div>
+
+                    <div class="solution-code">
+                        <div class="solution-header">
+                            <h5>💡 ตัวอย่างคำตอบ</h5>
+                            <span class="code-lang">C++</span>
+                        </div>
+                        <div class="code-content">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> n, sum = <span class="number">0</span>, number;
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"กรุณาใส่จำนวนตัวเลข N: "</span>;
+    cin <span class="operator">&gt;&gt;</span> n;
+    
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator">&lt;=</span> n; i++) {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"ใส่ตัวเลขที่ "</span> <span class="operator">&lt;&lt;</span> i <span class="operator">&lt;&lt;</span> <span class="string">": "</span>;
+        cin <span class="operator">&gt;&gt;</span> number;
+        sum += number; <span class="comment">// เหมือนกับ sum = sum + number</span>
+    }
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"ผลรวม: "</span> <span class="operator">&lt;&lt;</span> sum <span class="operator">&lt;&lt;</span> endl;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+
+                    <div class="output-demo">
+กรุณาใส่จำนวนตัวเลข N: 3
+ใส่ตัวเลขที่ 1: 10
+ใส่ตัวเลขที่ 2: 20
+ใส่ตัวเลขที่ 3: 5
+ผลรวม: 35
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem 3 -->
+            <div class="problem-card">
+                <div class="problem-header">
+                    <h3>โจทย์ที่ 3: การใช้ Break และ Continue</h3>
+                    <div class="problem-type">ใช้ Loop, Break/Continue</div>
+                </div>
+                <div class="problem-content">
+                    <div class="problem-statement">
+                        <h4>🔢 โจทย์: การพิมพ์ตัวเลขแบบมีเงื่อนไข</h4>
+                        <p>จงเขียนโปรแกรมที่วนซ้ำพิมพ์ตัวเลขตั้งแต่ 1 ถึง 20 แต่มีเงื่อนไขดังนี้:</p>
+                    </div>
+
+                    <div class="conditions-list">
+                        <h5>📋 เงื่อนไขพิเศษ:</h5>
+                        <ul>
+                            <li><strong>หากตัวเลขนั้น หาร 3 ลงตัว</strong> ให้ ข้าม (Continue) การพิมพ์ตัวเลขนั้น แล้วไปทำซ้ำรอบถัดไป</li>
+                            <li><strong>หากตัวเลขนั้น เท่ากับ 17</strong> ให้ ออกจาก Loop (Break) ทันที</li>
+                        </ul>
+                    </div>
+
+                    <div class="algorithm-section">
+                        <h4><span class="algorithm-icon">🧠</span>แนวคิดในการแก้ปัญหา:</h4>
+                        <div class="algorithm-steps">
+                            <div class="algorithm-step">ใช้ for loop วนตั้งแต่ 1 ถึง 20</div>
+                            <div class="algorithm-step">ภายใน Loop ให้ตรวจสอบเงื่อนไขที่ 2 (Break) ก่อน</div>
+                            <div class="algorithm-step">ถ้าไม่เข้าเงื่อนไขที่ 2 ให้ตรวจสอบเงื่อนไขที่ 1 (Continue)</div>
+                            <div class="algorithm-step">ถ้าไม่เข้าเงื่อนไขใด ๆ เลย จึงทำการพิมพ์ตัวเลข</div>
+                        </div>
+                    </div>
+
+                    <div class="solution-code">
+                        <div class="solution-header">
+                            <h5>💡 ตัวอย่างคำตอบ</h5>
+                            <span class="code-lang">C++</span>
+                        </div>
+                        <div class="code-content">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"ตัวเลขที่แสดง: "</span>;
+    
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator">&lt;=</span> <span class="number">20</span>; i++) {
+        <span class="comment">// ตรวจสอบเงื่อนไข Break ก่อน</span>
+        <span class="keyword">if</span> (i == <span class="number">17</span>) {
+            <span class="keyword">break</span>; <span class="comment">// ออกจาก loop ทันที</span>
+        }
+        
+        <span class="comment">// ตรวจสอบเงื่อนไข Continue</span>
+        <span class="keyword">if</span> (i <span class="operator">%</span> <span class="number">3</span> == <span class="number">0</span>) {
+            <span class="keyword">continue</span>; <span class="comment">// ข้ามการพิมพ์ แล้วไปรอบถัดไป</span>
+        }
+        
+        <span class="comment">// ถ้าไม่เข้าเงื่อนไขใด ๆ จึงพิมพ์</span>
+        cout <span class="operator">&lt;&lt;</span> i <span class="operator">&lt;&lt;</span> <span class="string">" "</span>;
+    }
+    
+    cout <span class="operator">&lt;&lt;</span> endl;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+
+                    <div class="output-demo">
+ตัวเลขที่แสดง: 1 2 4 5 7 8 10 11 13 14 16 
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Instructions -->
+            <div class="practice-instructions">
+                <h3>📋 สิ่งที่ต้องทำในการฝึกปฏิบัติ</h3>
+                
+                <div class="instruction-grid">
+                    <div class="instruction-item">
+                        <div class="instruction-number">1</div>
+                        <h5>เปิด VS Code และสร้างไฟล์</h5>
+                        <p>สร้างไฟล์ .cpp ใหม่สำหรับแต่ละโจทย์ (เช่น problem1.cpp, problem2.cpp, problem3.cpp)</p>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">2</div>
+                        <h5>เขียนโค้ดตามแนวคิด</h5>
+                        <p>เขียนโค้ดตามแนวคิดที่กำหนด โดยไม่ต้องดูคำตอบก่อน ลองคิดและเขียนเอง</p>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">3</div>
+                        <h5>Compile โค้ด</h5>
+                        <p>ใช้ VS Code Task (<span class="keyboard-shortcut">Ctrl+Shift+B</span> หรือตามที่ตั้งค่าไว้)</p>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">4</div>
+                        <h5>Run และทดสอบ</h5>
+                        <p>Run โค้ด และทดสอบด้วย Input ที่หลากหลาย (รวมถึง Input ตามตัวอย่าง)</p>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">5</div>
+                        <h5>Debug เมื่อมีข้อผิดพลาด</h5>
+                        <p>ถ้าโค้ดมีข้อผิดพลาด (Bug) ให้ใช้ Debugger ที่เราตั้งค่าไว้ในชั่วโมงที่ 2</p>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">6</div>
+                        <h5>ทบทวนและหารือ</h5>
+                        <p>เมื่อทำเสร็จทุกโจทย์แล้ว เราจะมาทบทวนคำตอบและหารือเกี่ยวกับปัญหาที่พบ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="tips-section">
+                <h3><span class="algorithm-icon">💡</span>เคล็ดลับการแก้ปัญหา</h3>
+                
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <h5>📖 อ่านโจทย์ให้ดี</h5>
+                        <p>อ่านโจทย์ 2-3 ครั้ง ให้แน่ใจว่าเข้าใจสิ่งที่โจทย์ต้องการ</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h5>📝 เขียน Pseudocode</h5>
+                        <p>เขียนขั้นตอนการทำงานเป็นภาษาธรรมดาก่อนเขียนโค้ดจริง</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h5>🧪 ทดสอบหลายกรณี</h5>
+                        <p>ทดสอบด้วย Input หลาย ๆ แบบ ทั้งปกติและกรณีพิเศษ</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h5>🐛 Debug อย่างเป็นระบบ</h5>
+                        <p>ใช้ cout ช่วยดูค่าตัวแปรในแต่ละขั้นตอน</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h5>🔄 ลองใหม่หากไม่ได้</h5>
+                        <p>ถ้าโค้ดไม่ทำงาน ลองเริ่มใหม่ด้วยวิธีที่ง่ายกว่า</p>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <h5>📚 อ้างอิงความรู้เดิม</h5>
+                        <p>ใช้ความรู้จากบทก่อนหน้า: if/else, loops, I/O</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="completion-message">
+                <h3>🎉 เมื่อทำเสร็จทุกโจทย์แล้ว</h3>
+                <p>เราจะมาทบทวนคำตอบและหารือเกี่ยวกับปัญหาที่พบในการเขียนโค้ด รวมถึงเทคนิคการปรับปรุงโค้ดให้ดีขึ้น</p>
+                <p><strong>ขอให้สนุกกับการแก้ปัญหา!</strong> 🚀</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="loops.html" class="btn btn-secondary">← การวนซ้ำ (Loops)</a>
+                <a href="arrays.html" class="btn btn-primary">อาร์เรย์ (Arrays) →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

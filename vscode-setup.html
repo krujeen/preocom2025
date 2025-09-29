@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💻 ตั้งค่า VS Code สำหรับ C++: พร้อมรบ! | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .vscode-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .intro-section {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .extension-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .extension-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .extension-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .extension-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .extension-name {
+            font-weight: 600;
+            color: #10b981;
+        }
+        
+        .developer {
+            color: #047857;
+            font-weight: 500;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-example::before {
+            content: "C++";
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .method-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .method-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+        }
+        
+        .method-title {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .method-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .shortcut-key {
+            background: #f7fafc;
+            border: 1px solid #cbd5e0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: 600;
+            color: #4a5568;
+            margin: 0 0.25rem;
+        }
+        
+        .debug-steps {
+            background: #fef7f0;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .debug-steps h4 {
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+        
+        .project-structure {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .folder {
+            color: #047857;
+            font-weight: 600;
+        }
+        
+        .file {
+            color: #6b7280;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 4px solid #10b981;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-item h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-step-box {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-step-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            white-space: pre;
+            position: relative;
+        }
+        
+        .code-example::before {
+            content: "C++";
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💻 ตั้งค่า VS Code สำหรับ C++: พร้อมรบ!</h1>
+            <p class="subtitle">การตั้งค่า Extensions และ Configuration สำหรับการเขียนโปรแกรม C++</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html" class="active">ตั้งค่า VS Code</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="vscode-content">
+            <div class="breadcrumb">
+                <a href="setup-guide.html">คู่มือติดตั้ง</a> > <span>ตั้งค่า VS Code สำหรับ C++</span>
+            </div>
+
+            <div class="intro-section">
+                <h2>🎯 เป้าหมายของบทนี้</h2>
+                <p>เมื่อเราติดตั้ง VS Code และ Compiler (g++) เรียบร้อยแล้ว ขั้นตอนต่อไปคือการบอกให้ VS Code รู้จักกับ C++ และตั้งค่าปุ่มลัดสำหรับการ Compile และ Run โค้ด</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    1. ติดตั้งส่วนขยายที่จำเป็น (Extensions)
+                </div>
+                <div class="step-content">
+                    <p>ส่วนขยาย (Extensions) ใน VS Code จะช่วยเพิ่มความสามารถในการเขียน, ตรวจสอบ, และ Debug โค้ด C++ ได้ดีขึ้นมาก</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">📦</div>
+                            <h4>เปิด VS Code</h4>
+                            <p>เปิดโปรแกรม Visual Studio Code</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🧩</div>
+                            <h4>ไปที่ Extensions</h4>
+                            <p>คลิกไอคอนสี่เหลี่ยมซ้อนกันทางซ้ายมือ หรือกด <span class="shortcut-key">Ctrl</span>+<span class="shortcut-key">Shift</span>+<span class="shortcut-key">X</span></p>
+                        </div>
+                    </div>
+
+                    <h4>🔍 ค้นหาและติดตั้ง 2 ส่วนขยายหลักนี้:</h4>
+                    
+                    <table class="extension-table">
+                        <thead>
+                            <tr>
+                                <th>ส่วนขยาย</th>
+                                <th>ผู้พัฒนา</th>
+                                <th>หน้าที่สำคัญ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="extension-name">C/C++ Extension Pack</td>
+                                <td class="developer">Microsoft</td>
+                                <td>ให้ฟีเจอร์พื้นฐานสำหรับ C++ เช่น การเติมโค้ดอัตโนมัติ (IntelliSense) และการ Debug</td>
+                            </tr>
+                            <tr>
+                                <td class="extension-name">Code Runner</td>
+                                <td class="developer">Jun Han</td>
+                                <td>ช่วยให้สามารถ Run โค้ดได้อย่างรวดเร็วด้วยปุ่มเดียว (โดยเฉพาะสำหรับไฟล์เดียว)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight-box">
+                        <p><strong>💡 เคล็ดลับ:</strong> C/C++ Extension Pack นั้นสำคัญที่สุดสำหรับการทำงานอย่างมืออาชีพ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    2. การ Compile และ Run โค้ดแบบง่าย (โดย Code Runner)
+                </div>
+                <div class="step-content">
+                    <p>สำหรับนักเรียน สอวน. ในค่าย 1 โจทย์ส่วนใหญ่จะอยู่ในรูปแบบ Single File (ไฟล์เดียวจบ) ซึ่ง Code Runner จะช่วยให้คุณ Run โค้ดได้ง่ายที่สุด</p>
+                    
+                    <h4>📝 สร้างไฟล์ทดสอบ</h4>
+                    <p>สร้างไฟล์ใหม่ใน VS Code (เช่น <strong>test.cpp</strong>) แล้วเขียนโค้ด C++ ง่าย ๆ ลงไป:</p>
+                    
+                    <div class="code-example">
+<span class="keyword">#include</span> <span class="string">&lt;iostream&gt;</span>
+<span class="keyword">int</span> main() {
+    std::<span class="keyword">cout</span> <span class="keyword">&lt;&lt;</span> <span class="string">"Hello, OSN Camp 1!"</span> <span class="keyword">&lt;&lt;</span> std::<span class="keyword">endl</span>;
+    <span class="keyword">return</span> <span class="string">0</span>;
+}
+                    </div>
+
+                    <h4>🏃‍♂️ วิธี Run โค้ด</h4>
+                    <div class="method-card">
+                        <div class="method-title">
+                            <span class="method-icon">▶️</span>
+                            วิธีที่ 1: ใช้ปุ่ม Run
+                        </div>
+                        <p>กดปุ่ม <strong>สามเหลี่ยม (Run)</strong> ที่มุมขวาบนของ Editor</p>
+                    </div>
+
+                    <div class="method-card">
+                        <div class="method-title">
+                            <span class="method-icon">⌨️</span>
+                            วิธีที่ 2: ใช้คีย์ลัด
+                        </div>
+                        <p>
+                            <strong>Windows/Linux:</strong> <span class="shortcut-key">Ctrl</span>+<span class="shortcut-key">Alt</span>+<span class="shortcut-key">N</span><br>
+                            <strong>macOS:</strong> <span class="shortcut-key">Ctrl</span>+<span class="shortcut-key">Option</span>+<span class="shortcut-key">N</span>
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p><strong>✅ ผลลัพธ์:</strong> ผลลัพธ์ของโปรแกรมจะแสดงในหน้าต่าง <strong>OUTPUT</strong> หรือ <strong>TERMINAL</strong> ของ VS Code</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    3. การตั้งค่า Debugging ขั้นสูง (ด้วย C/C++ Extension)
+                </div>
+                <div class="step-content">
+                    <p>ในการแก้ปัญหาที่ซับซ้อน เราจำเป็นต้องใช้ Debugger เพื่อดูค่าตัวแปรในแต่ละขั้นตอน ซึ่งเป็นทักษะสำคัญที่ต้องฝึกฝน</p>
+                    
+                    <p>เมื่อคุณต้องการ Debug โปรแกรม คุณต้องสร้างไฟล์การตั้งค่า 2 ไฟล์ คือ <strong>tasks.json</strong> และ <strong>launch.json</strong> โดยปกติแล้ว VS Code จะช่วยสร้างไฟล์พื้นฐานให้คุณ</p>
+
+                    <div class="debug-steps">
+                        <h4>🐛 ขั้นตอนการ Debugging:</h4>
+                        <ol>
+                            <li>เปิดไฟล์ C++ ที่ต้องการ Debug (เช่น <strong>program.cpp</strong>)</li>
+                            <li>ไปที่แถบ <strong>Run and Debug</strong> (ไอคอนแมลงทางซ้ายมือ) หรือกด <span class="shortcut-key">Ctrl</span>+<span class="shortcut-key">Shift</span>+<span class="shortcut-key">D</span></li>
+                            <li>คลิก <strong>"Run and Debug"</strong></li>
+                            <li>VS Code จะถามหา Environment ให้เลือก <strong>"C++ (GDB/LLDB)"</strong> (สำหรับ MinGW/GCC)</li>
+                            <li>VS Code จะสร้างไฟล์ <strong>launch.json</strong> และ <strong>tasks.json</strong> ในโฟลเดอร์ <strong>.vscode</strong> ของโปรเจกต์คุณ</li>
+                        </ol>
+                    </div>
+
+                    <div class="warning-box">
+                        <p><strong>⚠️ สำคัญ:</strong> ตรวจสอบในไฟล์ <strong>launch.json</strong> ว่าพารามิเตอร์ <code>program</code> ชี้ไปยังไฟล์ Output ที่ถูกต้อง (มักจะชื่อ <strong>a.exe</strong> หรือ <strong>%workspaceFolder%\a.exe</strong>) และ <code>miDebuggerPath</code> ชี้ไปยัง <strong>gdb.exe</strong> ของคุณ</p>
+                    </div>
+
+                    <h4>🎯 การใช้งานจริง:</h4>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">🔴</div>
+                            <h4>ตั้ง Breakpoint</h4>
+                            <p>คลิกที่ขอบซ้ายของบรรทัดโค้ดที่ต้องการให้โปรแกรมหยุด</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🐛</div>
+                            <h4>เริ่ม Debug</h4>
+                            <p>กดปุ่ม <span class="shortcut-key">F5</span> เพื่อเริ่ม Debug</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">👁️</div>
+                            <h4>ตรวจสอบตัวแปร</h4>
+                            <p>ดูค่าตัวแปร, ไล่บรรทัดต่อบรรทัด (<span class="shortcut-key">F10</span>)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-header">
+                    4. โครงสร้างไฟล์โปรเจกต์สำหรับค่าย
+                </div>
+                <div class="step-content">
+                    <p>แม้ว่าเราจะใช้ Code Runner ในการฝึกฝน แต่ในการจัดเก็บงานควรจัดให้อยู่ในโครงสร้างที่เป็นระเบียบ:</p>
+                    
+                    <div class="project-structure">
+<span class="folder">/OSN_CAMP1_PREP</span>
+    <span class="folder">/Day1</span>
+        <span class="folder">/Ex_A_IfElse</span>
+            <span class="file">Ex_A_IfElse.cpp</span>
+        <span class="folder">/Ex_B_Loop</span>
+            <span class="file">Ex_B_Loop.cpp</span>
+    <span class="folder">/Day2</span>
+        <span class="folder">/Vector_Basic</span>
+            <span class="file">Vector_Basic.cpp</span>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p><strong>💡 ข้อแนะนำ:</strong> การจัดระเบียบไฟล์ตั้งแต่เริ่มต้นจะช่วยให้คุณหาโค้ดเก่าได้ง่ายเมื่อต้องใช้อ้างอิง</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-step-box">
+                <h3>🎉 ตอนนี้เครื่องมือของคุณพร้อมแล้ว!</h3>
+                <p>คุณสามารถเริ่มเขียนและ Run โค้ด C++ ได้ทันทีในชั่วโมงถัดไป</p>
+                <p><strong>มีส่วนขยายตัวไหนที่นักเรียนติดตั้งไม่ได้ หรือมีข้อสงสัยเกี่ยวกับฟังก์ชัน Debugging บ้างไหม?</strong></p>
+                <p>เราจะเริ่มเรียนรู้ภาษา C++ พื้นฐานกันต่อเลย!</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="setup-guide.html" class="btn btn-secondary">← คู่มือติดตั้ง</a>
+                <a href="cpp-basics.html" class="btn btn-primary">พื้นฐาน C++ →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

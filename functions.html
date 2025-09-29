@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚙️ ฟังก์ชัน (Functions) | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .functions-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .benefit-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .structure-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .structure-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .structure-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .structure-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .structure-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .component-name {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #9f7aea;
+        }
+        
+        .function-demo {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .function-demo h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .demo-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .syntax-box {
+            background: #f8f9fa;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .syntax-box::before {
+            content: "💡 รูปแบบ";
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .function-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .function-type {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .function-type:hover {
+            border-color: #10b981;
+            transform: translateY(-3px);
+        }
+        
+        .function-type h5 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .type-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .comparison-section {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-section h4 {
+            color: #374151;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .comparison-item h5 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        
+        .parameter-visual {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .parameter-visual h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .parameter-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-box {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 120px;
+            text-align: center;
+            font-weight: 600;
+            color: #047857;
+        }
+        
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #10b981;
+        }
+        
+        .declaration-section {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-left: 6px solid #f59e0b;
+            border-radius: 0 10px 10px 0;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .declaration-section h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .declaration-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .declaration-steps {
+            counter-reset: step-counter;
+            margin: 1rem 0;
+        }
+        
+        .declaration-step {
+            counter-increment: step-counter;
+            background: white;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .declaration-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f59e0b;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .exercise-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .exercise-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .exercise-problem {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .quick-check-section {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .quick-check-section h3 {
+            color: #047857;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .check-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            color: #065f46;
+        }
+        
+        .check-list li::before {
+            content: "✅";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-topic {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-topic h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .output-demo {
+            background: #0f172a;
+            color: #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            border: 2px solid #10b981;
+            white-space: pre-line;
+        }
+        
+        .output-demo::before {
+            content: "💻 ผลลัพธ์:";
+            color: #10b981;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            display: block;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>⚙️ ฟังก์ชัน (Functions)</h1>
+            <p class="subtitle">จัดระเบียบโค้ด นำกลับมาใช้ซ้ำ ทำให้โปรแกรมเข้าใจง่ายขึ้น</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+                <li><a href="cpp-basics.html">พื้นฐาน C++</a></li>
+                <li><a href="conditional-statements.html">คำสั่งเงื่อนไข</a></li>
+                <li><a href="loops.html">การวนซ้ำ (Loops)</a></li>
+                <li><a href="practice-1.html">ฝึกปฏิบัติ 1</a></li>
+                <li><a href="arrays.html">อาร์เรย์ (Arrays)</a></li>
+                <li><a href="functions.html" class="active">ฟังก์ชัน (Functions)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="functions-content">
+            <div class="breadcrumb">
+                <a href="arrays.html">อาร์เรย์ (Arrays)</a> > <span>ฟังก์ชัน (Functions)</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 ฟังก์ชันคืออะไร?</h2>
+                <p>ฟังก์ชัน (Function) คือชุดคำสั่งที่ถูกรวมเข้าด้วยกันและตั้งชื่อไว้ เพื่อให้เราสามารถเรียกใช้งานชุดคำสั่งนั้นซ้ำ ๆ ได้ตามต้องการ</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📋</div>
+                        <p><strong>จัดระเบียบโค้ด</strong></p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">♻️</div>
+                        <p><strong>นำโค้ดกลับมาใช้ซ้ำ</strong></p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🧠</div>
+                        <p><strong>ทำให้โปรแกรมเข้าใจง่ายขึ้น</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: โครงสร้างพื้นฐาน -->
+            <div class="section-header">
+                1. โครงสร้างพื้นฐานของฟังก์ชัน
+            </div>
+            <div class="section-content">
+                <p>ทุกฟังก์ชันจะมี 3 ส่วนหลัก ๆ ที่ต้องกำหนด:</p>
+                
+                <table class="structure-table">
+                    <thead>
+                        <tr>
+                            <th>ส่วนประกอบ</th>
+                            <th>คำอธิบาย</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="component-name">ชนิดข้อมูลที่ส่งกลับ (Return Type)</span></td>
+                            <td>ฟังก์ชันจะส่งค่าอะไรกลับไปให้ผู้เรียกใช้ (เช่น int, double, void)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="component-name">ชื่อฟังก์ชัน (Function Name)</span></td>
+                            <td>ชื่อที่เราจะใช้เรียกฟังก์ชันนี้</td>
+                        </tr>
+                        <tr>
+                            <td><span class="component-name">พารามิเตอร์ (Parameters)</span></td>
+                            <td>ข้อมูลที่ฟังก์ชันต้องการเพื่อทำงาน (ถ้าไม่มี ให้ใส่ () เปล่า)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="syntax-box">
+<span class="comment">// ชนิดข้อมูลที่ส่งกลับ ชื่อฟังก์ชัน (ชนิดข้อมูล พารามิเตอร์1, ชนิดข้อมูล พารามิเตอร์2, ...);</span>
+
+<span class="keyword">int</span> findMax(<span class="keyword">int</span> a, <span class="keyword">int</span> b); <span class="comment">// ฟังก์ชันหาค่ามากสุด รับ int 2 ตัว ส่งกลับเป็น int</span>
+<span class="keyword">void</span> printGreeting(string name); <span class="comment">// ฟังก์ชันพิมพ์คำทักทาย ไม่ส่งค่ากลับ (void)</span>
+                </div>
+            </div>
+
+            <!-- Section 2: ฟังก์ชัน void -->
+            <div class="section-header">
+                2. ฟังก์ชันที่ไม่ส่งค่ากลับ (void)
+            </div>
+            <div class="section-content">
+                <p>ฟังก์ชันชนิด void คือฟังก์ชันที่ทำงานบางอย่าง (เช่น พิมพ์ข้อความ หรือแก้ไขค่าตัวแปร) แต่ <strong>ไม่ส่งค่ากลับ</strong> ไปยังจุดที่เรียกใช้</p>
+
+                <div class="function-demo">
+                    <h4><span class="demo-icon">🖨️</span>ตัวอย่าง: ฟังก์ชันพิมพ์เส้นบรรทัด</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Void Function Example</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="comment">// นิยามฟังก์ชัน: ไม่ส่งค่ากลับ (void) และไม่รับพารามิเตอร์</span>
+<span class="keyword">void</span> printLine() {
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"--------------------"</span> <span class="operator">&lt;&lt;</span> endl;
+}
+
+<span class="keyword">int</span> main() {
+    printLine(); <span class="comment">// เรียกใช้ฟังก์ชัน</span>
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Welcome to the Camp!"</span> <span class="operator">&lt;&lt;</span> endl;
+    printLine(); <span class="comment">// เรียกใช้ซ้ำอีกครั้ง</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+                    </div>
+
+                    <div class="output-demo">--------------------
+Welcome to the Camp!
+--------------------</div>
+                </div>
+            </div>
+
+            <!-- Section 3: ฟังก์ชัน Non-void -->
+            <div class="section-header">
+                3. ฟังก์ชันที่ส่งค่ากลับ (Non-void)
+            </div>
+            <div class="section-content">
+                <p>ฟังก์ชันชนิดอื่น ๆ (เช่น int, double, bool) ต้องมีการใช้คำสั่ง <strong>return</strong> เพื่อส่งค่ากลับไปยังจุดที่เรียกใช้</p>
+
+                <div class="function-demo">
+                    <h4><span class="demo-icon">📊</span>ตัวอย่าง: ฟังก์ชันยกกำลังสอง</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Return Function Example</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="comment">// นิยามฟังก์ชัน: ส่งค่ากลับเป็น int และรับพารามิเตอร์ int 1 ตัว</span>
+<span class="keyword">int</span> square(<span class="keyword">int</span> number) {
+    <span class="keyword">return</span> number * number; <span class="comment">// คำนวณผลลัพธ์และส่งกลับ</span>
+}
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> x = <span class="number">5</span>;
+    
+    <span class="comment">// รับค่าที่ส่งกลับจากฟังก์ชันมาเก็บในตัวแปร result</span>
+    <span class="keyword">int</span> result = square(x); 
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"The square of "</span> <span class="operator">&lt;&lt;</span> x <span class="operator">&lt;&lt;</span> <span class="string">" is "</span> <span class="operator">&lt;&lt;</span> result <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 25</span>
+    
+    <span class="comment">// หรือเรียกใช้โดยตรงในการแสดงผล</span>
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"The square of 10 is "</span> <span class="operator">&lt;&lt;</span> square(<span class="number">10</span>) <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 100</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+                    </div>
+
+                    <div class="output-demo">The square of 5 is 25
+The square of 10 is 100</div>
+                </div>
+            </div>
+
+            <!-- Section 4: การส่งผ่านพารามิเตอร์ -->
+            <div class="section-header">
+                4. การส่งผ่านพารามิเตอร์ (Parameter Passing)
+            </div>
+            <div class="section-content">
+                
+                <div class="function-types">
+                    <div class="function-type">
+                        <h5><span class="type-icon">📝</span>4.1 การส่งผ่านแบบคัดลอกค่า (Pass by Value)</h5>
+                        <p>เมื่อส่งตัวแปรเข้าไปในฟังก์ชัน ฟังก์ชันจะได้รับ<strong>สำเนา (Copy)</strong> ของค่านั้น</p>
+                        <p><strong>การแก้ไขค่าของตัวแปรภายในฟังก์ชัน จะไม่ส่งผลกระทบต่อตัวแปรต้นฉบับ</strong> ที่อยู่นอกฟังก์ชัน</p>
+                    </div>
+
+                    <div class="function-type">
+                        <h5><span class="type-icon">🔗</span>4.2 การส่งผ่านแบบอ้างอิง (Pass by Reference)</h5>
+                        <p>ใช้เครื่องหมาย <strong>&</strong> ที่หน้าชื่อพารามิเตอร์ (เช่น int &a)</p>
+                        <p>ฟังก์ชันจะได้รับ<strong>ที่อยู่ (Reference)</strong> ของตัวแปรต้นฉบับ</p>
+                        <p><strong>การแก้ไขค่าของตัวแปรภายในฟังก์ชัน จะส่งผลกระทบต่อตัวแปรต้นฉบับโดยตรง</strong></p>
+                    </div>
+                </div>
+
+                <div class="comparison-section">
+                    <h4>🔍 เปรียบเทียบ Pass by Value VS Pass by Reference</h4>
+                    
+                    <div class="comparison-grid">
+                        <div class="comparison-item">
+                            <h5><span class="type-icon">📝</span>Pass by Value</h5>
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Pass by Value</span>
+                                    <span>💻 C++</span>
+                                </div>
+                                <div class="code-example"><span class="keyword">void</span> modifyValue(<span class="keyword">int</span> a) {
+    a = <span class="number">100</span>; <span class="comment">// เปลี่ยนแค่สำเนาที่อยู่ในฟังก์ชัน</span>
+}
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    modifyValue(x);
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"x after modification: "</span> <span class="operator">&lt;&lt;</span> x <span class="operator">&lt;&lt;</span> endl; <span class="comment">// x ยังคงเป็น 10</span>
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+                            </div>
+                            <div class="output-demo">x after modification: 10</div>
+                        </div>
+
+                        <div class="comparison-item">
+                            <h5><span class="type-icon">🔗</span>Pass by Reference</h5>
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Pass by Reference</span>
+                                    <span>💻 C++</span>
+                                </div>
+                                <div class="code-example"><span class="keyword">void</span> modifyReference(<span class="keyword">int</span> &a) { <span class="comment">// มีเครื่องหมาย &</span>
+    a = <span class="number">100</span>; <span class="comment">// เปลี่ยนตัวแปรต้นฉบับที่ชื่อ a อ้างอิงถึง</span>
+}
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> x = <span class="number">10</span>;
+    modifyReference(x);
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"x after modification: "</span> <span class="operator">&lt;&lt;</span> x <span class="operator">&lt;&lt;</span> endl; <span class="comment">// x เปลี่ยนเป็น 100</span>
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+                            </div>
+                            <div class="output-demo">x after modification: 100</div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p><strong>💡 เคล็ดลับสำหรับค่าย:</strong> การส่งผ่านแบบอ้างอิง (&) มีประโยชน์มากเมื่อคุณต้องการให้ฟังก์ชันของคุณ <strong>แก้ไขค่าตัวแปร</strong> มากกว่าหนึ่งตัวพร้อมกัน เช่น การทำฟังก์ชัน Swap ค่าตัวเลข 2 ตัว</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: การประกาศและการนิยาม -->
+            <div class="section-header">
+                5. การประกาศ (Declaration) และการนิยาม (Definition)
+            </div>
+            <div class="section-content">
+                
+                <div class="declaration-section">
+                    <h4><span class="declaration-icon">📋</span>การแยกประกาศและนิยาม</h4>
+                    <p>ใน C++ บางครั้งเราต้อง <strong>ประกาศ (Declare)</strong> ฟังก์ชันไว้ล่วงหน้าก่อน main() เพื่อให้ main() รู้จักฟังก์ชันนั้น ก่อนที่จะ <strong>นิยาม (Define)</strong> รายละเอียดของฟังก์ชันไว้ข้างล่าง</p>
+                    
+                    <div class="declaration-steps">
+                        <div class="declaration-step">การประกาศ (Declaration / Prototype) ไว้ด้านบน</div>
+                        <div class="declaration-step">main() รู้จัก multiply() แล้ว</div>
+                        <div class="declaration-step">การนิยาม (Definition) ไว้ด้านล่าง</div>
+                    </div>
+                </div>
+
+                <div class="function-demo">
+                    <h4><span class="demo-icon">📐</span>ตัวอย่าง: การแยกประกาศและนิยาม</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Declaration and Definition</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="comment">// 1. การประกาศ (Declaration / Prototype) ไว้ด้านบน</span>
+<span class="keyword">int</span> multiply(<span class="keyword">int</span> a, <span class="keyword">int</span> b); 
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> result = multiply(<span class="number">5</span>, <span class="number">6</span>); <span class="comment">// main() รู้จัก multiply() แล้ว</span>
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Result: "</span> <span class="operator">&lt;&lt;</span> result <span class="operator">&lt;&lt;</span> endl;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+
+<span class="comment">// 2. การนิยาม (Definition) ไว้ด้านล่าง</span>
+<span class="keyword">int</span> multiply(<span class="keyword">int</span> a, <span class="keyword">int</span> b) { 
+    <span class="keyword">return</span> a * b;
+}</div>
+                    </div>
+
+                    <div class="output-demo">Result: 30</div>
+
+                    <div class="highlight-box">
+                        <p><strong>📝 หมายเหตุ:</strong> หากนิยามฟังก์ชันทั้งหมดไว้ก่อน main() ก็ไม่จำเป็นต้องประกาศ Prototype</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Check Section -->
+            <div class="quick-check-section">
+                <h3><span class="demo-icon">📋</span>สรุปการปฏิบัติ (Quick Check)</h3>
+                
+                <ul class="check-list">
+                    <li>ใช้ฟังก์ชัน void เมื่อต้องการให้ฟังก์ชันทำงาน แต่ไม่ต้องการผลลัพธ์ตัวเลขหรือค่าใด ๆ กลับมา</li>
+                    <li>ใช้ฟังก์ชัน Non-void (เช่น int, bool) เมื่อต้องการให้ฟังก์ชันคำนวณและ <strong>ส่งผลลัพธ์กลับ</strong> มา</li>
+                    <li>ใช้ Pass by Reference (&) เมื่อต้องการให้ฟังก์ชัน <strong>แก้ไขค่าของตัวแปรต้นฉบับ</strong> ที่ส่งเข้ามา</li>
+                </ul>
+            </div>
+
+            <!-- Exercise Section -->
+            <div class="exercise-section">
+                <h3>🏋️ โจทย์ฝึกหัด</h3>
+                
+                <div class="exercise-problem">
+                    <h4>🎯 โจทย์: ฟังก์ชันตรวจสอบเลขคู่</h4>
+                    <p>จงเขียนฟังก์ชันชื่อ <strong>isEven(int number)</strong> ที่รับตัวเลขจำนวนเต็มมา 1 ตัว แล้ว <strong>ส่งค่ากลับเป็น bool (True/False)</strong> เพื่อบอกว่าตัวเลขนั้นเป็นจำนวนคู่หรือไม่</p>
+                    
+                    <p><strong>💡 คำใบ้:</strong></p>
+                    <ul style="color: rgba(255,255,255,0.9); padding-left: 1.5rem;">
+                        <li>ใช้ตัวดำเนินการ % (modulo) เพื่อหาเศษจากการหาร</li>
+                        <li>ถ้าหาร 2 แล้วเศษเป็น 0 แสดงว่าเป็นเลขคู่</li>
+                        <li>ส่งค่ากลับเป็น true หรือ false</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="next-topic">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>ในชั่วโมงหน้า เราจะนำความรู้เรื่องฟังก์ชันมาใช้กับ <strong>Vector</strong> ซึ่งเป็นโครงสร้างข้อมูลที่ยืดหยุ่นกว่าอาร์เรย์ครับ!</p>
+                <p><strong>การเขียนฟังก์ชันจะช่วยให้โค้ดของคุณเป็นระเบียบและใช้งานได้หลายครั้ง ลองฝึกเขียนฟังก์ชันเล็ก ๆ กันดูนะครับ!</strong></p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="arrays.html" class="btn btn-secondary">← อาร์เรย์ (Arrays)</a>
+                <a href="vectors.html" class="btn btn-primary">เวกเตอร์ (Vectors) →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

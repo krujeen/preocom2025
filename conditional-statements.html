@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔀 โครงสร้างควบคุม: เงื่อนไข (Conditional Statements) | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .conditional-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .decision-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-step {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 120px;
+            border: 2px solid #10b981;
+            color: #333;
+        }
+        
+        .flow-step strong {
+            color: #047857;
+            font-weight: 600;
+        }
+        
+        .flow-step small {
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+        
+        .flow-arrow {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .syntax-box {
+            background: #f8f9fa;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            white-space: pre;
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .syntax-box::before {
+            content: "💡 รูปแบบ";
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .operators-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .operators-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .operators-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .operators-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .operators-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .operator-symbol {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #9f7aea;
+            background: #f7fafc;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+        }
+        
+        .operator-name {
+            color: #047857;
+            font-weight: 600;
+        }
+        
+        .example-code {
+            font-family: 'Courier New', monospace;
+            background: #f1f5f9;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: #4a5568;
+        }
+        
+        .result-value {
+            font-weight: 600;
+            color: #10b981;
+        }
+        
+        .interactive-example {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-example h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .code-explanation {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code-explanation h5 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .code-explanation p {
+            color: #065f46;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .if-else-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .if-else-demo {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .demo-input {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        
+        .demo-output {
+            background: #0f172a;
+            color: #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .demo-output::before {
+            content: "💻 Output:";
+            color: #10b981;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .logic-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .logic-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .logic-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+        }
+        
+        .logic-card h5 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logic-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #fef7f0 0%, #fed7aa 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .practice-section h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .practice-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .practice-problem {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .practice-problem h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .practice-problem p {
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .key-points {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .key-points h3 {
+            color: #047857;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .key-points li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            color: #065f46;
+        }
+        
+        .key-points li::before {
+            content: "✅";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-topic {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-topic h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔀 โครงสร้างควบคุม: เงื่อนไข (Conditional Statements)</h1>
+            <p class="subtitle">ให้โปรแกรมสามารถตัดสินใจและเลือกทำงานได้</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+                <li><a href="cpp-basics.html">พื้นฐาน C++</a></li>
+                <li><a href="conditional-statements.html" class="active">คำสั่งเงื่อนไข</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="conditional-content">
+            <div class="breadcrumb">
+                <a href="cpp-basics.html">พื้นฐาน C++</a> > <span>โครงสร้างควบคุม: เงื่อนไข</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 เป้าหมายของบทนี้</h2>
+                <p>โครงสร้างควบคุมเงื่อนไขช่วยให้โปรแกรมสามารถเลือกที่จะรันชุดคำสั่งที่แตกต่างกันไป ขึ้นอยู่กับว่าเงื่อนไขที่กำหนดเป็นจริง (true) หรือเป็นเท็จ (false)</p>
+                
+                <div class="decision-flow">
+                    <div class="flow-step">
+                        <strong>เงื่อนไข</strong><br>
+                        <small>condition</small>
+                    </div>
+                    <div class="flow-arrow">➡️</div>
+                    <div class="flow-step">
+                        <strong>ตัดสินใจ</strong><br>
+                        <small>true/false</small>
+                    </div>
+                    <div class="flow-arrow">➡️</div>
+                    <div class="flow-step">
+                        <strong>ทำงาน</strong><br>
+                        <small>execute code</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: if และ else -->
+            <div class="section-header">
+                1. คำสั่ง if และ else
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🔍</span>1.1 if (ถ้า)</h3>
+                    <p>ใช้เมื่อคุณต้องการให้ชุดคำสั่งทำงาน <strong>ก็ต่อเมื่อ</strong> เงื่อนไขที่กำหนดเป็นจริงเท่านั้น</p>
+                    
+                    <div class="syntax-box">
+if (เงื่อนไข) {
+    // ชุดคำสั่งจะทำงานเมื่อ 'เงื่อนไข' เป็นจริง (true)
+}
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🔄</span>1.2 else (มิฉะนั้น)</h3>
+                    <p>ใช้เพื่อกำหนดชุดคำสั่งที่จะทำงาน <strong>เมื่อ</strong> เงื่อนไขใน if ข้างต้นเป็นเท็จ (false)</p>
+                    
+                    <div class="syntax-box">
+if (เงื่อนไข) {
+    // ทำเมื่อเงื่อนไขเป็นจริง
+} else {
+    // ทำเมื่อเงื่อนไขเป็นเท็จ (คือไม่ได้เข้า if)
+}
+                    </div>
+                </div>
+
+                <div class="interactive-example">
+                    <h4><span class="example-icon">💡</span>ตัวอย่าง: การตรวจสอบว่าตัวเลขเป็นเลขคู่หรือเลขคี่</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Even/Odd Checker</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std; <span class="comment">// ใช้ namespace std เพื่อลดการพิมพ์ std::</span>
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> num;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Enter a number: "</span>;
+    cin <span class="operator">&gt;&gt;</span> num;
+
+    <span class="comment">// ตรวจสอบเงื่อนไข: num หาร 2 แล้วเหลือเศษ 0 หรือไม่</span>
+    <span class="keyword">if</span> (num <span class="operator">%</span> <span class="number">2</span> <span class="operator">==</span> <span class="number">0</span>) { 
+        cout <span class="operator">&lt;&lt;</span> num <span class="operator">&lt;&lt;</span> <span class="string">" is an Even number."</span> <span class="operator">&lt;&lt;</span> endl;
+    } <span class="keyword">else</span> {
+        cout <span class="operator">&lt;&lt;</span> num <span class="operator">&lt;&lt;</span> <span class="string">" is an Odd number."</span> <span class="operator">&lt;&lt;</span> endl;
+    }
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+
+                    <div class="code-explanation">
+                        <h5>💭 คำอธิบาย:</h5>
+                        <p>ใช้ตัวดำเนินการ <strong>% (modulo)</strong> เพื่อหาเศษจากการหาร ถ้าหาร 2 แล้วเศษเป็น 0 แสดงว่าเป็นเลขคู่</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: else if -->
+            <div class="section-header">
+                2. คำสั่ง else if (มิฉะนั้น ถ้า...)
+            </div>
+            <div class="section-content">
+                <p>ใช้เมื่อคุณต้องการตรวจสอบเงื่อนไขหลายเงื่อนไขตามลำดับ โปรแกรมจะตรวจสอบจากบนลงล่าง และจะทำในบล็อกแรกที่เงื่อนไขเป็นจริงเท่านั้น</p>
+                
+                <div class="syntax-box">
+if (เงื่อนไข A) {
+    // ทำเมื่อ A เป็นจริง
+} else if (เงื่อนไข B) {
+    // ทำเมื่อ B เป็นจริง (และ A เป็นเท็จ)
+} else if (เงื่อนไข C) {
+    // ทำเมื่อ C เป็นจริง (และ A, B เป็นเท็จ)
+} else {
+    // ทำเมื่อทุกเงื่อนไขข้างต้นเป็นเท็จทั้งหมด
+}
+                </div>
+
+                <div class="interactive-example">
+                    <h4><span class="example-icon">🎓</span>ตัวอย่าง: การให้เกรดตามคะแนน</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Grade Calculator</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> score;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Enter score: "</span>;
+    cin <span class="operator">&gt;&gt;</span> score;
+
+    <span class="keyword">if</span> (score <span class="operator">&gt;=</span> <span class="number">80</span>) {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"Grade A"</span> <span class="operator">&lt;&lt;</span> endl;
+    } <span class="keyword">else if</span> (score <span class="operator">&gt;=</span> <span class="number">70</span>) { <span class="comment">// จะมาตรวจสอบตรงนี้ก็ต่อเมื่อ score < 80 เท่านั้น</span>
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"Grade B"</span> <span class="operator">&lt;&lt;</span> endl;
+    } <span class="keyword">else if</span> (score <span class="operator">&gt;=</span> <span class="number">60</span>) { <span class="comment">// จะมาตรวจสอบตรงนี้ก็ต่อเมื่อ score < 70 เท่านั้น</span>
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"Grade C"</span> <span class="operator">&lt;&lt;</span> endl;
+    } <span class="keyword">else</span> {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"Grade F"</span> <span class="operator">&lt;&lt;</span> endl;
+    }
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+
+                    <div class="if-else-demo">
+                        <div class="demo-input">
+                            <h5>📝 ตัวอย่างการทำงาน:</h5>
+                            <ul>
+                                <li><strong>Input:</strong> 85 → <strong>Output:</strong> Grade A</li>
+                                <li><strong>Input:</strong> 75 → <strong>Output:</strong> Grade B</li>
+                                <li><strong>Input:</strong> 65 → <strong>Output:</strong> Grade C</li>
+                                <li><strong>Input:</strong> 50 → <strong>Output:</strong> Grade F</li>
+                            </ul>
+                        </div>
+                        <div class="demo-output">
+Enter score: 85<br>
+Grade A
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Comparison Operators -->
+            <div class="section-header">
+                3. ตัวดำเนินการเปรียบเทียบ (Comparison Operators)
+            </div>
+            <div class="section-content">
+                <p>ตัวดำเนินการเหล่านี้ใช้สำหรับสร้าง "เงื่อนไข" ในวงเล็บของคำสั่ง if ผลลัพธ์ที่ได้จะเป็นค่าความจริง (true หรือ false) เสมอ</p>
+                
+                <table class="operators-table">
+                    <thead>
+                        <tr>
+                            <th>ตัวดำเนินการ</th>
+                            <th>ความหมาย</th>
+                            <th>ตัวอย่าง</th>
+                            <th>ผลลัพธ์ (สมมติ x=5, y=10)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="operator-symbol">==</span></td>
+                            <td class="operator-name">เท่ากับ</td>
+                            <td><span class="example-code">x == 5</span></td>
+                            <td><span class="result-value">true</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="operator-symbol">!=</span></td>
+                            <td class="operator-name">ไม่เท่ากับ</td>
+                            <td><span class="example-code">x != y</span></td>
+                            <td><span class="result-value">true</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="operator-symbol">></span></td>
+                            <td class="operator-name">มากกว่า</td>
+                            <td><span class="example-code">y > x</span></td>
+                            <td><span class="result-value">true</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="operator-symbol"><</span></td>
+                            <td class="operator-name">น้อยกว่า</td>
+                            <td><span class="example-code">x < 5</span></td>
+                            <td><span class="result-value">false</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="operator-symbol">>=</span></td>
+                            <td class="operator-name">มากกว่าหรือเท่ากับ</td>
+                            <td><span class="example-code">y >= 10</span></td>
+                            <td><span class="result-value">true</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="operator-symbol"><=</span></td>
+                            <td class="operator-name">น้อยกว่าหรือเท่ากับ</td>
+                            <td><span class="example-code">x <= 4</span></td>
+                            <td><span class="result-value">false</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 4: Logical Operators -->
+            <div class="section-header">
+                4. ตัวดำเนินการตรรกะ (Logical Operators)
+            </div>
+            <div class="section-content">
+                <p>ใช้เพื่อรวมเงื่อนไขย่อย ๆ หลายเงื่อนไขเข้าด้วยกันเพื่อสร้างเงื่อนไขที่ซับซ้อนขึ้น</p>
+                
+                <div class="logic-examples">
+                    <div class="logic-card">
+                        <h5><span class="logic-icon">🤝</span>AND (&&)</h5>
+                        <p><strong>ความหมาย:</strong> เป็นจริงก็ต่อเมื่อ <strong>ทุกเงื่อนไข</strong> เป็นจริง</p>
+                        <div class="code-example">
+(x > 5 && x < 15)
+<span class="comment">// true เมื่อ x มากกว่า 5 และ น้อยกว่า 15</span>
+                        </div>
+                        <p><strong>ตัวอย่าง:</strong> (x=10) → true</p>
+                    </div>
+
+                    <div class="logic-card">
+                        <h5><span class="logic-icon">🔄</span>OR (||)</h5>
+                        <p><strong>ความหมาย:</strong> เป็นจริงเมื่อ <strong>เงื่อนไขใดเงื่อนไขหนึ่ง</strong> เป็นจริง</p>
+                        <div class="code-example">
+(x < 5 || x > 15)
+<span class="comment">// true เมื่อ x น้อยกว่า 5 หรือ มากกว่า 15</span>
+                        </div>
+                        <p><strong>ตัวอย่าง:</strong> (x=3) → true</p>
+                    </div>
+
+                    <div class="logic-card">
+                        <h5><span class="logic-icon">🚫</span>NOT (!)</h5>
+                        <p><strong>ความหมาย:</strong> กลับค่าความจริง (จริง → เท็จ, เท็จ → จริง)</p>
+                        <div class="code-example">
+!(x < 5)
+<span class="comment">// true เมื่อ x ไม่น้อยกว่า 5</span>
+                        </div>
+                        <p><strong>ตัวอย่าง:</strong> (x=10) → true</p>
+                    </div>
+                </div>
+
+                <div class="interactive-example">
+                    <h4><span class="example-icon">🎯</span>ตัวอย่าง: ตรวจสอบว่าคะแนนอยู่ในช่วง [70,80)</h4>
+                    <p>คือ ≥70 และ <80</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Range Checker</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">if</span> (score <span class="operator">>=</span> <span class="number">70</span> <span class="operator">&&</span> score <span class="operator"><</span> <span class="number">80</span>) {
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Grade B"</span> <span class="operator">&lt;&lt;</span> endl;
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="practice-section">
+                <h3><span class="practice-icon">🏋️</span>สรุปและแบบฝึกหัด</h3>
+                
+                <div class="key-points">
+                    <h3><span class="practice-icon">🔑</span>จุดสำคัญที่ต้องจำ</h3>
+                    <ul>
+                        <li><strong>เงื่อนไขซ้อนเงื่อนไข (Nested If):</strong> คุณสามารถใส่คำสั่ง if ซ้อนเข้าไปในบล็อกของ if หรือ else อื่น ๆ ได้ เพื่อให้โปรแกรมตัดสินใจแบบหลายระดับ</li>
+                        <li><strong>การใช้ bool:</strong> ผลลัพธ์ของเงื่อนไขคือชนิดข้อมูล bool ซึ่งสามารถเก็บค่า true หรือ false ได้</li>
+                        <li><strong>ลำดับการตรวจสอบ:</strong> ใน else if โปรแกรมจะตรวจสอบจากบนลงล่าง และหยุดที่เงื่อนไขแรกที่เป็นจริง</li>
+                    </ul>
+                </div>
+
+                <div class="practice-problem">
+                    <h4>🧩 โจทย์ฝึกหัด: ปีอธิกสุรทิน (Leap Year)</h4>
+                    <p>จงเขียนโปรแกรมที่รับปี พ.ศ. เข้ามา แล้วตรวจสอบว่าปีนั้นเป็น <strong>ปีอธิกสุรทิน (Leap Year)</strong> หรือไม่</p>
+                    <p><strong>เงื่อนไข:</strong> หาร 400 ลงตัว หรือ (หาร 4 ลงตัวแต่ไม่หาร 100 ลงตัว)</p>
+                    
+                    <div class="code-explanation">
+                        <h5>💡 คำใบ้:</h5>
+                        <p>ใช้ตัวดำเนินการ % เพื่อตรวจสอบการหารลงตัว และใช้ && กับ || เพื่อรวมเงื่อนไข</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-topic">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>ในชั่วโมงถัดไป เราจะเรียนรู้โครงสร้างควบคุมอีกรูปแบบหนึ่งที่สำคัญไม่แพ้กัน นั่นคือ <strong>การวนซ้ำ (Loops)</strong>!</p>
+                <p>ฝึกฝนการใช้ if/else ให้คล่องก่อนนะครับ!</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="cpp-basics.html" class="btn btn-secondary">← พื้นฐาน C++</a>
+                <a href="loops.html" class="btn btn-primary">การวนซ้ำ (Loops) →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

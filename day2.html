@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันที่ 2: โครงสร้างข้อมูลพื้นฐานและการแก้ปัญหา | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📅 วันที่ 2: โครงสร้างข้อมูลพื้นฐานและการแก้ปัญหา</h1>
+            <p class="subtitle">6 ชั่วโมง - โครงสร้างข้อมูลและเทคนิคการแก้ปัญหาขั้นสูง</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html" class="active">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="schedule-container">
+            <div class="schedule-item">
+                <div class="time-badge">ชั่วโมงที่ 7</div>
+                <div class="content">
+                    <h3>📦 โครงสร้างข้อมูล 1: อาร์เรย์ (Arrays)</h3>
+                    
+                    <div class="details">
+                        <h4>รายละเอียด (Details):</h4>
+                        <ul>
+                            <li>แนวคิดของ อาร์เรย์ (Array) และการประกาศใช้งาน</li>
+                            <li>การเข้าถึงสมาชิกของอาร์เรย์ (Indexing)</li>
+                            <li>อาร์เรย์ 1 มิติ และการประยุกต์ใช้ในการจัดเก็บข้อมูลชุด</li>
+                            <li>การใช้ลูปกับอาร์เรย์เพื่อประมวลผลข้อมูล</li>
+                        </ul>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>สิ่งที่นักเรียนควรทำได้ (Outcome):</h4>
+                        <p>เข้าใจแนวคิดและสามารถจัดการข้อมูลในรูปแบบอาร์เรย์ 1 มิติได้</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="time-badge">ชั่วโมงที่ 8</div>
+                <div class="content">
+                    <h3>⚙️ ฟังก์ชัน (Functions)</h3>
+                    
+                    <div class="details">
+                        <h4>รายละเอียด (Details):</h4>
+                        <ul>
+                            <li>เหตุผลในการใช้ฟังก์ชัน (ลดการซ้ำซ้อน, จัดระเบียบโค้ด)</li>
+                            <li>การประกาศ (Declaration) และการนิยาม (Definition) ฟังก์ชัน</li>
+                            <li>การส่งค่ากลับ (Return Value) และการรับพารามิเตอร์ (Parameters)</li>
+                            <li>การส่งผ่านค่าและการส่งผ่านอ้างอิง (Pass by Value vs Pass by Reference)</li>
+                        </ul>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>สิ่งที่นักเรียนควรทำได้ (Outcome):</h4>
+                        <p>สามารถออกแบบและใช้งานฟังก์ชันเพื่อแบ่งส่วนงานของโปรแกรมให้ชัดเจน</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="time-badge">ชั่วโมงที่ 9</div>
+                <div class="content">
+                    <h3>🌟 โครงสร้างข้อมูล 2: เวกเตอร์ (Vectors)</h3>
+                    
+                    <div class="details">
+                        <h4>รายละเอียด (Details):</h4>
+                        <ul>
+                            <li>แนะนำ std::vector (Dynamic Array) และข้อดีกว่าอาร์เรย์ปกติ</li>
+                            <li>การใช้งานฟังก์ชันพื้นฐานของ vector: push_back(), size(), [ ] (Indexing)</li>
+                            <li>ฟังก์ชันเพิ่มเติม: pop_back(), clear(), empty()</li>
+                            <li>การใช้ iterator เบื้องต้น</li>
+                        </ul>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>สิ่งที่นักเรียนควรทำได้ (Outcome):</h4>
+                        <p>สามารถใช้งาน std::vector ซึ่งเป็นเครื่องมือที่สำคัญมากในการแข่งขัน</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="time-badge">ชั่วโมงที่ 10</div>
+                <div class="content">
+                    <h3>🔗 การจัดรูปแบบโค้ดและการ Debugging</h3>
+                    
+                    <div class="details">
+                        <h4>รายละเอียด (Details):</h4>
+                        <ul>
+                            <li>แนวทางการ เขียนโค้ดให้สะอาด (Clean Code): การตั้งชื่อตัวแปร, การเว้นวรรค, การใส่คอมเมนต์</li>
+                            <li>การใช้ Debugger (GDB) ใน VS Code เพื่อหาข้อผิดพลาด (Debugging)</li>
+                            <li>เทคนิคการพิมพ์ค่าตัวแปรเพื่อตรวจสอบ (Print Debugging)</li>
+                            <li>การอ่านและเข้าใจ Error Messages</li>
+                        </ul>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>สิ่งที่นักเรียนควรทำได้ (Outcome):</h4>
+                        <p>สามารถใช้ Debugger ของ VS Code เพื่อตามรอยหาบั๊กและแก้ไขข้อผิดพลาดในโปรแกรม</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <div class="time-badge">ชั่วโมงที่ 11</div>
+                <div class="content">
+                    <h3>💡 เทคนิคการแก้ปัญหาพื้นฐาน (Problem Solving)</h3>
+                    
+                    <div class="details">
+                        <h4>รายละเอียด (Details):</h4>
+                        <ul>
+                            <li>แนะนำแนวคิดของ ความซับซ้อนเชิงเวลา (Time Complexity) อย่างง่าย (Big O Notation เช่น O(N), O(N²))</li>
+                            <li>การอ่านโจทย์ที่ซับซ้อนขึ้น และการจำกัดขอบเขตของข้อมูล (Constraints)</li>
+                            <li>เทคนิคการวิเคราะห์โจทย์และการวางแผนวิธีแก้ปัญหา</li>
+                            <li>การเลือกโครงสร้างข้อมูลที่เหมาะสม</li>
+                        </ul>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>สิ่งที่นักเรียนควรทำได้ (Outcome):</h4>
+                        <p>เข้าใจว่าทำไมต้องเลือกใช้อัลกอริทึมที่เร็ว และเริ่มวิเคราะห์ข้อจำกัดของโจทย์</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-item highlight">
+                <div class="time-badge">ชั่วโมงที่ 12</div>
+                <div class="content">
+                    <h3>🏆 ฝึกปฏิบัติ 2: โจทย์รวม</h3>
+                    
+                    <div class="details">
+                        <h4>รายละเอียด (Details):</h4>
+                        <ul>
+                            <li>แก้โจทย์ที่ต้องใช้ Vector, Function, และเทคนิคการแก้ปัญหา ร่วมกัน</li>
+                            <li>เน้นการจับเวลาในการแก้โจทย์ และการฝึกส่งคำตอบบนระบบ Online Judge (ถ้ามี)</li>
+                            <li>ถาม-ตอบ และทบทวนสิ่งที่ต้องเน้นก่อนเข้าค่าย 1 จริง</li>
+                            <li>การเตรียมตัวสำหรับการแข่งขันจริง</li>
+                        </ul>
+                    </div>
+
+                    <div class="outcome">
+                        <h4>สิ่งที่นักเรียนควรทำได้ (Outcome):</h4>
+                        <p>มีความมั่นใจในการใช้เครื่องมือและการเขียนโค้ด C++ เพื่อแก้โจทย์ที่หลากหลายขึ้น</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-summary">
+            <h2>📚 สรุปวันที่ 2</h2>
+            <p>ในวันที่สอง นักเรียนจะได้เรียนรู้โครงสร้างข้อมูลที่สำคัญและเทคนิคการแก้ปัญหาขั้นสูง ความรู้เหล่านี้จะช่วยให้นักเรียนสามารถแก้โจทย์ที่ซับซ้อนขึ้นและเตรียมพร้อมสำหรับการเข้าค่าย 1 สอวน. คอมพิวเตอร์</p>
+            
+            <div class="key-takeaways">
+                <h3>🎯 สิ่งสำคัญที่ได้เรียนรู้:</h3>
+                <ul>
+                    <li>การใช้งาน Arrays และ Vectors สำหรับจัดเก็บข้อมูล</li>
+                    <li>การออกแบบและใช้งาน Functions เพื่อจัดระเบียบโค้ด</li>
+                    <li>เทคนิคการ Debug และการแก้ไขข้อผิดพลาด</li>
+                    <li>แนวคิดพื้นฐานของ Time Complexity</li>
+                    <li>การวิเคราะห์โจทย์และการเลือกวิธีแก้ปัญหา</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="day1.html" class="btn btn-secondary">← วันที่ 1</a>
+            <a href="tips.html" class="btn btn-primary">คำแนะนำจากวิทยากร →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

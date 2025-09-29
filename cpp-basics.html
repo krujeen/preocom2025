@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 พื้นฐานภาษา C++: โครงสร้างและชนิดข้อมูล | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .cpp-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px 15px 0 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        
+        .section-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .subsection {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .subsection:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .subsection h3 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .subsection-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .code-output {
+            background: #0f172a;
+            color: #10b981;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            border-left: 4px solid #10b981;
+        }
+        
+        .code-output::before {
+            content: "📤 ผลลัพธ์:";
+            color: #10b981;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .data-types-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .data-types-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .data-types-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .data-types-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-types-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .type-name {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #9f7aea;
+            background: #f7fafc;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .size-info {
+            color: #047857;
+            font-weight: 500;
+        }
+        
+        .range-info {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        
+        .usage-info {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        .structure-diagram {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .structure-parts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .structure-part {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #10b981;
+            text-align: center;
+        }
+        
+        .structure-part h4 {
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .structure-part p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin: 0;
+        }
+        
+        .iostream-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .iostream-feature {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .iostream-feature h4 {
+            color: #047857;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .iostream-feature .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .note-box {
+            background: #fef7f0;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .note-box h4 {
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .note-box p {
+            color: #92400e;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .quick-check {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .quick-check h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .check-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            padding: 0;
+        }
+        
+        .check-list li::before {
+            content: "✅";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-chapter {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-chapter h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 พื้นฐานภาษา C++: โครงสร้างและชนิดข้อมูล</h1>
+            <p class="subtitle">ความรู้พื้นฐานที่สำคัญสำหรับการเขียนโปรแกรม C++</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+                <li><a href="cpp-basics.html" class="active">พื้นฐาน C++</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="cpp-content">
+            <div class="breadcrumb">
+                <a href="vscode-setup.html">ตั้งค่า VS Code</a> > <span>พื้นฐานภาษา C++</span>
+            </div>
+
+            <!-- Section 1: โครงสร้างพื้นฐาน -->
+            <div class="section-header">
+                1. โครงสร้างพื้นฐานของโปรแกรม C++
+            </div>
+            <div class="section-content">
+                <p>ทุกโปรแกรมภาษา C++ จะมีโครงสร้างหลักที่คล้ายกัน ซึ่งนักเรียนต้องจำและเข้าใจส่วนประกอบต่อไปนี้</p>
+                
+                <div class="structure-diagram">
+                    <h3>🏗️ โครงสร้างโปรแกรม C++</h3>
+                    <div class="structure-parts">
+                        <div class="structure-part">
+                            <h4>#include</h4>
+                            <p>ดึงไลบรารี</p>
+                        </div>
+                        <div class="structure-part">
+                            <h4>int main()</h4>
+                            <p>ฟังก์ชันหลัก</p>
+                        </div>
+                        <div class="structure-part">
+                            <h4>{ โค้ด }</h4>
+                            <p>เนื้อหาโปรแกรม</p>
+                        </div>
+                        <div class="structure-part">
+                            <h4>return 0;</h4>
+                            <p>จบโปรแกรม</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📚</span>1.1 ส่วนการประกาศไลบรารี (#include)</h3>
+                    <p>เป็นส่วนที่ใช้ดึงฟังก์ชันหรือเครื่องมือต่าง ๆ ที่ภาษา C++ เตรียมไว้ให้มาใช้งาน</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>📖 #include &lt;iostream&gt;:</strong> คือการดึงไลบรารีสำหรับจัดการการ Input (รับข้อมูล) และ Output (แสดงผล) ซึ่งเราจะใช้ตลอดหลักสูตร</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🎯</span>1.2 ฟังก์ชันหลัก (int main())</h3>
+                    <p>โปรแกรมจะเริ่มต้นทำงานจากฟังก์ชันนี้เสมอ เปรียบเสมือนเป็นจุดเริ่มต้นและจุดสิ้นสุดของการรันโปรแกรม</p>
+                    
+                    <ul>
+                        <li><strong>int main():</strong> หมายถึงฟังก์ชันนี้จะส่งค่ากลับเป็นจำนวนเต็ม (int) เมื่อทำงานเสร็จสิ้น</li>
+                        <li><strong>return 0;</strong> เป็นคำสั่งสุดท้ายในฟังก์ชันหลัก โดยทั่วไปการส่งค่า 0 กลับไปจะหมายถึง "โปรแกรมทำงานเสร็จสมบูรณ์โดยไม่มีข้อผิดพลาด"</li>
+                    </ul>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>ตัวอย่างโครงสร้างพื้นฐาน</span>
+                        <span>💻 C++</span>
+                    </div>
+                    <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span> <span class="comment">// ส่วนดึงไลบรารี Input/Output</span>
+
+<span class="keyword">int</span> main() {
+    <span class="comment">// โค้ดโปรแกรมของเราจะอยู่ตรงนี้</span>
+
+    <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// บอกว่าโปรแกรมจบสมบูรณ์</span>
+}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Input/Output -->
+            <div class="section-header">
+                2. การรับและแสดงผลข้อมูล (Input/Output)
+            </div>
+            <div class="section-content">
+                <p>เราใช้ <strong>std::cout</strong> สำหรับการแสดงผล และ <strong>std::cin</strong> สำหรับการรับข้อมูล</p>
+                
+                <div class="iostream-features">
+                    <div class="iostream-feature">
+                        <div class="feature-icon">📤</div>
+                        <h4>std::cout</h4>
+                        <p>สำหรับแสดงผลข้อมูลออกหน้าจอ</p>
+                    </div>
+                    <div class="iostream-feature">
+                        <div class="feature-icon">📥</div>
+                        <h4>std::cin</h4>
+                        <p>สำหรับรับข้อมูลจากผู้ใช้</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📤</span>2.1 การแสดงผล (Output) ด้วย std::cout</h3>
+                    <p>ใช้ในการพิมพ์ข้อความ หรือค่าตัวแปรออกทางหน้าจอ (Terminal)</p>
+                    
+                    <ul>
+                        <li><strong>std::cout &lt;&lt; "ข้อความ";</strong> ใช้เครื่องหมาย &lt;&lt; (insertion operator)</li>
+                        <li><strong>\n หรือ std::endl:</strong> ใช้สำหรับการขึ้นบรรทัดใหม่</li>
+                    </ul>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>ตัวอย่างการแสดงผล</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+
+<span class="keyword">int</span> main() {
+    std::cout <span class="operator">&lt;&lt;</span> <span class="string">"สวัสดีครับ สอวน. คอมพ์!"</span>; <span class="comment">// พิมพ์ข้อความ</span>
+    std::cout <span class="operator">&lt;&lt;</span> <span class="string">"\n"</span>; <span class="comment">// ขึ้นบรรทัดใหม่</span>
+    
+    <span class="keyword">int</span> age = <span class="number">15</span>;
+    std::cout <span class="operator">&lt;&lt;</span> <span class="string">"ฉันอายุ: "</span> <span class="operator">&lt;&lt;</span> age <span class="operator">&lt;&lt;</span> <span class="string">" ปี"</span> <span class="operator">&lt;&lt;</span> std::endl; <span class="comment">// เชื่อมข้อความกับตัวแปร</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+                    
+                    <div class="code-output">
+สวัสดีครับ สอวน. คอมพ์!
+ฉันอายุ: 15 ปี
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📥</span>2.2 การรับข้อมูล (Input) ด้วย std::cin</h3>
+                    <p>ใช้ในการรับค่าจากผู้ใช้ที่พิมพ์ผ่านคีย์บอร์ด แล้วนำไปเก็บไว้ในตัวแปร</p>
+                    
+                    <ul>
+                        <li><strong>std::cin &gt;&gt; ตัวแปร;</strong> ใช้เครื่องหมาย &gt;&gt; (extraction operator)</li>
+                    </ul>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>ตัวอย่างการรับข้อมูล</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> number; <span class="comment">// ประกาศตัวแปรชนิดจำนวนเต็ม</span>
+    
+    std::cout <span class="operator">&lt;&lt;</span> <span class="string">"กรุณาใส่ตัวเลข: "</span>;
+    std::cin <span class="operator">&gt;&gt;</span> number; <span class="comment">// รับค่าที่ผู้ใช้พิมพ์ แล้วเก็บในตัวแปร 'number'</span>
+    
+    std::cout <span class="operator">&lt;&lt;</span> <span class="string">"คุณป้อนเลข: "</span> <span class="operator">&lt;&lt;</span> number <span class="operator">&lt;&lt;</span> std::endl;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 หมายเหตุ:</h4>
+                    <p>ในการแข่งขัน เรามักจะใช้ <strong>using namespace std;</strong> เพื่อลดความยุ่งยากในการพิมพ์ std:: ซ้ำ ๆ แต่สำหรับการเรียนรู้พื้นฐาน ให้เข้าใจว่า cout และ cin อยู่ใน std Namespace ครับ</p>
+                </div>
+            </div>
+
+            <!-- Section 3: Data Types -->
+            <div class="section-header">
+                3. ชนิดข้อมูล (Data Types) ที่ควรรู้จัก
+            </div>
+            <div class="section-content">
+                <p>การเลือกใช้ชนิดข้อมูลที่เหมาะสมเป็นสิ่งสำคัญมากในการแข่งขัน เนื่องจากมีผลต่อหน่วยความจำและความถูกต้องของค่าที่เก็บ</p>
+                
+                <table class="data-types-table">
+                    <thead>
+                        <tr>
+                            <th>ชนิดข้อมูล (Type)</th>
+                            <th>ขนาด (Size) โดยประมาณ</th>
+                            <th>ช่วงค่า (Range) ที่เก็บได้</th>
+                            <th>ใช้เมื่อไหร่?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="type-name">int</span></td>
+                            <td class="size-info">4 Bytes</td>
+                            <td class="range-info">ประมาณ ±2 พันล้าน</td>
+                            <td class="usage-info">ใช้สำหรับเก็บจำนวนเต็มทั่วไป (ส่วนใหญ่สำหรับค่าที่ไม่เกิน 10⁹)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="type-name">long long</span></td>
+                            <td class="size-info">8 Bytes</td>
+                            <td class="range-info">ประมาณ ±9×10¹⁸</td>
+                            <td class="usage-info"><strong>สำคัญมาก!</strong> ใช้สำหรับจำนวนเต็มขนาดใหญ่ (ถ้าโจทย์ระบุว่าตัวเลขเกิน 2 พันล้าน ต้องใช้ตัวนี้)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="type-name">double</span></td>
+                            <td class="size-info">8 Bytes</td>
+                            <td class="range-info">สำหรับทศนิยมความละเอียดสูง</td>
+                            <td class="usage-info">ใช้สำหรับเก็บจำนวนจริง (Real Number) หรือค่าที่มีจุดทศนิยม</td>
+                        </tr>
+                        <tr>
+                            <td><span class="type-name">char</span></td>
+                            <td class="size-info">1 Byte</td>
+                            <td class="range-info">ตัวอักษรเดียว</td>
+                            <td class="usage-info">ใช้สำหรับเก็บตัวอักษร 1 ตัว (เช่น 'A', 'b', '9')</td>
+                        </tr>
+                        <tr>
+                            <td><span class="type-name">bool</span></td>
+                            <td class="size-info">1 Byte</td>
+                            <td class="range-info">true หรือ false</td>
+                            <td class="usage-info">ใช้สำหรับเก็บค่าความจริง/เท็จ</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📝</span>การประกาศตัวแปร</h3>
+                    <p>รูปแบบคือ: <strong>[ชนิดข้อมูล] [ชื่อตัวแปร];</strong> หรือ <strong>[ชนิดข้อมูล] [ชื่อตัวแปร] = [ค่าเริ่มต้น];</strong></p>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>ตัวอย่างการประกาศตัวแปร</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> score = <span class="number">100</span>; <span class="comment">// จำนวนเต็ม</span>
+    <span class="keyword">long long</span> population = <span class="number">7000000000LL</span>; <span class="comment">// จำนวนเต็มขนาดใหญ่ (ใช้ LL ต่อท้าย)</span>
+    <span class="keyword">double</span> pi = <span class="number">3.14159</span>; <span class="comment">// จำนวนทศนิยม</span>
+    <span class="keyword">char</span> grade = <span class="string">'A'</span>; <span class="comment">// ตัวอักษร</span>
+    
+    std::cout <span class="operator">&lt;&lt;</span> <span class="string">"คะแนน: "</span> <span class="operator">&lt;&lt;</span> score <span class="operator">&lt;&lt;</span> std::endl;
+    std::cout <span class="operator">&lt;&lt;</span> <span class="string">"ประชากรโลก: "</span> <span class="operator">&lt;&lt;</span> population <span class="operator">&lt;&lt;</span> std::endl;
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Check -->
+            <div class="quick-check">
+                <h3>📋 สรุปการปฏิบัติ (Quick Check)</h3>
+                <ul class="check-list">
+                    <li><strong>โครงสร้าง:</strong> ต้องมี #include &lt;iostream&gt; และ int main() { ... return 0; } เสมอ</li>
+                    <li><strong>Input/Output:</strong> ใช้ std::cout &lt;&lt; ... และ std::cin &gt;&gt; ...</li>
+                    <li><strong>Data Types:</strong> ถ้าตัวเลขใหญ่มาก (เกิน 2×10⁹) ให้ใช้ long long ทันที</li>
+                </ul>
+            </div>
+
+            <div class="next-chapter">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>ในชั่วโมงถัดไป เราจะนำความรู้เรื่องตัวแปรเหล่านี้ ไปใช้ร่วมกับ <strong>ตัวดำเนินการ (Operators)</strong> และ <strong>คำสั่งเงื่อนไข (If/Else)</strong> เพื่อให้โปรแกรมสามารถตัดสินใจได้!</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="vscode-setup.html" class="btn btn-secondary">← ตั้งค่า VS Code</a>
+                <a href="conditional-statements.html" class="btn btn-primary">คำสั่งเงื่อนไข →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

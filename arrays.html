@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 โครงสร้างข้อมูล 1: อาร์เรย์ (Arrays) | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .arrays-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .array-visualization {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .array-cell {
+            background: white;
+            border: 2px solid #10b981;
+            padding: 0.75rem;
+            min-width: 60px;
+            text-align: center;
+            font-weight: 600;
+            color: #047857;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .array-cell::after {
+            content: attr(data-index);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .array-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .array-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .array-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+        
+        .array-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .array-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .index-value {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        
+        .array-value {
+            font-family: 'Courier New', monospace;
+            color: #047857;
+            font-weight: 600;
+        }
+        
+        .declaration-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .declaration-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .declaration-card:hover {
+            border-color: #10b981;
+            transform: translateY(-3px);
+        }
+        
+        .declaration-card h5 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .memory-layout {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .memory-layout h4 {
+            color: #374151;
+            margin-bottom: 1.5rem;
+        }
+        
+        .memory-cells {
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .memory-cell {
+            background: #10b981;
+            color: white;
+            padding: 0.5rem;
+            min-width: 50px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .matrix-visual {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .matrix-visual h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .matrix-grid {
+            display: inline-grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .matrix-cell {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            padding: 0.75rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #047857;
+        }
+        
+        .warning-section {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-left: 6px solid #f59e0b;
+            border-radius: 0 10px 10px 0;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .warning-section h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .warning-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .warning-list li {
+            background: white;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .warning-list li strong {
+            color: #92400e;
+        }
+        
+        .exercise-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .exercise-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .exercise-problem {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-topic {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-topic h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .output-demo {
+            background: #0f172a;
+            color: #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            border: 2px solid #10b981;
+            white-space: pre-line;
+        }
+        
+        .output-demo::before {
+            content: "💻 ผลลัพธ์:";
+            color: #10b981;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            display: block;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📦 โครงสร้างข้อมูล 1: อาร์เรย์ (Arrays)</h1>
+            <p class="subtitle">จัดเก็บชุดข้อมูลอย่างมีระเบียบ เข้าถึงได้รวดเร็วผ่านดัชนี</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+                <li><a href="cpp-basics.html">พื้นฐาน C++</a></li>
+                <li><a href="conditional-statements.html">คำสั่งเงื่อนไข</a></li>
+                <li><a href="loops.html">การวนซ้ำ (Loops)</a></li>
+                <li><a href="practice-1.html">ฝึกปฏิบัติ 1</a></li>
+                <li><a href="arrays.html" class="active">อาร์เรย์ (Arrays)</a></li>
+                <li><a href="functions.html">ฟังก์ชัน (Functions)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="arrays-content">
+            <div class="breadcrumb">
+                <a href="practice-1.html">ฝึกปฏิบัติ 1</a> > <span>โครงสร้างข้อมูล 1: อาร์เรย์</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 อาร์เรย์คืออะไร?</h2>
+                <p>อาร์เรย์ (Array) คือโครงสร้างข้อมูลที่ใช้จัดเก็บชุดของข้อมูลที่มี <strong>ชนิดข้อมูลเดียวกัน</strong> โดยเก็บต่อเนื่องกันในหน่วยความจำ ซึ่งช่วยให้เข้าถึงข้อมูลได้อย่างรวดเร็วผ่านการใช้ <strong>ดัชนี (Index)</strong></p>
+                
+                <div class="array-visualization">
+                    <div class="array-cell" data-index="[0]">10</div>
+                    <div class="array-cell" data-index="[1]">20</div>
+                    <div class="array-cell" data-index="[2]">30</div>
+                    <div class="array-cell" data-index="[3]">40</div>
+                    <div class="array-cell" data-index="[4]">50</div>
+                </div>
+            </div>
+
+            <!-- Section 1: การประกาศและเริ่มต้น -->
+            <div class="section-header">
+                1. การประกาศและเริ่มต้นใช้งานอาร์เรย์
+            </div>
+            <div class="section-content">
+                <p>การประกาศอาร์เรย์ต้องระบุชนิดข้อมูลและขนาด (จำนวนสมาชิก) ที่แน่นอนไว้ล่วงหน้า</p>
+                
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📋</span>1.1 การประกาศอาร์เรย์ 1 มิติ (One-Dimensional Array)</h3>
+                    
+                    <div class="declaration-examples">
+                        <div class="declaration-card">
+                            <h5><span class="card-icon">🔢</span>การประกาศอาร์เรย์จำนวนเต็ม</h5>
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Integer Array</span>
+                                    <span>💻 C++</span>
+                                </div>
+                                <div class="code-example"><span class="comment">// ชนิดข้อมูล ชื่ออาร์เรย์[ขนาด];</span>
+<span class="keyword">int</span> scores[<span class="number">10</span>]; <span class="comment">// อาร์เรย์ชื่อ 'scores' เก็บตัวเลขจำนวนเต็มได้ 10 ตัว</span></div>
+                            </div>
+                        </div>
+
+                        <div class="declaration-card">
+                            <h5><span class="card-icon">💰</span>การประกาศอาร์เรย์ทศนิยม</h5>
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Double Array</span>
+                                    <span>💻 C++</span>
+                                </div>
+                                <div class="code-example"><span class="keyword">double</span> prices[<span class="number">5</span>]; <span class="comment">// อาร์เรย์ชื่อ 'prices' เก็บเลขทศนิยมได้ 5 ตัว</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">⚡</span>1.2 การกำหนดค่าเริ่มต้น (Initialization)</h3>
+                    <p>คุณสามารถกำหนดค่าเริ่มต้นให้กับอาร์เรย์ได้ทันทีที่ประกาศ</p>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Array Initialization</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="comment">// กำหนดค่าเริ่มต้นให้กับสมาชิกทั้งหมด</span>
+<span class="keyword">int</span> numbers[<span class="number">5</span>] = {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>}; 
+
+<span class="comment">// ถ้ากำหนดค่าน้อยกว่าขนาดที่ประกาศไว้ สมาชิกที่เหลือจะถูกกำหนดเป็น 0 โดยอัตโนมัติ</span>
+<span class="keyword">int</span> small_array[<span class="number">10</span>] = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>}; <span class="comment">// สมาชิกที่เหลือ 7 ตัวจะเป็น 0</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: การเข้าถึงสมาชิก -->
+            <div class="section-header">
+                2. การเข้าถึงสมาชิก (Accessing Elements)
+            </div>
+            <div class="section-content">
+                <p>สมาชิกแต่ละตัวในอาร์เรย์จะถูกเข้าถึงโดยใช้ <strong>ดัชนี (Index)</strong> โดย <strong>ดัชนีจะเริ่มจาก 0 เสมอ</strong></p>
+                <p>ถ้าอาร์เรย์มีขนาด N ตัว ดัชนีที่ถูกต้องจะอยู่ในช่วง [0,N−1]</p>
+
+                <table class="array-table">
+                    <thead>
+                        <tr>
+                            <th>อาร์เรย์</th>
+                            <th>A[0]</th>
+                            <th>A[1]</th>
+                            <th>A[2]</th>
+                            <th>…</th>
+                            <th>A[N−1]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ตำแหน่ง</strong></td>
+                            <td>สมาชิกตัวแรก</td>
+                            <td>สมาชิกตัวที่สอง</td>
+                            <td>สมาชิกตัวที่สาม</td>
+                            <td>…</td>
+                            <td>สมาชิกตัวสุดท้าย</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="interactive-demo">
+                    <h4><span class="demo-icon">🎯</span>ตัวอย่าง: การกำหนดค่าและเข้าถึงสมาชิก</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Array Access</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> data[<span class="number">4</span>]; <span class="comment">// อาร์เรย์ขนาด 4 (ดัชนี 0, 1, 2, 3)</span>
+
+    data[<span class="number">0</span>] = <span class="number">5</span>;      <span class="comment">// กำหนดค่า 5 ให้สมาชิกตัวแรก</span>
+    data[<span class="number">3</span>] = <span class="number">99</span>;     <span class="comment">// กำหนดค่า 99 ให้สมาชิกตัวสุดท้าย</span>
+
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Value at Index 0: "</span> <span class="operator">&lt;&lt;</span> data[<span class="number">0</span>] <span class="operator">&lt;&lt;</span> endl;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Value at Index 3: "</span> <span class="operator">&lt;&lt;</span> data[<span class="number">3</span>] <span class="operator">&lt;&lt;</span> endl;
+    
+    <span class="comment">// การเข้าถึงดัชนีที่เกินขอบเขต (เช่น data[4]) จะทำให้เกิดข้อผิดพลาด (Undefined Behavior)</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+                    </div>
+
+                    <div class="output-demo">Value at Index 0: 5
+Value at Index 3: 99</div>
+                </div>
+            </div>
+
+            <!-- Section 3: การใช้งานร่วมกับ Loop -->
+            <div class="section-header">
+                3. การใช้งานร่วมกับ Loop
+            </div>
+            <div class="section-content">
+                <p>การวนซ้ำเป็นวิธีเดียวที่จะช่วยให้เราประมวลผลสมาชิกทุกตัวในอาร์เรย์ได้อย่างมีประสิทธิภาพ</p>
+
+                <div class="interactive-demo">
+                    <h4><span class="demo-icon">🔄</span>ตัวอย่าง: รับค่าเข้าอาร์เรย์ และแสดงผลรวม</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Array with Loop</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">const int</span> SIZE = <span class="number">5</span>; <span class="comment">// ใช้ const เพื่อกำหนดขนาดให้ชัดเจน</span>
+    <span class="keyword">int</span> numbers[SIZE];
+    <span class="keyword">int</span> sum = <span class="number">0</span>;
+
+    <span class="comment">// ส่วนที่ 1: รับค่าเข้าอาร์เรย์ โดยใช้ for loop วนตามดัชนี 0 ถึง SIZE-1</span>
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Enter 5 numbers:"</span> <span class="operator">&lt;&lt;</span> endl;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i <span class="operator">&lt;</span> SIZE; i++) {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"Number "</span> <span class="operator">&lt;&lt;</span> i + <span class="number">1</span> <span class="operator">&lt;&lt;</span> <span class="string">": "</span>;
+        cin <span class="operator">&gt;&gt;</span> numbers[i]; <span class="comment">// รับค่าเข้าสู่ดัชนีที่ i</span>
+    }
+
+    <span class="comment">// ส่วนที่ 2: ประมวลผลและคำนวณผลรวม</span>
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"\nNumbers entered: "</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i <span class="operator">&lt;</span> SIZE; i++) {
+        cout <span class="operator">&lt;&lt;</span> numbers[i] <span class="operator">&lt;&lt;</span> <span class="string">" "</span>;
+        sum += numbers[i]; <span class="comment">// บวกค่าที่ดัชนีที่ i เข้าไปใน sum</span>
+    }
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"\nTotal Sum: "</span> <span class="operator">&lt;&lt;</span> sum <span class="operator">&lt;&lt;</span> endl;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+                    </div>
+
+                    <div class="output-demo">Enter 5 numbers:
+Number 1: 10
+Number 2: 20
+Number 3: 15
+Number 4: 25
+Number 5: 30
+
+Numbers entered: 10 20 15 25 30 
+Total Sum: 100</div>
+                </div>
+            </div>
+
+            <!-- Section 4: อาร์เรย์ 2 มิติ -->
+            <div class="section-header">
+                4. อาร์เรย์ 2 มิติ (Two-Dimensional Array)
+            </div>
+            <div class="section-content">
+                <p>อาร์เรย์ 2 มิติใช้สำหรับจัดเก็บข้อมูลในรูปแบบตาราง (แถวและคอลัมน์) เหมือนกับเมทริกซ์</p>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📊</span>4.1 การประกาศอาร์เรย์ 2 มิติ</h3>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>2D Array Declaration</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="comment">// ชนิดข้อมูล ชื่ออาร์เรย์[จำนวนแถว][จำนวนคอลัมน์];</span>
+<span class="keyword">int</span> matrix[<span class="number">3</span>][<span class="number">4</span>]; <span class="comment">// อาร์เรย์ 3 แถว 4 คอลัมน์ (รวม 12 ช่อง)</span></div>
+                    </div>
+
+                    <div class="matrix-visual">
+                        <h4>📋 การจัดเรียงข้อมูลในอาร์เรย์ 2 มิติ</h4>
+                        <div class="matrix-grid">
+                            <div class="matrix-cell">1</div>
+                            <div class="matrix-cell">2</div>
+                            <div class="matrix-cell">3</div>
+                            <div class="matrix-cell">4</div>
+                            <div class="matrix-cell">5</div>
+                            <div class="matrix-cell">6</div>
+                        </div>
+                        <p><strong>แถวที่ 0:</strong> [1, 2, 3] | <strong>แถวที่ 1:</strong> [4, 5, 6]</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🔄</span>4.2 การเข้าถึงและใช้งาน Loop ซ้อนกัน</h3>
+                    <p>ต้องใช้ Nested Loop ในการประมวลผลข้อมูลในอาร์เรย์ 2 มิติ โดย Outer Loop มักจะควบคุม <strong>แถว</strong> และ Inner Loop ควบคุม <strong>คอลัมน์</strong></p>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>2D Array with Nested Loops</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example"><span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> matrix[<span class="number">2</span>][<span class="number">3</span>] = { <span class="comment">// 2 แถว, 3 คอลัมน์</span>
+        {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>},       <span class="comment">// แถวที่ 0</span>
+        {<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>}        <span class="comment">// แถวที่ 1</span>
+    };
+
+    <span class="comment">// การเข้าถึง: matrix[แถว][คอลัมน์]</span>
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Element at [1][2]: "</span> <span class="operator">&lt;&lt;</span> matrix[<span class="number">1</span>][<span class="number">2</span>] <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 6</span>
+
+    <span class="comment">// การวนซ้ำเพื่อพิมพ์ค่าทั้งหมด</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">0</span>; row <span class="operator">&lt;</span> <span class="number">2</span>; row++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col <span class="operator">&lt;</span> <span class="number">3</span>; col++) {
+            cout <span class="operator">&lt;&lt;</span> matrix[row][col] <span class="operator">&lt;&lt;</span> <span class="string">"\t"</span>; <span class="comment">// พิมพ์ค่าในแถวปัจจุบัน</span>
+        }
+        cout <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ขึ้นบรรทัดใหม่เมื่อจบรอบของแถว</span>
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</div>
+                    </div>
+
+                    <div class="output-demo">Element at [1][2]: 6
+1	2	3	
+4	5	6	</div>
+                </div>
+            </div>
+
+            <!-- Warning Section -->
+            <div class="warning-section">
+                <h4><span class="warning-icon">⚠️</span>สรุปข้อควรระวังสำหรับอาร์เรย์</h4>
+                
+                <ul class="warning-list">
+                    <li>
+                        <strong>ขนาดคงที่ (Fixed Size):</strong> เมื่อประกาศขนาดแล้ว ไม่สามารถเปลี่ยนแปลงได้ (นี่คือข้อจำกัดใหญ่ที่ทำให้เราต้องใช้ Vector ในชั่วโมงที่ 9)
+                    </li>
+                    <li>
+                        <strong>ดัชนีเริ่มต้นจาก 0:</strong> นี่คือจุดที่นักเรียนทำผิดพลาดบ่อยที่สุด! โปรดจำไว้ว่าสมาชิกตัวแรกคือ Array[0] เสมอ
+                    </li>
+                    <li>
+                        <strong>ระวังการเข้าถึงนอกขอบเขต (Out-of-Bounds Access):</strong> การพยายามเข้าถึงดัชนีที่ไม่มีอยู่ (เช่น A[N] ในอาร์เรย์ขนาด N) จะทำให้เกิดข้อผิดพลาดร้ายแรงในโปรแกรม
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Exercise Section -->
+            <div class="exercise-section">
+                <h3>🏋️ โจทย์ฝึกหัด</h3>
+                
+                <div class="exercise-problem">
+                    <h4>🎯 โจทย์: ค้นหาค่าสูงสุดในอาร์เรย์</h4>
+                    <p>จงเขียนโปรแกรมที่รับตัวเลข <strong>10 ตัว</strong> มาเก็บในอาร์เรย์ แล้วค้นหาว่า <strong>ตัวเลขที่มีค่าสูงสุด</strong> ในอาร์เรย์นั้นคืออะไร</p>
+                    
+                    <p><strong>💡 คำใบ้:</strong></p>
+                    <ul style="color: rgba(255,255,255,0.9); padding-left: 1.5rem;">
+                        <li>ใช้ตัวแปรเก็บค่าสูงสุดที่พบจนถึงขณะนั้น</li>
+                        <li>วนลูปเปรียบเทียบแต่ละสมาชิกกับค่าสูงสุดปัจจุบัน</li>
+                        <li>อัปเดตค่าสูงสุดเมื่อพบค่าที่มากกว่า</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="next-topic">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>โครงสร้างข้อมูลอาร์เรย์มีความสำคัญมาก แต่ในการแข่งขันจริง เรามักจะใช้ <strong>Vector</strong> ซึ่งเป็นญาติที่ยืดหยุ่นกว่าของอาร์เรย์ ซึ่งเราจะพูดถึงในชั่วโมงถัดไป</p>
+                <p>แต่ก่อนอื่น เรามาเรียนรู้เรื่อง <strong>ฟังก์ชัน (Functions)</strong> เพื่อจัดระเบียบโค้ดกันก่อนครับ!</p>
+                <p><strong>มีคำถามเกี่ยวกับการใช้ดัชนีหรือ Loop ร่วมกับอาร์เรย์ไหมครับ?</strong></p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="practice-1.html" class="btn btn-secondary">← ฝึกปฏิบัติ 1</a>
+                <a href="functions.html" class="btn btn-primary">ฟังก์ชัน (Functions) →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔄 โครงสร้างควบคุม: การวนซ้ำ (Loops) | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .loops-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .loop-cycle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .cycle-step {
+            background: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-align: center;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #10b981;
+            font-weight: 600;
+            color: #047857;
+        }
+        
+        .cycle-arrow {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .loop-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .loop-type {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .loop-type h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .loop-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .loop-usage {
+            background: #f0fdf4;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #10b981;
+        }
+        
+        .loop-usage h5 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .loop-syntax {
+            background: #f8f9fa;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .loop-syntax::before {
+            content: "💡 รูปแบบ";
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .interactive-demo {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-demo h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .demo-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .step-by-step {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .step-item {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .step-number {
+            background: #10b981;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: 600;
+        }
+        
+        .step-item h5 {
+            color: #047857;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .control-commands {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .control-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .control-card:hover {
+            border-color: #10b981;
+            transform: translateY(-3px);
+        }
+        
+        .control-card h5 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .control-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .nested-visual {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .nested-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .outer-loop {
+            background: #10b981;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            min-width: 200px;
+        }
+        
+        .inner-loop {
+            background: #047857;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .output-table {
+            background: #0f172a;
+            color: #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            white-space: pre-line;
+        }
+        
+        .output-table::before {
+            content: "📤 ผลลัพธ์:";
+            color: #10b981;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .warning-box {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-left: 6px solid #f59e0b;
+            border-radius: 0 10px 10px 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .warning-box h5 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .warning-box p {
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #fef7f0 0%, #fed7aa 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .practice-section h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .practice-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .practice-problem {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .practice-problem h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-reference {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .quick-reference h3 {
+            color: #047857;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .reference-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+        }
+        
+        .reference-item h5 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .reference-item p {
+            color: #065f46;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-topic {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-topic h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔄 โครงสร้างควบคุม: การวนซ้ำ (Loops)</h1>
+            <p class="subtitle">ทำงานซ้ำ ๆ อย่างมีประสิทธิภาพ ลดโค้ดที่ซ้ำซ้อน</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="day1.html">วันที่ 1</a></li>
+                <li><a href="day2.html">วันที่ 2</a></li>
+                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
+                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
+                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
+                <li><a href="cpp-basics.html">พื้นฐาน C++</a></li>
+                <li><a href="conditional-statements.html">คำสั่งเงื่อนไข</a></li>
+                <li><a href="loops.html" class="active">การวนซ้ำ (Loops)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="loops-content">
+            <div class="breadcrumb">
+                <a href="conditional-statements.html">คำสั่งเงื่อนไข</a> > <span>โครงสร้างควบคุม: การวนซ้ำ</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 เป้าหมายของบทนี้</h2>
+                <p>การวนซ้ำ (Loop) คือการสั่งให้โปรแกรมทำงานชุดคำสั่งเดิมซ้ำ ๆ ตามจำนวนครั้งที่กำหนด หรือจนกว่าเงื่อนไขที่กำหนดจะถูกยกเลิก ซึ่งช่วยลดการเขียนโค้ดที่ซ้ำซ้อนได้อย่างมาก</p>
+                
+                <div class="loop-cycle">
+                    <div class="cycle-step">เริ่ม</div>
+                    <div class="cycle-arrow">➡️</div>
+                    <div class="cycle-step">ตรวจสอบ</div>
+                    <div class="cycle-arrow">➡️</div>
+                    <div class="cycle-step">ทำงาน</div>
+                    <div class="cycle-arrow">➡️</div>
+                    <div class="cycle-step">เปลี่ยน</div>
+                    <div class="cycle-arrow">🔄</div>
+                </div>
+            </div>
+
+            <!-- Loop Comparison -->
+            <div class="loop-comparison">
+                <div class="loop-type">
+                    <h4><span class="loop-icon">🔢</span>for Loop</h4>
+                    <div class="loop-usage">
+                        <h5>📊 เหมาะสำหรับ:</h5>
+                        <p>เมื่อ<strong>รู้จำนวนรอบ</strong>แน่นอน (นับ, ทำซ้ำ N ครั้ง)</p>
+                    </div>
+                </div>
+                <div class="loop-type">
+                    <h4><span class="loop-icon">🔄</span>while Loop</h4>
+                    <div class="loop-usage">
+                        <h5>🎯 เหมาะสำหรับ:</h5>
+                        <p>เมื่อ<strong>ไม่รู้จำนวนรอบ</strong>แต่มีเงื่อนไขให้หยุด</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: for Loop -->
+            <div class="section-header">
+                1. for Loop: การวนซ้ำที่ทราบจำนวนรอบ
+            </div>
+            <div class="section-content">
+                <p>for Loop เป็นเครื่องมือที่ยอดเยี่ยมที่สุดเมื่อคุณทราบจำนวนครั้งที่ต้องการวนซ้ำอย่างชัดเจน (เช่น วน N ครั้ง, วนตั้งแต่ 1 ถึง 10)</p>
+                
+                <div class="loop-syntax">
+for (การกำหนดค่าเริ่มต้น; เงื่อนไขการวนซ้ำ; การเปลี่ยนแปลงค่าในแต่ละรอบ) {
+    // ชุดคำสั่งที่จะถูกทำซ้ำ
+}
+                </div>
+
+                <div class="interactive-demo">
+                    <h4><span class="demo-icon">🔢</span>ตัวอย่าง: พิมพ์ตัวเลขตั้งแต่ 1 ถึง 5</h4>
+                    
+                    <div class="step-by-step">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <h5>กำหนดค่าเริ่มต้น<br><code>int i = 1</code></h5>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <h5>ตรวจสอบเงื่อนไข<br><code>i <= 5</code></h5>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <h5>ทำงานในบล็อก<br><code>cout << i</code></h5>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <h5>เปลี่ยนแปลงค่า<br><code>i++</code></h5>
+                        </div>
+                    </div>
+
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Number Printer</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="comment">// 1. กำหนดค่าเริ่มต้น: int i = 1 (ตัวนับ i เริ่มที่ 1)</span>
+    <span class="comment">// 2. เงื่อนไข: i <= 5 (วนซ้ำตราบใดที่ i น้อยกว่าหรือเท่ากับ 5)</span>
+    <span class="comment">// 3. เปลี่ยนแปลง: i++ (เพิ่มค่า i ทีละ 1 หลังจบรอบ)</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator"><=</span> <span class="number">5</span>; i++) {
+        cout <span class="operator"><<</span> i <span class="operator"><<</span> <span class="string">" "</span>;
+    }
+    cout <span class="operator"><<</span> endl;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+
+                    <div class="output-table">1 2 3 4 5 </div>
+
+                    <div class="highlight-box">
+                        <p><strong>📝 หมายเหตุ:</strong> <code>i++</code> คือการเพิ่มค่า i ขึ้น 1 (i=i+1) และ <code>i--</code> คือการลดค่า i ลง 1</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: while Loop -->
+            <div class="section-header">
+                2. while Loop: การวนซ้ำตามเงื่อนไข
+            </div>
+            <div class="section-content">
+                <p>while Loop ใช้เมื่อคุณไม่ทราบจำนวนรอบที่แน่นอน แต่ต้องการให้โปรแกรมทำงานต่อไปตราบใดที่เงื่อนไขใดยังคงเป็นจริง</p>
+                
+                <div class="loop-syntax">
+while (เงื่อนไขการวนซ้ำ) {
+    // ชุดคำสั่งที่จะถูกทำซ้ำ
+    // ต้องมีการเปลี่ยนแปลงบางอย่างที่ทำให้เงื่อนไขเป็นเท็จในที่สุด!
+}
+                </div>
+
+                <div class="interactive-demo">
+                    <h4><span class="demo-icon">🔄</span>ตัวอย่าง: รับค่าตัวเลขไปเรื่อย ๆ จนกว่าจะป้อน 0</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Input Loop</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> num = <span class="number">-1</span>; <span class="comment">// กำหนดค่าเริ่มต้นที่ไม่ใช่ 0 เพื่อให้เข้า Loop ครั้งแรก</span>
+
+    <span class="comment">// วนซ้ำตราบใดที่ num ไม่เท่ากับ 0</span>
+    <span class="keyword">while</span> (num != <span class="number">0</span>) { 
+        cout <span class="operator"><<</span> <span class="string">"Enter a number (0 to exit): "</span>;
+        cin <span class="operator">>></span> num;
+        cout <span class="operator"><<</span> <span class="string">"You entered: "</span> <span class="operator"><<</span> num <span class="operator"><<</span> endl;
+    }
+    cout <span class="operator"><<</span> <span class="string">"Program exited."</span> <span class="operator"><<</span> endl;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+
+                    <div class="output-table">Enter a number (0 to exit): 5
+You entered: 5
+Enter a number (0 to exit): 3
+You entered: 3
+Enter a number (0 to exit): 0
+You entered: 0
+Program exited.</div>
+                </div>
+
+                <div class="warning-box">
+                    <h5><span class="warning-icon">⚠️</span>ข้อควรระวัง: Infinite Loop</h5>
+                    <p>ถ้าในบล็อกของ while Loop ไม่มีคำสั่งที่ทำให้ <strong>เงื่อนไขเป็นเท็จ</strong> (เช่น ลืมเพิ่มค่า i++ หรือลืมรับค่าใหม่) โปรแกรมจะเกิด <strong>Infinite Loop</strong> (วนซ้ำไม่รู้จบ) และทำให้โปรแกรมค้าง</p>
+                </div>
+            </div>
+
+            <!-- Section 3: Control Commands -->
+            <div class="section-header">
+                3. คำสั่งควบคุม Loop พิเศษ
+            </div>
+            <div class="section-content">
+                <p>มีคำสั่งพิเศษ 2 คำสั่งที่ช่วยให้เราควบคุมการทำงานของ Loop ได้ยืดหยุ่นมากขึ้น</p>
+                
+                <div class="control-commands">
+                    <div class="control-card">
+                        <h5><span class="control-icon">🚪</span>break</h5>
+                        <p>ใช้สำหรับ <strong>ออกจาก Loop ทันที</strong> เมื่อคำสั่งนี้ถูกรัน ไม่ว่าจะยังเหลือรอบการวนซ้ำอยู่หรือไม่ก็ตาม</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Break Example</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator"><=</span> <span class="number">10</span>; i++) {
+    <span class="keyword">if</span> (i == <span class="number">7</span>) {
+        cout <span class="operator"><<</span> <span class="string">"Found 7! Breaking..."</span> <span class="operator"><<</span> endl;
+        <span class="keyword">break</span>; <span class="comment">// ออกจาก for loop ทันที</span>
+    }
+    cout <span class="operator"><<</span> i <span class="operator"><<</span> <span class="string">" "</span>;
+}
+                            </div>
+                        </div>
+                        <div class="output-table">1 2 3 4 5 6 Found 7! Breaking...</div>
+                    </div>
+
+                    <div class="control-card">
+                        <h5><span class="control-icon">⏭️</span>continue</h5>
+                        <p>ใช้สำหรับ <strong>ข้ามการทำงานที่เหลือ</strong> ในรอบปัจจุบันของ Loop แล้วไปเริ่มต้นรอบใหม่ทันที</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Continue Example</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator"><=</span> <span class="number">5</span>; i++) {
+    <span class="keyword">if</span> (i <span class="operator">%</span> <span class="number">2</span> == <span class="number">0</span>) {
+        <span class="keyword">continue</span>; <span class="comment">// ข้ามการทำงานที่เหลือ (คือ cout) แล้วไปรอบ i ถัดไป</span>
+    }
+    cout <span class="operator"><<</span> i <span class="operator"><<</span> <span class="string">" "</span>;
+}
+cout <span class="operator"><<</span> endl;
+                            </div>
+                        </div>
+                        <div class="output-table">1 3 5 </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Nested Loops -->
+            <div class="section-header">
+                4. การวนซ้ำซ้อนกัน (Nested Loops)
+            </div>
+            <div class="section-content">
+                <p>คุณสามารถใส่ Loop หนึ่งไว้ในอีก Loop หนึ่งได้ การวนซ้ำซ้อนกันนี้มีประโยชน์มากสำหรับการทำงานกับข้อมูลสองมิติ หรือการทำงานที่ต้องใช้การตรวจสอบคู่</p>
+                
+                <div class="nested-visual">
+                    <h4>🔄 แนวคิดของ Nested Loop</h4>
+                    <div class="nested-diagram">
+                        <div class="outer-loop">
+                            <strong>Outer Loop (แถว)</strong>
+                            <div class="inner-loop">
+                                <strong>Inner Loop (คอลัมน์)</strong><br>
+                                <small>รันครบทุกรอบก่อน Outer เพิ่ม</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4><span class="demo-icon">✖️</span>ตัวอย่าง: การสร้างตารางสูตรคูณ (วนซ้ำ 2 ชั้น)</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Multiplication Table</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator"><=</span> <span class="number">3</span>; i++) { <span class="comment">// Outer Loop (แถว)</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j <span class="operator"><=</span> <span class="number">3</span>; j++) { <span class="comment">// Inner Loop (คอลัมน์)</span>
+        <span class="comment">// Inner Loop จะรันครบทุกรอบของ j ก่อนที่ Outer Loop จะเพิ่มค่า i</span>
+        cout <span class="operator"><<</span> i <span class="operator"><<</span> <span class="string">"x"</span> <span class="operator"><<</span> j <span class="operator"><<</span> <span class="string">"="</span> <span class="operator"><<</span> (i * j) <span class="operator"><<</span> <span class="string">"\t"</span>; <span class="comment">// \t คือ Tab</span>
+    }
+    cout <span class="operator"><<</span> endl; <span class="comment">// ขึ้นบรรทัดใหม่เมื่อจบรอบ Outer Loop</span>
+}
+                        </div>
+                    </div>
+
+                    <div class="output-table">1x1=1	1x2=2	1x3=3	
+2x1=2	2x2=4	2x3=6	
+3x1=3	3x2=6	3x3=9	</div>
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="quick-reference">
+                <h3><span class="practice-icon">📋</span>สรุปการปฏิบัติ (Quick Check)</h3>
+                
+                <div class="reference-grid">
+                    <div class="reference-item">
+                        <h5>🔢 for Loop</h5>
+                        <p>เหมาะสำหรับเมื่อ <strong>รู้จำนวนรอบ</strong> แน่นอน (นับ, ทำซ้ำ)</p>
+                    </div>
+                    <div class="reference-item">
+                        <h5>🔄 while Loop</h5>
+                        <p>เหมาะสำหรับเมื่อ <strong>ไม่รู้จำนวนรอบ</strong> แต่มีเงื่อนไขให้หยุด</p>
+                    </div>
+                    <div class="reference-item">
+                        <h5>🚪 break/continue</h5>
+                        <p>ใช้ควบคุมทิศทางการทำงานภายใน Loop</p>
+                    </div>
+                    <div class="reference-item">
+                        <h5>🔄 Nested Loops</h5>
+                        <p>สำหรับข้อมูลสองมิติหรือการตรวจสอบคู่</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="practice-section">
+                <h3><span class="practice-icon">🏋️</span>โจทย์ฝึกหัด</h3>
+                
+                <div class="practice-problem">
+                    <h4>🧮 โจทย์: คำนวณ Factorial</h4>
+                    <p>จงเขียนโปรแกรมที่รับตัวเลข N เข้ามา แล้วคำนวณค่า <strong>Factorial ของ N (N!)</strong> โดยใช้ for Loop</p>
+                    <p><strong>ตัวอย่าง:</strong> 5! = 5 × 4 × 3 × 2 × 1 = 120</p>
+                    
+                    <div class="code-explanation">
+                        <h5>💡 คำใบ้:</h5>
+                        <p>ใช้ตัวแปรเก็บผลคูณ เริ่มต้นที่ 1 แล้ว loop คูณไปเรื่อย ๆ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-topic">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>ในชั่วโมงหน้า เราจะนำความรู้เรื่อง Loop และตัวแปรมาใช้จัดเก็บข้อมูลจำนวนมากในรูปแบบ <strong>อาร์เรย์ (Arrays)</strong> ซึ่งสำคัญมากสำหรับการแก้โจทย์ในค่าย!</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="conditional-statements.html" class="btn btn-secondary">← คำสั่งเงื่อนไข</a>
+                <a href="practice-1.html" class="btn btn-primary">ฝึกปฏิบัติ 1 →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>
