@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 เทคนิคการแก้ปัญหาพื้นฐาน (Problem Solving) | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .problem-solving-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .competition-reality {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .reality-card {
+            background: white;
+            border: 2px solid #ef4444;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .reality-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.2);
+        }
+        
+        .reality-card h4 {
+            color: #ef4444;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .reality-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .analysis-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .step-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-card h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .complexity-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .complexity-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .complexity-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .complexity-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .complexity-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .big-o {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #9333ea;
+            background: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .performance-excellent {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .performance-good {
+            color: #059669;
+            font-weight: 600;
+        }
+        
+        .performance-ok {
+            color: #d97706;
+            font-weight: 600;
+        }
+        
+        .performance-bad {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        .golden-rule {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .golden-rule h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .golden-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .decision-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .decision-table th {
+            background: #f59e0b;
+            color: white;
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .decision-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .decision-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .decision-table tr:nth-child(even) {
+            background: #fef7f0;
+        }
+        
+        .constraint-size {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #7c3aed;
+        }
+        
+        .safe-complexity {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .syntax-box {
+            background: #f8f9fa;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            white-space: pre;
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .syntax-box::before {
+            content: "💡 ตัวอย่าง";
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .interactive-example {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-example h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .code-explanation {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code-explanation h5 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .code-explanation p {
+            color: #065f46;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .technique-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .technique-card h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .technique-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .comparison-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid;
+        }
+        
+        .good-solution {
+            background: #f0fdf4;
+            border-color: #10b981;
+        }
+        
+        .good-solution h5 {
+            color: #10b981;
+        }
+        
+        .bad-solution {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+        
+        .bad-solution h5 {
+            color: #ef4444;
+        }
+        
+        .warning-box {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .warning-box h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .warning-box p {
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .greedy-example {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .greedy-example h4 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        .greedy-steps {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .greedy-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .step-number {
+            background: #3b82f6;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            color: #1e40af;
+            line-height: 1.4;
+        }
+        
+        .quick-check {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .quick-check h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .check-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .check-item::before {
+            content: "✅";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #fef7f0 0%, #fed7aa 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .practice-section h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .practice-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .practice-problem {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .practice-problem h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .practice-problem p {
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .key-points {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .key-points h3 {
+            color: #047857;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .key-points li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            color: #065f46;
+        }
+        
+        .key-points li::before {
+            content: "✅";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-topic {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-topic h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💡 เทคนิคการแก้ปัญหาพื้นฐาน (Problem Solving)</h1>
+            <p class="subtitle">กลยุทธ์และเทคนิคสำหรับการแข่งขันเขียนโปรแกรมเชิงคอมพิวเตอร์</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="nav-main">🏠 หน้าแรก</a></li>
+                <li><a href="day1.html" class="nav-main">📅 วันที่ 1</a></li>
+                <li><a href="day2.html" class="nav-main">📅 วันที่ 2</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-setup">🛠️ เตรียมการ</a>
+                    <div class="dropdown-content">
+                        <a href="tips.html">💡 คำแนะนำจากวิทยากร</a>
+                        <a href="setup-guide.html">⚙️ คู่มือติดตั้ง</a>
+                        <a href="vscode-setup.html">💻 ตั้งค่า VS Code</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-lessons">📚 เนื้อหา</a>
+                    <div class="dropdown-content">
+                        <a href="cpp-basics.html">🚀 พื้นฐาน C++</a>
+                        <a href="conditional-statements.html">🔀 คำสั่งเงื่อนไข</a>
+                        <a href="loops.html">🔄 การวนซ้ำ</a>
+                        <a href="arrays.html">📦 อาร์เรย์</a>
+                        <a href="functions.html">⚙️ ฟังก์ชัน</a>
+                        <a href="vectors.html">🌟 เวกเตอร์</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-advanced active">🔧 ขั้นสูง</a>
+                    <div class="dropdown-content">
+                        <a href="debugging.html">🐛 การ Debugging</a>
+                        <a href="problem-solving.html" class="active">💡 การแก้ปัญหา</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-practice">🏋️ ฝึกปฏิบัติ</a>
+                    <div class="dropdown-content">
+                        <a href="practice-1.html">📝 ฝึกปฏิบัติ 1</a>
+                        <a href="practice-2.html">🏆 ฝึกปฏิบัติ 2</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="problem-solving-content">
+            <div class="breadcrumb">
+                <a href="debugging.html">การ Debugging</a> > <span>เทคนิคการแก้ปัญหาพื้นฐาน (Problem Solving)</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 ความจริงของการแข่งขัน</h2>
+                <p>ในการแข่งขันเขียนโปรแกรมเชิงคอมพิวเตอร์ (Competitive Programming) หรือในค่าย สอวน. นั้น คุณไม่ได้แข่งกับเพื่อน แต่คุณกำลังแข่งกับ <strong>เวลา</strong> และ <strong>ข้อจำกัด (Constraints)</strong> ของโจทย์</p>
+                
+                <div class="competition-reality">
+                    <div class="reality-card">
+                        <span class="reality-icon">⏰</span>
+                        <h4>แข่งกับเวลา</h4>
+                        <p>Time Limit มักกำหนดที่ 1-2 วินาที ต้องคิดและเขียนให้เร็ว</p>
+                    </div>
+                    <div class="reality-card">
+                        <span class="reality-icon">📊</span>
+                        <h4>แข่งกับ Constraints</h4>
+                        <p>ข้อมูลขนาดใหญ่ (N≤10⁵) ต้องใช้อัลกอริทึมที่มีประสิทธิภาพ</p>
+                    </div>
+                    <div class="reality-card">
+                        <span class="reality-icon">🧠</span>
+                        <h4>แข่งกับตัวเอง</h4>
+                        <p>ต้องวิเคราะห์ปัญหาให้ถูกต้องและเร็วที่สุด</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: การอ่านและวิเคราะห์โจทย์ -->
+            <div class="section-header">
+                1. การอ่านและวิเคราะห์โจทย์ (Analyze the Problem)
+            </div>
+            <div class="section-content">
+                <p>ก่อนเริ่มเขียนโค้ด ให้ใช้เวลา <strong>5-10 นาที</strong> ในการวิเคราะห์ 3 สิ่งนี้ให้ชัดเจน:</p>
+                
+                <div class="analysis-steps">
+                    <div class="step-card">
+                        <h4><span class="step-icon">📥</span>1.1 ข้อมูลนำเข้าและส่งออก</h4>
+                        <ul>
+                            <li><strong>Input:</strong> รับข้อมูลอะไรบ้าง? (จำนวนเต็ม, ตัวอักษร, อาร์เรย์) และรับมากี่ตัว?</li>
+                            <li><strong>Output:</strong> ต้องแสดงผลอะไร? (ค่าเดียว, อาร์เรย์, คำตอบ True/False) และต้องจัดรูปแบบอย่างไร?</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><span class="step-icon">⚡</span>1.2 ข้อจำกัด (Constraints)</h4>
+                        <p><strong>สำคัญที่สุด!</strong></p>
+                        <p>คือช่วงของข้อมูลที่โปรแกรมต้องรับมือ (เช่น N≤10⁵, ค่าตัวเลข ≤10⁹) นี่คือตัวชี้วัดว่าคุณต้องใช้อัลกอริทึมที่มีความเร็วเท่าใด</p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4><span class="step-icon">⏱️</span>1.3 เวลาที่อนุญาต</h4>
+                        <p>ส่วนใหญ่มักกำหนดไว้ที่ <strong>1 วินาที (1.000 ms)</strong> สำหรับการรันโปรแกรมทั้งหมด</p>
+                        <p>หมายความว่าอัลกอริทึมของคุณต้องเร็วพอที่จะทำงานเสร็จภายในเวลานี้</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Time Complexity -->
+            <div class="section-header">
+                2. ความซับซ้อนเชิงเวลา (Time Complexity)
+            </div>
+            <div class="section-content">
+                <p><strong>Time Complexity</strong> คือวิธีการวัดว่าอัลกอริทึมของคุณจะต้องใช้ <strong>จำนวนการทำงาน (Operations)</strong> มากน้อยแค่ไหน เมื่อขนาดข้อมูลนำเข้า (N) เพิ่มขึ้น เราใช้สัญกรณ์ <strong>Big O Notation</strong> เพื่อแสดงค่านี้</p>
+                
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📊</span>2.1 Big O Notation ที่พบบ่อย</h3>
+                    
+                    <table class="complexity-table">
+                        <thead>
+                            <tr>
+                                <th>สัญกรณ์ Big O</th>
+                                <th>จำนวนการทำงานโดยประมาณ<br>(เมื่อ N=10⁵)</th>
+                                <th>คำอธิบาย (ประสิทธิภาพ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="big-o">O(1)</span></td>
+                                <td>1 ครั้ง</td>
+                                <td class="performance-excellent">ยอดเยี่ยม (ไม่ขึ้นอยู่กับ N)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="big-o">O(logN)</span></td>
+                                <td>≈17 ครั้ง</td>
+                                <td class="performance-excellent">เร็วมาก (เช่น Binary Search)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="big-o">O(N)</span></td>
+                                <td>10⁵ ครั้ง</td>
+                                <td class="performance-good">เร็ว (วนซ้ำ 1 รอบ)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="big-o">O(NlogN)</span></td>
+                                <td>≈1.7×10⁶ ครั้ง</td>
+                                <td class="performance-good">ดี (เช่น Sorting Algorithms ทั่วไป)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="big-o">O(N²)</span></td>
+                                <td>10¹⁰ ครั้ง</td>
+                                <td class="performance-bad">ช้า (วนซ้ำซ้อน 2 ชั้น)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🏆</span>2.2 กฎทองในการตัดสินใจ</h3>
+                    <p>โปรแกรมคอมพิวเตอร์สามารถดำเนินการได้ประมาณ <strong>10⁸ (หนึ่งร้อยล้าน)</strong> ครั้งต่อวินาที ดังนั้น:</p>
+                    
+                    <div class="golden-rule">
+                        <h4><span class="golden-icon">⚡</span>กฎทองสำหรับการเลือก Algorithm</h4>
+                        <table class="decision-table">
+                            <thead>
+                                <tr>
+                                    <th>ข้อจำกัด N (Max Input Size)</th>
+                                    <th>Time Complexity ที่ปลอดภัย</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="constraint-size">N≤10⁵ หรือ N≤10⁶</span></td>
+                                    <td><span class="safe-complexity">O(N) หรือ O(NlogN)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="constraint-size">N≤5000 หรือ N≤10000</span></td>
+                                    <td><span class="safe-complexity">O(N²) (ถ้า N ไม่เกิน 5000 ถือว่ายังพอไหว)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="constraint-size">N≤20</span></td>
+                                    <td><span class="safe-complexity">O(2ᴺ) หรือ O(N!) (ใช้อัลกอริทึมที่ช้ากว่าได้)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="interactive-example">
+                        <h4><span class="example-icon">⚠️</span>ตัวอย่าง: ถ้าโจทย์บอกว่า N≤10⁵</h4>
+                        
+                        <div class="comparison-grid">
+                            <div class="comparison-card bad-solution">
+                                <h5>❌ ไม่ควรใช้</h5>
+                                <p>ถ้าคุณใช้อัลกอริทึม <strong>O(N²)</strong> คุณจะต้องทำงาน <strong>10¹⁰ ครั้ง</strong> ซึ่ง <strong>ช้าเกินไปมาก</strong> (Time Limit Exceeded - TLE)</p>
+                            </div>
+                            <div class="comparison-card good-solution">
+                                <h5>✅ ควรใช้</h5>
+                                <p>คุณต้องหาทางแก้ด้วย <strong>O(N)</strong> หรือ <strong>O(NlogN)</strong> ซึ่งจะทำงานได้ <strong>≤10⁶ ครั้ง</strong> ภายในเวลาที่กำหนด</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Basic Techniques -->
+            <div class="section-header">
+                3. เทคนิคการแก้ปัญหาพื้นฐาน (Basic Techniques)
+            </div>
+            <div class="section-content">
+                <p>นี่คือแนวคิดง่าย ๆ ที่ใช้ได้บ่อยในการลดความซับซ้อนของปัญหา:</p>
+                
+                <div class="techniques-grid">
+                    <div class="technique-card">
+                        <h4><span class="technique-icon">🔄</span>3.1 การวนซ้ำครั้งเดียว (Single Pass / O(N))</h4>
+                        <p>พยายามออกแบบ Loop ให้สามารถหาคำตอบได้จากการวนข้อมูล <strong>เพียงรอบเดียว</strong></p>
+                        
+                        <div class="interactive-example">
+                            <h4><span class="example-icon">🎯</span>ตัวอย่าง: โจทย์ให้หาค่ามากที่สุดใน Vector ที่มี 10⁶ ตัว</h4>
+                            
+                            <div class="comparison-grid">
+                                <div class="comparison-card good-solution">
+                                    <h5>✅ O(N) Solution:</h5>
+                                    <p>วน Loop ตั้งแต่ตัวแรกถึงตัวสุดท้าย เก็บค่าสูงสุดที่เคยเจอไว้ แล้วอัปเดตเมื่อเจอตัวที่มากกว่า</p>
+                                    
+                                    <div class="code-container">
+                                        <div class="code-header">
+                                            <span>Efficient Solution</span>
+                                            <span>💻 C++</span>
+                                        </div>
+                                        <div class="code-example">
+<span class="keyword">int</span> findMax(vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> &arr) {
+    <span class="keyword">int</span> maxVal = arr[<span class="number">0</span>];
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator">&lt;</span> arr.size(); i++) {
+        <span class="keyword">if</span> (arr[i] <span class="operator">&gt;</span> maxVal) {
+            maxVal = arr[i];
+        }
+    }
+    <span class="keyword">return</span> maxVal;
+}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comparison-card bad-solution">
+                                    <h5>❌ O(N²) Mistake:</h5>
+                                    <p>(ไม่จำเป็น) คือการวนซ้ำซ้อนสองชั้นเพื่อเปรียบเทียบทุกคู่</p>
+                                    
+                                    <div class="code-container">
+                                        <div class="code-header">
+                                            <span>Inefficient Solution</span>
+                                            <span>💻 C++</span>
+                                        </div>
+                                        <div class="code-example">
+<span class="comment">// ช้าเกินไป! O(N²)</span>
+<span class="keyword">int</span> findMax(vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> &arr) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i <span class="operator">&lt;</span> arr.size(); i++) {
+        <span class="keyword">bool</span> isMax = <span class="keyword">true</span>;
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j <span class="operator">&lt;</span> arr.size(); j++) {
+            <span class="keyword">if</span> (arr[j] <span class="operator">&gt;</span> arr[i]) {
+                isMax = <span class="keyword">false</span>;
+                <span class="keyword">break</span>;
+            }
+        }
+        <span class="keyword">if</span> (isMax) <span class="keyword">return</span> arr[i];
+    }
+}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4><span class="technique-icon">🏗️</span>3.2 การใช้ Structure ที่เหมาะสม</h4>
+                        <p>การเลือกโครงสร้างข้อมูลที่ถูกต้องช่วยลด Time Complexity ได้มาก</p>
+                        
+                        <ul>
+                            <li><strong>Vector หรือ Array:</strong> สำหรับการเข้าถึงข้อมูลตามดัชนี (Index)</li>
+                            <li><strong>ในโจทย์ที่ซับซ้อนขึ้น:</strong> เราอาจต้องใช้โครงสร้างข้อมูลอื่น ๆ ที่จะเรียนในค่ายจริง เช่น Stack, Queue, Map</li>
+                        </ul>
+                        
+                        <div class="code-explanation">
+                            <h5>🎯 เป้าหมาย:</h5>
+                            <p>เพื่อให้การค้นหาหรือเพิ่มข้อมูลทำได้เร็วขึ้น (เช่น จาก O(N) เป็น O(logN) หรือ O(1))</p>
+                        </div>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4><span class="technique-icon">🤑</span>3.3 Greedy Approach (กลยุทธ์ละโมบ)</h4>
+                        <p>คือการตัดสินใจเลือกสิ่งที่ดีที่สุดในขณะนั้น โดยไม่มองไปข้างหน้า (Local Optimal Choice) โดยหวังว่าการเลือกที่ดีที่สุดในแต่ละขั้นตอนจะนำไปสู่คำตอบที่ดีที่สุดโดยรวม (Global Optimal Solution)</p>
+                        
+                        <div class="greedy-example">
+                            <h4>💰 ตัวอย่าง: การหาจำนวนเหรียญน้อยที่สุดในการทอนเงิน</h4>
+                            <p><strong>โจทย์:</strong> ต้องทอน 48 บาท และมีเหรียญ 10, 5, 1 บาท</p>
+                            
+                            <ol class="greedy-steps">
+                                <li class="greedy-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">เลือกเหรียญ 10 บาท (ตัวใหญ่สุด) 4 เหรียญ → เหลือ 8 บาท</div>
+                                </li>
+                                <li class="greedy-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">เลือกเหรียญ 5 บาท 1 เหรียญ → เหลือ 3 บาท</div>
+                                </li>
+                                <li class="greedy-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">เลือกเหรียญ 1 บาท 3 เหรียญ → เหลือ 0 บาท</div>
+                                </li>
+                            </ol>
+                            
+                            <p><strong>ผลลัพธ์:</strong> ใช้ 8 เหรียญ (ซึ่งในกรณีนี้ได้ผลลัพธ์ที่ดีที่สุด)</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h4><span class="warning-icon">⚠️</span>ข้อควรระวัง</h4>
+                            <p>Greedy ไม่ได้ให้คำตอบที่ดีที่สุดเสมอไป แต่เป็นแนวคิดเริ่มต้นที่ง่ายที่สุดในการลอง</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Check Section -->
+            <div class="quick-check">
+                <h3>⚡ สรุปการปฏิบัติ (Quick Check)</h3>
+                <p>เมื่อเจอโจทย์:</p>
+                <ol class="check-list">
+                    <li><strong>ดู N:</strong> ขนาดของ Input คือเท่าไหร่?</li>
+                    <li><strong>กำหนดเป้าหมาย O():</strong> จากขนาด N เราต้องหา Solution ที่มีความซับซ้อนเท่าไหร่?</li>
+                    <li><strong>ออกแบบ Algorithm:</strong> พยายามหา Algorithm ที่ตรงกับเป้าหมาย O() ที่เราตั้งไว้</li>
+                    <li><strong>เขียนโค้ด:</strong> Implement และทดสอบกับ Test Case ตัวอย่าง</li>
+                </ol>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="practice-section">
+                <h3><span class="practice-icon">🏋️</span>โจทย์ฝึกหัด</h3>
+                
+                <div class="practice-problem">
+                    <h4>🧩 โจทย์: วิเคราะห์ Time Complexity</h4>
+                    <p>ถ้าโจทย์กำหนดให้ N คือจำนวนนักเรียน (สูงสุด N≤200,000) และต้องการให้คุณหาผลรวมของคะแนนนักเรียนทั้งหมด คุณควรออกแบบอัลกอริทึมที่มี Time Complexity เท่าไหร่? และทำได้อย่างไร?</p>
+                    
+                    <div class="code-explanation">
+                        <h5>💡 คำตอบ:</h5>
+                        <p><strong>Time Complexity ที่เหมาะสม:</strong> O(N)<br>
+                        <strong>วิธีทำ:</strong> ใช้ Loop วนครั้งเดียวผ่านข้อมูลทั้งหมดและบวกค่าเข้าไปในตัวแปรผลรวม</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h3><span class="practice-icon">🔑</span>จุดสำคัญที่ต้องจำ</h3>
+                <ul>
+                    <li><strong>การวิเคราะห์โจทย์:</strong> ใช้เวลา 5-10 นาทีดู Input, Output, และ Constraints ก่อนเขียนโค้ด</li>
+                    <li><strong>Time Complexity:</strong> เข้าใจ Big O และเลือกอัลกอริทึมให้เหมาะกับขนาดข้อมูล</li>
+                    <li><strong>กฎทอง:</strong> N≤10⁵ ใช้ O(N) หรือ O(NlogN), N≤5000 ใช้ O(N²) ได้</li>
+                    <li><strong>Single Pass:</strong> พยายามแก้ปัญหาด้วยการวนลูปเพียงครั้งเดียว</li>
+                    <li><strong>Greedy Approach:</strong> เลือกสิ่งที่ดีที่สุดในแต่ละขั้นตอน แต่ระวังอาจไม่ใช่คำตอบที่ดีที่สุด</li>
+                </ul>
+            </div>
+
+            <div class="next-topic">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>ในชั่วโมงสุดท้าย เราจะรวมทุกสิ่งที่เรียนมาเพื่อแก้โจทย์ที่ซับซ้อนขึ้นครับ!</p>
+                <p>ฝึกปฏิบัติการแก้โจทย์จริงและทดสอบความเข้าใจทั้งหมดที่ได้เรียนมา</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="debugging.html" class="btn btn-secondary">← การ Debugging</a>
+                <a href="practice-1.html" class="btn btn-primary">ฝึกปฏิบัติ 1 →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

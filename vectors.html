@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 โครงสร้างข้อมูล 2: เวกเตอร์ (Vectors) | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .vectors-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .advantage-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.2);
+        }
+        
+        .advantage-card h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .advantage-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .syntax-box {
+            background: #f8f9fa;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            white-space: pre;
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .syntax-box::before {
+            content: "💡 รูปแบบ";
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .interactive-example {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-example h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .code-explanation {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code-explanation h5 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .code-explanation p {
+            color: #065f46;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .function-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .function-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+        }
+        
+        .function-card h5 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .function-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .feature-name {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .advantage {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .disadvantage {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        .matrix-example {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .matrix-example h4 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        .matrix-visual {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            max-width: 200px;
+            margin: 1rem 0;
+        }
+        
+        .matrix-cell {
+            background: #dbeafe;
+            border: 1px solid #3b82f6;
+            padding: 0.5rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #1e40af;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #fef7f0 0%, #fed7aa 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .practice-section h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .practice-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .practice-problem {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .practice-problem h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .practice-problem p {
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .key-points {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .key-points h3 {
+            color: #047857;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .key-points li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            color: #065f46;
+        }
+        
+        .key-points li::before {
+            content: "✅";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-topic {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-topic h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌟 โครงสร้างข้อมูล 2: เวกเตอร์ (Vectors)</h1>
+            <p class="subtitle">Dynamic Array ที่ยืดหยุ่นและทรงพลังสำหรับการแข่งขันโปรแกรมมิ่ง</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="nav-main">🏠 หน้าแรก</a></li>
+                <li><a href="day1.html" class="active nav-main">📅 วันที่ 1</a></li>
+                <li><a href="day2.html" class="nav-main">📅 วันที่ 2</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-setup">🛠️ เตรียมการ</a>
+                    <div class="dropdown-content">
+                        <a href="tips.html">💡 คำแนะนำจากวิทยากร</a>
+                        <a href="setup-guide.html">⚙️ คู่มือติดตั้ง</a>
+                        <a href="vscode-setup.html">💻 ตั้งค่า VS Code</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-lessons">📚 เนื้อหา</a>
+                    <div class="dropdown-content">
+                        <a href="cpp-basics.html">🚀 พื้นฐาน C++</a>
+                        <a href="conditional-statements.html">🔀 คำสั่งเงื่อนไข</a>
+                        <a href="loops.html">🔄 การวนซ้ำ</a>
+                        <a href="arrays.html">📦 อาร์เรย์</a>
+                        <a href="functions.html">⚙️ ฟังก์ชัน</a>
+                        <a href="vectors.html">🌟 เวกเตอร์</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-advanced">🔧 ขั้นสูง</a>
+                    <div class="dropdown-content">
+                        <a href="debugging.html">🐛 การ Debugging</a>
+                        <a href="problem-solving.html">💡 การแก้ปัญหา</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-practice">🏋️ ฝึกปฏิบัติ</a>
+                    <div class="dropdown-content">
+                        <a href="practice-1.html">📝 ฝึกปฏิบัติ 1</a>
+                        <a href="practice-2.html">🏆 ฝึกปฏิบัติ 2</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="vectors-content">
+            <div class="breadcrumb">
+                <a href="functions.html">ฟังก์ชัน (Functions)</a> > <span>โครงสร้างข้อมูล 2: เวกเตอร์ (Vectors)</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 เป้าหมายของบทนี้</h2>
+                <p>เวกเตอร์ (std::vector) ในภาษา C++ คือสิ่งที่เรียกว่า <strong>Dynamic Array (อาร์เรย์พลวัต)</strong> มันทำงานคล้ายอาร์เรย์ แต่มีข้อดีที่เหนือกว่ามาก</p>
+                
+                <div class="advantage-grid">
+                    <div class="advantage-card">
+                        <span class="advantage-icon">📈</span>
+                        <h4>ขนาดเปลี่ยนแปลงได้</h4>
+                        <p>สามารถเพิ่มหรือลดจำนวนสมาชิกได้ตลอดเวลา ไม่ต้องกำหนดขนาดตายตัวตั้งแต่ต้น</p>
+                    </div>
+                    <div class="advantage-card">
+                        <span class="advantage-icon">🧠</span>
+                        <h4>จัดการหน่วยความจำเอง</h4>
+                        <p>ไม่ต้องกังวลเรื่องการจองหน่วยความจำที่ซับซ้อน</p>
+                    </div>
+                </div>
+                
+                <div class="code-explanation">
+                    <h5>🚨 สิ่งสำคัญ:</h5>
+                    <p>ในการใช้ std::vector คุณต้อง <strong>#include &lt;vector&gt;</strong> เสมอ</p>
+                </div>
+            </div>
+
+            <!-- Section 1: การประกาศและเริ่มต้นใช้งาน -->
+            <div class="section-header">
+                1. การประกาศและเริ่มต้นใช้งาน Vector
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📝</span>1.1 การประกาศ Vector เปล่า</h3>
+                    
+                    <div class="syntax-box">
+<span class="comment">// ชนิดข้อมูล &lt;ชนิดข้อมูล&gt; ชื่อเวกเตอร์;</span>
+<span class="keyword">vector</span><span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> numbers;        <span class="comment">// เวกเตอร์สำหรับเก็บ int (ว่างเปล่า)</span>
+<span class="keyword">vector</span><span class="operator">&lt;</span><span class="keyword">string</span><span class="operator">&gt;</span> names;       <span class="comment">// เวกเตอร์สำหรับเก็บ string (ว่างเปล่า)</span>
+                    </div>
+
+                    <div class="interactive-example">
+                        <h4><span class="example-icon">💻</span>ตัวอย่าง: การประกาศ Vector พื้นฐาน</h4>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Vector Declaration</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>vector<span class="operator">&gt;</span>
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    <span class="comment">// ประกาศ Vector สำหรับเก็บ int (ว่างเปล่า)</span>
+    vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> numbers;
+    
+    <span class="comment">// ประกาศ Vector สำหรับเก็บ string (ว่างเปล่า)</span>
+    vector<span class="operator">&lt;</span>string<span class="operator">&gt;</span> names;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🔧</span>1.2 การประกาศพร้อมกำหนดขนาดเริ่มต้น</h3>
+                    <p>คุณสามารถกำหนดขนาดและค่าเริ่มต้นให้กับสมาชิกทั้งหมดได้</p>
+                    
+                    <div class="syntax-box">
+<span class="comment">// vector&lt;ชนิดข้อมูล&gt; ชื่อเวกเตอร์(ขนาด, ค่าเริ่มต้น);</span>
+<span class="keyword">vector</span><span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> fixed_size(<span class="number">10</span>, <span class="number">0</span>); <span class="comment">// เวกเตอร์ขนาด 10 ตัว โดยทุกตัวมีค่าเป็น 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: การจัดการขนาดและเพิ่มสมาชิก -->
+            <div class="section-header">
+                2. การจัดการขนาดและเพิ่มสมาชิก
+            </div>
+            <div class="section-content">
+                <p>นี่คือฟังก์ชันที่ใช้บ่อยที่สุดของ Vector ที่ทำให้มันเหนือกว่า Array ธรรมดา</p>
+                
+                <div class="function-grid">
+                    <div class="function-card">
+                        <h5><span class="function-icon">➕</span>push_back()</h5>
+                        <p><strong>การใช้งาน:</strong> เพิ่มสมาชิกใหม่เข้าไปที่ <strong>ท้าย</strong> ของ Vector โดยอัตโนมัติ</p>
+                        <div class="code-example">
+<span class="keyword">vector</span><span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> scores;
+
+scores.push_back(<span class="number">10</span>); <span class="comment">// [10]</span>
+scores.push_back(<span class="number">20</span>); <span class="comment">// [10, 20]</span>
+scores.push_back(<span class="number">35</span>); <span class="comment">// [10, 20, 35]</span>
+                        </div>
+                    </div>
+
+                    <div class="function-card">
+                        <h5><span class="function-icon">📏</span>size()</h5>
+                        <p><strong>การใช้งาน:</strong> ส่งค่ากลับมาเป็นจำนวนสมาชิกปัจจุบันใน Vector</p>
+                        <div class="code-example">
+cout <span class="operator">&lt;&lt;</span> scores.size() <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 3</span>
+                        </div>
+                    </div>
+
+                    <div class="function-card">
+                        <h5><span class="function-icon">➖</span>pop_back()</h5>
+                        <p><strong>การใช้งาน:</strong> ลบสมาชิกที่อยู่ตำแหน่งสุดท้ายออกไป 1 ตัว</p>
+                        <div class="code-example">
+scores.pop_back(); <span class="comment">// ลบ 35 ออกไป: [10, 20]</span>
+cout <span class="operator">&lt;&lt;</span> scores.size() <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-example">
+                    <h4><span class="example-icon">🔄</span>ตัวอย่าง: การจัดการขนาด Vector</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Vector Size Management</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>vector<span class="operator">&gt;</span>
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> main() {
+    vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> scores;
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Initial size: "</span> <span class="operator">&lt;&lt;</span> scores.size() <span class="operator">&lt;&lt;</span> endl; <span class="comment">// 0</span>
+    
+    <span class="comment">// เพิ่มสมาชิก</span>
+    scores.push_back(<span class="number">10</span>);
+    scores.push_back(<span class="number">20</span>);
+    scores.push_back(<span class="number">35</span>);
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"After adding 3 elements: "</span> <span class="operator">&lt;&lt;</span> scores.size() <span class="operator">&lt;&lt;</span> endl; <span class="comment">// 3</span>
+    
+    <span class="comment">// ลบสมาชิกตัวสุดท้าย</span>
+    scores.pop_back();
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"After removing last element: "</span> <span class="operator">&lt;&lt;</span> scores.size() <span class="operator">&lt;&lt;</span> endl; <span class="comment">// 2</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: การเข้าถึงสมาชิก -->
+            <div class="section-header">
+                3. การเข้าถึงสมาชิก (Accessing Elements)
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🎯</span>3.1 การเข้าถึงด้วยดัชนี: [ ]</h3>
+                    <p>เหมือนกับ Array ธรรมดา ดัชนีจะเริ่มต้นที่ 0 เสมอ</p>
+                    
+                    <div class="interactive-example">
+                        <h4><span class="example-icon">📍</span>ตัวอย่าง: การเข้าถึงด้วยดัชนี</h4>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Vector Indexing</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> data = {<span class="number">1</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">12</span>};
+cout <span class="operator">&lt;&lt;</span> <span class="string">"Element at index 2: "</span> <span class="operator">&lt;&lt;</span> data[<span class="number">2</span>] <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🔚</span>3.2 การเข้าถึงสมาชิกตัวสุดท้าย: back()</h3>
+                    <p>ส่งค่าของสมาชิกตัวสุดท้ายใน Vector กลับมา</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Back() Function</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+cout <span class="operator">&lt;&lt;</span> <span class="string">"Last element: "</span> <span class="operator">&lt;&lt;</span> data.back() <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: การใช้งานร่วมกับ Loop -->
+            <div class="section-header">
+                4. การใช้งานร่วมกับ Loop
+            </div>
+            <div class="section-content">
+                <p>เราใช้ for loop ในการวนซ้ำสมาชิกใน Vector โดยใช้ size() ในการกำหนดขอบเขตของการวนซ้ำ</p>
+                
+                <div class="subsection">
+                    <h3><span class="subsection-icon">🔄</span>ตัวอย่าง: การวนซ้ำมาตรฐาน</h3>
+                    
+                    <div class="interactive-example">
+                        <h4><span class="example-icon">🔁</span>การวนซ้ำแบบ Traditional For Loop</h4>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Traditional For Loop</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> myVector;
+myVector.push_back(<span class="number">100</span>);
+myVector.push_back(<span class="number">200</span>);
+myVector.push_back(<span class="number">300</span>);
+
+<span class="comment">// วนจากดัชนี 0 จนถึง size() - 1</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i <span class="operator">&lt;</span> myVector.size(); i++) {
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Value at index "</span> <span class="operator">&lt;&lt;</span> i <span class="operator">&lt;&lt;</span> <span class="string">": "</span> <span class="operator">&lt;&lt;</span> myVector[i] <span class="operator">&lt;&lt;</span> endl;
+}
+<span class="comment">/*
+ผลลัพธ์:
+Value at index 0: 100
+Value at index 1: 200
+Value at index 2: 300
+*/</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">✨</span>ตัวอย่าง: Range-based for Loop (รูปแบบที่อ่านง่ายกว่า)</h3>
+                    <p>ตั้งแต่ C++11 เป็นต้นมา การใช้ Range-based for loop ทำให้การวนซ้ำ Vector ง่ายขึ้นมาก</p>
+                    
+                    <div class="interactive-example">
+                        <h4><span class="example-icon">🚀</span>Range-based For Loop</h4>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Modern C++ Style</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+<span class="comment">// สำหรับทุกๆ ตัวแปร 'element' ชนิด int ใน myVector</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> element : myVector) {
+    cout <span class="operator">&lt;&lt;</span> element <span class="operator">&lt;&lt;</span> <span class="string">" "</span>;
+}
+<span class="comment">// ผลลัพธ์: 100 200 300</span>
+                            </div>
+                        </div>
+                        
+                        <div class="code-explanation">
+                            <h5>🔧 เคล็ดลับ:</h5>
+                            <p>หากต้องการแก้ไขค่าใน Loop ให้ใช้ Reference (&) ใน Range-based loop: <strong>for (int &element : myVector)</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: เวกเตอร์ 2 มิติ -->
+            <div class="section-header">
+                5. เวกเตอร์ 2 มิติ (2D Vectors)
+            </div>
+            <div class="section-content">
+                <p>เวกเตอร์ 2 มิติคือ "เวกเตอร์ของเวกเตอร์" ใช้แทน Array 2 มิติ แต่มีความยืดหยุ่นในการปรับขนาดแถวและคอลัมน์</p>
+                
+                <div class="matrix-example">
+                    <h4>📊 ตัวอย่าง: เวกเตอร์ 2 มิติ</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>2D Vector Example</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="comment">// ประกาศ Vector ที่เก็บ Vector ของ int</span>
+vector<span class="operator">&lt;</span>vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;&gt;</span> matrix; 
+
+<span class="comment">// ตัวอย่างการเพิ่มข้อมูล</span>
+vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> row1 = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>};
+vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> row2 = {<span class="number">4</span>, <span class="number">5</span>}; <span class="comment">// สังเกตว่าแถวมีขนาดไม่เท่ากันได้</span>
+matrix.push_back(row1);
+matrix.push_back(row2);
+
+<span class="comment">// การเข้าถึง: matrix[แถว][คอลัมน์]</span>
+cout <span class="operator">&lt;&lt;</span> matrix[<span class="number">1</span>][<span class="number">0</span>] <span class="operator">&lt;&lt;</span> endl; <span class="comment">// ผลลัพธ์: 4</span>
+                        </div>
+                    </div>
+                    
+                    <div class="matrix-visual">
+                        <div class="matrix-cell">1</div>
+                        <div class="matrix-cell">2</div>
+                        <div class="matrix-cell">3</div>
+                        <div class="matrix-cell">4</div>
+                        <div class="matrix-cell">5</div>
+                        <div class="matrix-cell">-</div>
+                    </div>
+                    <p><small>แถวที่ 2 มีเพียง 2 คอลัมน์ (ยืดหยุ่นได้!)</small></p>
+                </div>
+            </div>
+
+            <!-- Section 6: เปรียบเทียบ Array vs Vector -->
+            <div class="section-header">
+                สรุปข้อควรจำสำหรับ Vector
+            </div>
+            <div class="section-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>คุณสมบัติ</th>
+                            <th>Array</th>
+                            <th>Vector</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">ขนาด</td>
+                            <td class="disadvantage">ขนาดตายตัว (Fixed Size)</td>
+                            <td class="advantage">ขนาดเปลี่ยนแปลงได้ (Dynamic Size)</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">การ Include</td>
+                            <td class="advantage">ไม่ต้อง Include อะไร</td>
+                            <td class="disadvantage">ต้อง #include &lt;vector&gt;</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">ฟังก์ชันจัดการ</td>
+                            <td class="disadvantage">ไม่มีฟังก์ชันเพิ่ม/ลดขนาด</td>
+                            <td class="advantage">มี push_back(), pop_back(), size()</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">ความยืดหยุ่น</td>
+                            <td class="disadvantage">จำกัด</td>
+                            <td class="advantage">สูงมาก</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">ประสิทธิภาพ</td>
+                            <td class="advantage">เร็วที่สุด</td>
+                            <td class="advantage">เร็วเกือบเท่ากัน</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="practice-section">
+                <h3><span class="practice-icon">🏋️</span>โจทย์ฝึกหัด</h3>
+                
+                <div class="practice-problem">
+                    <h4>🧩 โจทย์: โปรแกรมรับตัวเลขแบบ Dynamic</h4>
+                    <p>จงเขียนโปรแกรมที่รับตัวเลขจำนวนเต็มมาเรื่อย ๆ จนกระทั่งผู้ใช้กรอกตัวเลข <strong>0 (ศูนย์)</strong> จากนั้นให้ใช้ <strong>std::vector</strong> ในการเก็บตัวเลขทั้งหมด (ที่ไม่ใช่ 0) แล้วพิมพ์ตัวเลขเหล่านั้นออกมา เรียงจากหลังไปหน้า (ตัวสุดท้ายที่รับเข้ามาก่อน)</p>
+                    
+                    <div class="code-explanation">
+                        <h5>💡 คำใบ้:</h5>
+                        <p>ใช้ while loop สำหรับรับข้อมูล, push_back() สำหรับเก็บข้อมูล, และ for loop จากหลังไปหน้าสำหรับแสดงผล</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h3><span class="practice-icon">🔑</span>จุดสำคัญที่ต้องจำ</h3>
+                <ul>
+                    <li><strong>การ Include:</strong> ต้อง #include &lt;vector&gt; เสมอก่อนใช้งาน</li>
+                    <li><strong>Dynamic Size:</strong> Vector สามารถเปลี่ยนขนาดได้ตลอดเวลา ไม่เหมือน Array</li>
+                    <li><strong>ฟังก์ชันสำคัญ:</strong> push_back(), pop_back(), size(), back() คือฟังก์ชันที่ใช้บ่อยที่สุด</li>
+                    <li><strong>การเข้าถึง:</strong> ใช้ [] เหมือน Array หรือใช้ Range-based for loop แบบ C++11</li>
+                    <li><strong>2D Vector:</strong> เหมาะสำหรับข้อมูลแบบตารางที่ขนาดไม่แน่นอน</li>
+                </ul>
+            </div>
+
+            <div class="next-topic">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>การใช้ Vector เป็นทักษะสำคัญที่ต้องใช้ตลอดค่ายครับ หากมีข้อสงสัยเกี่ยวกับการใช้ push_back() หรือ size() ถามได้เลยนะครับ!</p>
+                <p>ต่อไปเราจะเรียนรู้เกี่ยวกับเทคนิคการ <strong>Debugging และการจัดรูปแบบโค้ด</strong>!</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="functions.html" class="btn btn-secondary">← ฟังก์ชัน (Functions)</a>
+                <a href="debugging.html" class="btn btn-primary">การ Debugging →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

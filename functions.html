@@ -168,6 +168,14 @@
             border-radius: 15px;
             padding: 2rem;
             margin: 2rem 0;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-section {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
         }
         
         .comparison-section h4 {
@@ -183,9 +191,16 @@
             margin: 1.5rem 0;
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .comparison-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-item {
+                padding: 1rem;
             }
         }
         
@@ -194,6 +209,8 @@
             padding: 1.5rem;
             border-radius: 10px;
             border: 2px solid #e2e8f0;
+            min-width: 0;
+            overflow: hidden;
         }
         
         .comparison-item h5 {
@@ -402,6 +419,14 @@
             line-height: 1.6;
             margin: 0;
             white-space: pre;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .code-example {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
         }
         
         .code-container {
@@ -476,18 +501,46 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="index.html">หน้าแรก</a></li>
-                <li><a href="day1.html">วันที่ 1</a></li>
-                <li><a href="day2.html">วันที่ 2</a></li>
-                <li><a href="tips.html">คำแนะนำจากวิทยากร</a></li>
-                <li><a href="setup-guide.html">คู่มือติดตั้ง</a></li>
-                <li><a href="vscode-setup.html">ตั้งค่า VS Code</a></li>
-                <li><a href="cpp-basics.html">พื้นฐาน C++</a></li>
-                <li><a href="conditional-statements.html">คำสั่งเงื่อนไข</a></li>
-                <li><a href="loops.html">การวนซ้ำ (Loops)</a></li>
-                <li><a href="practice-1.html">ฝึกปฏิบัติ 1</a></li>
-                <li><a href="arrays.html">อาร์เรย์ (Arrays)</a></li>
-                <li><a href="functions.html" class="active">ฟังก์ชัน (Functions)</a></li>
+                <li><a href="index.html" class="nav-main">🏠 หน้าแรก</a></li>
+                <li><a href="day1.html" class="active nav-main">📅 วันที่ 1</a></li>
+                <li><a href="day2.html" class="nav-main">📅 วันที่ 2</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-setup">🛠️ เตรียมการ</a>
+                    <div class="dropdown-content">
+                        <a href="tips.html">💡 คำแนะนำจากวิทยากร</a>
+                        <a href="setup-guide.html">⚙️ คู่มือติดตั้ง</a>
+                        <a href="vscode-setup.html">💻 ตั้งค่า VS Code</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-lessons">📚 เนื้อหา</a>
+                    <div class="dropdown-content">
+                        <a href="cpp-basics.html">🚀 พื้นฐาน C++</a>
+                        <a href="conditional-statements.html">🔀 คำสั่งเงื่อนไข</a>
+                        <a href="loops.html">🔄 การวนซ้ำ</a>
+                        <a href="arrays.html">📦 อาร์เรย์</a>
+                        <a href="functions.html">⚙️ ฟังก์ชัน</a>
+                        <a href="vectors.html">🌟 เวกเตอร์</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-advanced">🔧 ขั้นสูง</a>
+                    <div class="dropdown-content">
+                        <a href="debugging.html">🐛 การ Debugging</a>
+                        <a href="problem-solving.html">💡 การแก้ปัญหา</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-practice">🏋️ ฝึกปฏิบัติ</a>
+                    <div class="dropdown-content">
+                        <a href="practice-1.html">📝 ฝึกปฏิบัติ 1</a>
+                        <a href="practice-2.html">🏆 ฝึกปฏิบัติ 2</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

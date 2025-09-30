@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 ฝึกปฏิบัติ 2: โจทย์รวม | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .practice-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .objective-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .objective-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.2);
+        }
+        
+        .objective-card h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .objective-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .problem-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .problem-header {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .problem-header h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .problem-statement {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .problem-statement h4 {
+            color: #047857;
+            margin-bottom: 1rem;
+        }
+        
+        .problem-statement p {
+            color: #065f46;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .requirements-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            color: #065f46;
+        }
+        
+        .requirements-list li::before {
+            content: "📝";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .example-box {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .example-box h5 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        .example-content {
+            color: #1e3a8a;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+        
+        .approach-section {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .approach-section h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .approach-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .step-card h5 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .step-card p {
+            color: #78350f;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .function-suggestion {
+            background: #e0f2fe;
+            border: 2px solid #0284c7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .function-suggestion h5 {
+            color: #0369a1;
+            margin-bottom: 1rem;
+        }
+        
+        .function-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .function-list li {
+            color: #0c4a6e;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #0284c7;
+        }
+        
+        .complexity-analysis {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #d97706;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .complexity-analysis h5 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .complexity-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .solution-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .solution-card {
+            background: white;
+            border: 2px solid;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .basic-solution {
+            border-color: #10b981;
+        }
+        
+        .basic-solution h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .advanced-solution {
+            border-color: #7c3aed;
+        }
+        
+        .advanced-solution h4 {
+            color: #7c3aed;
+            margin-bottom: 1rem;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .interactive-example {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-example h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .practice-tasks {
+            background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .practice-tasks h3 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .practice-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .task-number {
+            background: #3b82f6;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        .task-content {
+            color: #1e40af;
+            line-height: 1.6;
+        }
+        
+        .task-content strong {
+            color: #1e3a8a;
+        }
+        
+        .summary-section {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .summary-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .achievement-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .achievement-card h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .future-topics {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .future-topics h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .future-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .topic-tag {
+            background: white;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            color: #92400e;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .congratulations {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .congratulations h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .solution-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏆 ฝึกปฏิบัติ 2: โจทย์รวม</h1>
+            <p class="subtitle">การนำทุกความรู้มาใช้แก้โจทย์ปัญหาเชิงคอมพิวเตอร์แบบจริง</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="nav-main">🏠 หน้าแรก</a></li>
+                <li><a href="day1.html" class="active nav-main">📅 วันที่ 1</a></li>
+                <li><a href="day2.html" class="nav-main">📅 วันที่ 2</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-setup">🛠️ เตรียมการ</a>
+                    <div class="dropdown-content">
+                        <a href="tips.html">💡 คำแนะนำจากวิทยากร</a>
+                        <a href="setup-guide.html">⚙️ คู่มือติดตั้ง</a>
+                        <a href="vscode-setup.html">💻 ตั้งค่า VS Code</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-lessons">📚 เนื้อหา</a>
+                    <div class="dropdown-content">
+                        <a href="cpp-basics.html">🚀 พื้นฐาน C++</a>
+                        <a href="conditional-statements.html">🔀 คำสั่งเงื่อนไข</a>
+                        <a href="loops.html">🔄 การวนซ้ำ</a>
+                        <a href="arrays.html">📦 อาร์เรย์</a>
+                        <a href="functions.html">⚙️ ฟังก์ชัน</a>
+                        <a href="vectors.html">🌟 เวกเตอร์</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-advanced">🔧 ขั้นสูง</a>
+                    <div class="dropdown-content">
+                        <a href="debugging.html">🐛 การ Debugging</a>
+                        <a href="problem-solving.html">💡 การแก้ปัญหา</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-practice">🏋️ ฝึกปฏิบัติ</a>
+                    <div class="dropdown-content">
+                        <a href="practice-1.html">📝 ฝึกปฏิบัติ 1</a>
+                        <a href="practice-2.html">🏆 ฝึกปฏิบัติ 2</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="practice-content">
+            <div class="breadcrumb">
+                <a href="problem-solving.html">การแก้ปัญหา</a> > <span>ฝึกปฏิบัติ 2: โจทย์รวม</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 ชั่วโมงสุดท้าย: การรวบรวมทุกอย่าง</h2>
+                <p>ชั่วโมงนี้คือการรวบรวมทุกความรู้และเครื่องมือมาใช้ในการแก้โจทย์ปัญหาเชิงคอมพิวเตอร์ ซึ่งเป็นรูปแบบที่นักเรียนจะได้เจอในค่าย 1 สอวน. จริง</p>
+                
+                <div class="objectives-grid">
+                    <div class="objective-card">
+                        <span class="objective-icon">📊</span>
+                        <h4>วิเคราะห์โจทย์</h4>
+                        <p>ฝึกการอ่านและวิเคราะห์โจทย์ให้ได้ Input, Output และ Constraints</p>
+                    </div>
+                    <div class="objective-card">
+                        <span class="objective-icon">⚡</span>
+                        <h4>กำหนด Time Complexity</h4>
+                        <p>เลือกอัลกอริทึมที่เหมาะสมตาม Constraints ของโจทย์</p>
+                    </div>
+                    <div class="objective-card">
+                        <span class="objective-icon">🛠️</span>
+                        <h4>ใช้เครื่องมือทั้งหมด</h4>
+                        <p>ประยุกต์ใช้ std::vector, Function และเทคนิค Debugging</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem 1 -->
+            <div class="problem-card">
+                <div class="problem-header">
+                    <h3>โจทย์ที่ 1: การจัดการคะแนนเฉลี่ย</h3>
+                    <p>Vector & Function</p>
+                </div>
+
+                <div class="problem-statement">
+                    <h4>📋 โจทย์:</h4>
+                    <p>จงเขียนโปรแกรมที่รับจำนวนนักเรียน N (โดยที่ <strong>1≤N≤100</strong>) จากนั้นรับคะแนนของนักเรียนทั้ง N คน เก็บไว้ใน <strong>std::vector</strong> และทำการแสดงผลลัพธ์ดังนี้:</p>
+                    
+                    <ol class="requirements-list">
+                        <li>คำนวณและแสดงผล <strong>คะแนนเฉลี่ย (Average Score)</strong> ของนักเรียนทั้งหมด</li>
+                        <li>หาและแสดงผล <strong>คะแนนสูงสุด (Maximum Score)</strong></li>
+                        <li>นับและแสดงผลจำนวนนักเรียนที่ได้คะแนน <strong>มากกว่าหรือเท่ากับ</strong> คะแนนเฉลี่ย</li>
+                    </ol>
+                </div>
+
+                <div class="approach-section">
+                    <h4><span class="approach-icon">🧠</span>แนวคิดการแก้ปัญหา (Think before Code!)</h4>
+                    
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <h5>Input</h5>
+                            <p>รับ N จากนั้นใช้ for loop วนซ้ำ N รอบเพื่อรับคะแนนแต่ละคน</p>
+                        </div>
+                        <div class="step-card">
+                            <h5>Storage</h5>
+                            <p>ใช้ std::vector&lt;int&gt; ในการเก็บคะแนน</p>
+                        </div>
+                        <div class="step-card">
+                            <h5>Function</h5>
+                            <p>ควรสร้างฟังก์ชันย่อยอย่างน้อย 2 ฟังก์ชันเพื่อจัดระเบียบโค้ด</p>
+                        </div>
+                        <div class="step-card">
+                            <h5>Complexity</h5>
+                            <p>ปัญหานี้ต้องวนซ้ำ Vector 1-2 รอบ ดังนั้น Time Complexity คือ O(N)</p>
+                        </div>
+                    </div>
+
+                    <div class="function-suggestion">
+                        <h5>🔧 ฟังก์ชันที่แนะนำ:</h5>
+                        <ul class="function-list">
+                            <li>double calculateAverage(const vector&lt;int&gt;& scores)</li>
+                            <li>int findMax(const vector&lt;int&gt;& scores)</li>
+                        </ul>
+                    </div>
+
+                    <div class="complexity-analysis">
+                        <h5><span class="complexity-icon">⚡</span>การวิเคราะห์ Complexity:</h5>
+                        <p>ปัญหานี้ต้องวนซ้ำ Vector 1-2 รอบ ดังนั้น Time Complexity คือ <strong>O(N)</strong> ซึ่งรวดเร็วมากสำหรับ N≤100</p>
+                    </div>
+                </div>
+
+                <div class="interactive-example">
+                    <h4><span class="example-icon">💻</span>ตัวอย่างโครงร่างโค้ด</h4>
+                    
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Score Management Program</span>
+                            <span>💻 C++</span>
+                        </div>
+                        <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">#include</span> <span class="operator">&lt;</span>vector<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="comment">// ฟังก์ชันคำนวณค่าเฉลี่ย</span>
+<span class="keyword">double</span> calculateAverage(<span class="keyword">const</span> vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span>& scores) {
+    <span class="keyword">double</span> sum = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> score : scores) {
+        sum += score;
+    }
+    <span class="keyword">return</span> sum / scores.size();
+}
+
+<span class="comment">// ฟังก์ชันหาค่าสูงสุด</span>
+<span class="keyword">int</span> findMax(<span class="keyword">const</span> vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span>& scores) {
+    <span class="keyword">int</span> maxScore = scores[<span class="number">0</span>];
+    <span class="keyword">for</span> (<span class="keyword">int</span> score : scores) {
+        <span class="keyword">if</span> (score <span class="operator">&gt;</span> maxScore) {
+            maxScore = score;
+        }
+    }
+    <span class="keyword">return</span> maxScore;
+}
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> n;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"จำนวนนักเรียน: "</span>;
+    cin <span class="operator">&gt;&gt;</span> n;
+    
+    vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> scores(n);
+    
+    <span class="comment">// รับคะแนน</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i <span class="operator">&lt;</span> n; i++) {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"คะแนนนักเรียนคนที่ "</span> <span class="operator">&lt;&lt;</span> (i+<span class="number">1</span>) <span class="operator">&lt;&lt;</span> <span class="string">": "</span>;
+        cin <span class="operator">&gt;&gt;</span> scores[i];
+    }
+    
+    <span class="comment">// คำนวณผลลัพธ์</span>
+    <span class="keyword">double</span> average = calculateAverage(scores);
+    <span class="keyword">int</span> maxScore = findMax(scores);
+    
+    <span class="comment">// นับจำนวนนักเรียนที่ได้คะแนนมากกว่าหรือเท่ากับค่าเฉลี่ย</span>
+    <span class="keyword">int</span> countAboveAverage = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> score : scores) {
+        <span class="keyword">if</span> (score <span class="operator">&gt;=</span> average) {
+            countAboveAverage++;
+        }
+    }
+    
+    <span class="comment">// แสดงผล</span>
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"คะแนนเฉลี่ย: "</span> <span class="operator">&lt;&lt;</span> average <span class="operator">&lt;&lt;</span> endl;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"คะแนนสูงสุด: "</span> <span class="operator">&lt;&lt;</span> maxScore <span class="operator">&lt;&lt;</span> endl;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"จำนวนนักเรียนที่ได้คะแนน &gt;= ค่าเฉลี่ย: "</span> <span class="operator">&lt;&lt;</span> countAboveAverage <span class="operator">&lt;&lt;</span> endl;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem 2 -->
+            <div class="problem-card">
+                <div class="problem-header">
+                    <h3>โจทย์ที่ 2: การค้นหาคู่ผลรวม</h3>
+                    <p>Array/Vector & O(N²) vs O(N)</p>
+                </div>
+
+                <div class="problem-statement">
+                    <h4>📋 โจทย์:</h4>
+                    <p>ให้ Vector ของตัวเลขจำนวนเต็ม V ที่มีขนาด N (โดยที่ <strong>N≤2000</strong>) และตัวเลขเป้าหมาย T จงตรวจสอบว่ามี <strong>ตัวเลขสองตัว</strong> ใน Vector ที่เมื่อนำมาบวกกันแล้วได้ผลรวมเท่ากับ T หรือไม่? ถ้าพบให้พิมพ์ <strong>YES</strong> ถ้าไม่พบให้พิมพ์ <strong>NO</strong></p>
+                </div>
+
+                <div class="example-box">
+                    <h5>📝 ตัวอย่าง:</h5>
+                    <div class="example-content">
+Input V: [1, 5, 8, 12], Target T: 13<br>
+Output: YES (เพราะ 1+12=13 และ 5+8=13)
+                    </div>
+                </div>
+
+                <div class="approach-section">
+                    <h4><span class="approach-icon">🧠</span>แนวคิดการแก้ปัญหา (Focus on Complexity!)</h4>
+                    <p>มีสองทางเลือกหลักในการแก้ปัญหานี้:</p>
+                </div>
+
+                <div class="solution-options">
+                    <div class="solution-card basic-solution">
+                        <h4>💡 ทางเลือกที่ 1: การวนซ้ำซ้อน (O(N²))</h4>
+                        <p><strong>ช้ากว่าแต่ทำได้</strong></p>
+                        
+                        <ul>
+                            <li>ใช้ for loop ตัวนอก (ดัชนี i) วนตั้งแต่ 0 ถึง N−1</li>
+                            <li>ใช้ for loop ตัวใน (ดัชนี j) วนตั้งแต่ i+1 ถึง N−1</li>
+                            <li>ใน Loop ตัวใน ให้ตรวจสอบว่า V[i] + V[j] == T หรือไม่</li>
+                            <li>ถ้าใช่ให้พิมพ์ YES แล้ว return ออกจากฟังก์ชันหลักทันที</li>
+                            <li>ถ้าวนจนจบแล้วไม่เจอคู่ผลรวมเลย ให้พิมพ์ NO</li>
+                        </ul>
+                        
+                        <div class="complexity-analysis">
+                            <h5><span class="complexity-icon">📊</span>วิเคราะห์:</h5>
+                            <p>สำหรับ N≤2000 การทำงานประมาณ <strong>4×10⁶ ครั้ง (N²)</strong> ยังถือว่า <strong>รวดเร็วพอ</strong> (อยู่ในเกณฑ์ปลอดภัย)</p>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>O(N²) Solution</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">#include</span> <span class="operator">&lt;</span>vector<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">bool</span> findTwoSum(vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span>& arr, <span class="keyword">int</span> target) {
+    <span class="keyword">int</span> n = arr.size();
+    
+    <span class="comment">// วนซ้ำซ้อน O(N²)</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i <span class="operator">&lt;</span> n; i++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j <span class="operator">&lt;</span> n; j++) {
+            <span class="keyword">if</span> (arr[i] + arr[j] == target) {
+                <span class="keyword">return</span> <span class="keyword">true</span>; <span class="comment">// พบคู่ผลรวมแล้ว</span>
+            }
+        }
+    }
+    
+    <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// ไม่พบคู่ผลรวม</span>
+}
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> n, target;
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"ขนาด Vector: "</span>;
+    cin <span class="operator">&gt;&gt;</span> n;
+    
+    vector<span class="operator">&lt;</span><span class="keyword">int</span><span class="operator">&gt;</span> arr(n);
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"ใส่ตัวเลข "</span> <span class="operator">&lt;&lt;</span> n <span class="operator">&lt;&lt;</span> <span class="string">" ตัว: "</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i <span class="operator">&lt;</span> n; i++) {
+        cin <span class="operator">&gt;&gt;</span> arr[i];
+    }
+    
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"เป้าหมาย (Target): "</span>;
+    cin <span class="operator">&gt;&gt;</span> target;
+    
+    <span class="keyword">if</span> (findTwoSum(arr, target)) {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"YES"</span> <span class="operator">&lt;&lt;</span> endl;
+    } <span class="keyword">else</span> {
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"NO"</span> <span class="operator">&lt;&lt;</span> endl;
+    }
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="solution-card advanced-solution">
+                        <h4>🚀 ทางเลือกที่ 2: การใช้ Hashing/Sorting (Advanced)</h4>
+                        <p><strong>เร็วกว่า O(N) หรือ O(NlogN)</strong></p>
+                        
+                        <p>(สำหรับการเรียนรู้เพิ่มเติม): ในค่ายจริง คุณอาจจะถูกบังคับให้ใช้วิธีที่เร็วขึ้นสำหรับ N≥10⁵ โดยการใช้:</p>
+                        
+                        <ul>
+                            <li><strong>std::map (Hashing):</strong> เก็บตัวเลขที่เจอแล้วไว้ใน Map แล้วหาคู่ของมัน</li>
+                            <li><strong>การ Sort ข้อมูลก่อน (Sorting):</strong> เรียงข้อมูลก่อนแล้วใช้ Two Pointers</li>
+                        </ul>
+                        
+                        <div class="complexity-analysis">
+                            <h5><span class="complexity-icon">📊</span>เป้าหมาย:</h5>
+                            <p>เพื่อลด Time Complexity จาก O(N²) เป็น <strong>O(N)</strong> หรือ <strong>O(NlogN)</strong></p>
+                        </div>
+                        
+                        <p><em>💡 หมายเหตุ: วิธีนี้จะเรียนรู้ในค่ายจริง ตอนนี้ให้มุ่งเน้นที่การทำความเข้าใจวิธี O(N²) ให้ดีก่อน</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Tasks -->
+            <div class="practice-tasks">
+                <h3><span class="practice-icon">🏋️</span>3. สิ่งที่คุณควรฝึกปฏิบัติในชั่วโมงนี้</h3>
+                
+                <ol class="task-list">
+                    <li class="task-item">
+                        <div class="task-number">1</div>
+                        <div class="task-content">
+                            <strong>ลงมือเขียนโค้ด:</strong> เขียน Solution สำหรับ โจทย์ที่ 1 และ โจทย์ที่ 2 (แบบ O(N²) เป็นหลัก) ใน VS Code
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <div class="task-number">2</div>
+                        <div class="task-content">
+                            <strong>ใช้ Debugger:</strong> ตั้ง Breakpoint ใน for loop ของโจทย์ที่ 1 เพื่อตรวจสอบว่าค่าเฉลี่ยที่คุณคำนวณมานั้นถูกต้องหรือไม่ ก่อนที่จะไปนับจำนวนนักเรียน
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <div class="task-number">3</div>
+                        <div class="task-content">
+                            <strong>ทดสอบขอบเขต (Edge Cases):</strong> ลองรันโจทย์ที่ 1 ด้วย Input N=1 (นักเรียนคนเดียว) และ N=100 เพื่อยืนยันว่าโปรแกรมของคุณทำงานได้ถูกต้องภายใต้ข้อจำกัด
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="summary-section">
+                <h3>🎉 สรุปและแนวทางการไปต่อ</h3>
+                
+                <div class="achievement-grid">
+                    <div class="achievement-card">
+                        <span class="achievement-icon">💪</span>
+                        <h4>ความสำเร็จของหลักสูตรนี้</h4>
+                        <p>ถ้าคุณสามารถทำความเข้าใจและเขียนโค้ดแก้โจทย์ทั้งสองข้อนี้ได้ด้วยตัวเอง แปลว่าคุณมีพื้นฐานที่ <strong>แข็งแกร่งมาก</strong> ในการเข้าสู่ค่าย 1 สอวน. คอมพิวเตอร์</p>
+                    </div>
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🚀</span>
+                        <h4>เตรียมพร้อมสำหรับค่าย</h4>
+                        <p>คุณได้ฝึกฝนทุกสิ่งที่จำเป็น: การวิเคราะห์โจทย์, Time Complexity, Vector, Function และ Debugging</p>
+                    </div>
+                    <div class="achievement-card">
+                        <span class="achievement-icon">🎯</span>
+                        <h4>มั่นใจในตัวเอง</h4>
+                        <p>คุณสามารถแก้โจทย์ปัญหาเชิงคอมพิวเตอร์ได้แล้ว และพร้อมที่จะเรียนรู้เทคนิคขั้นสูงต่อไป</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="future-topics">
+                <h4><span class="future-icon">🔮</span>สิ่งที่ต้องเน้นในค่าย:</h4>
+                <p>ในค่ายจริงคุณจะเรียนเรื่อง <strong>อัลกอริทึม (Algorithms)</strong> และ <strong>โครงสร้างข้อมูลขั้นสูง</strong> ซึ่งทั้งหมดจะต่อยอดจากพื้นฐาน C++ และ Vector ที่คุณได้ฝึกฝนมาในวันนี้</p>
+                
+                <div class="topics-grid">
+                    <div class="topic-tag">Stack</div>
+                    <div class="topic-tag">Queue</div>
+                    <div class="topic-tag">Map</div>
+                    <div class="topic-tag">Graph</div>
+                    <div class="topic-tag">Tree</div>
+                    <div class="topic-tag">Dynamic Programming</div>
+                    <div class="topic-tag">Binary Search</div>
+                    <div class="topic-tag">Sorting Algorithms</div>
+                </div>
+            </div>
+
+            <div class="congratulations">
+                <h3>🏆 ขอแสดงความยินดี!</h3>
+                <p>ขอแสดงความยินดีอีกครั้งกับนักเรียนทุกคนที่ผ่านหลักสูตรเตรียมความพร้อมนี้ไปได้นะครับ!</p>
+                <p>คุณพร้อมแล้วสำหรับการเข้าค่าย 1 สอวน. คอมพิวเตอร์! 💪✨</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="problem-solving.html" class="btn btn-secondary">← การแก้ปัญหา</a>
+                <a href="practice-1.html" class="btn btn-primary">ฝึกปฏิบัติ 1</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔗 การจัดรูปแบบโค้ดและการ Debugging | สอวน. คอมพิวเตอร์</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .debugging-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .intro-banner {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-banner h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .importance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .importance-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .importance-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.2);
+        }
+        
+        .importance-card h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .importance-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .naming-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .naming-table th {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .naming-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .naming-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .naming-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .principle-name {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .good-example {
+            color: #10b981;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .bad-example {
+            color: #ef4444;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .syntax-box {
+            background: #f8f9fa;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            white-space: pre;
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .syntax-box::before {
+            content: "💡 ตัวอย่าง";
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .interactive-example {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-example h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-example {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre;
+        }
+        
+        .keyword {
+            color: #9f7aea;
+            font-weight: 600;
+        }
+        
+        .string {
+            color: #68d391;
+        }
+        
+        .comment {
+            color: #a0aec0;
+            font-style: italic;
+        }
+        
+        .number {
+            color: #fbb6ce;
+        }
+        
+        .operator {
+            color: #ffd93d;
+            font-weight: 600;
+        }
+        
+        .code-explanation {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code-explanation h5 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .code-explanation p {
+            color: #065f46;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .debugging-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .bug-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .bug-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+        }
+        
+        .bug-card h5 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .bug-icon {
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+        }
+        
+        .debug-techniques {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .technique-card {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .technique-card h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .technique-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .debugger-steps {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .debugger-steps h4 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .step-number {
+            background: #3b82f6;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            color: #1e40af;
+            line-height: 1.6;
+        }
+        
+        .step-content strong {
+            color: #1e3a8a;
+        }
+        
+        .controls-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .controls-table th {
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .controls-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .controls-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .controls-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .control-key {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #3b82f6;
+            background: #eff6ff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #fef7f0;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .warning-box h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .warning-box p {
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #fef7f0 0%, #fed7aa 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .practice-section h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .practice-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .practice-problem {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .practice-problem h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .practice-problem p {
+            color: #78350f;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .key-points {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .key-points h3 {
+            color: #047857;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .key-points li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            color: #065f46;
+        }
+        
+        .key-points li::before {
+            content: "✅";
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .next-topic {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .next-topic h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔗 การจัดรูปแบบโค้ดและการ Debugging</h1>
+            <p class="subtitle">เทคนิคการเขียนโค้ดที่สะอาดและการค้นหาข้อผิดพลาดอย่างมีประสิทธิภาพ</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="nav-main">🏠 หน้าแรก</a></li>
+                <li><a href="day1.html" class="nav-main">📅 วันที่ 1</a></li>
+                <li><a href="day2.html" class="nav-main">📅 วันที่ 2</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-setup">🛠️ เตรียมการ</a>
+                    <div class="dropdown-content">
+                        <a href="tips.html">💡 คำแนะนำจากวิทยากร</a>
+                        <a href="setup-guide.html">⚙️ คู่มือติดตั้ง</a>
+                        <a href="vscode-setup.html">💻 ตั้งค่า VS Code</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-lessons">📚 เนื้อหา</a>
+                    <div class="dropdown-content">
+                        <a href="cpp-basics.html">🚀 พื้นฐาน C++</a>
+                        <a href="conditional-statements.html">🔀 คำสั่งเงื่อนไข</a>
+                        <a href="loops.html">🔄 การวนซ้ำ</a>
+                        <a href="arrays.html">📦 อาร์เรย์</a>
+                        <a href="functions.html">⚙️ ฟังก์ชัน</a>
+                        <a href="vectors.html">🌟 เวกเตอร์</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-advanced active">🔧 ขั้นสูง</a>
+                    <div class="dropdown-content">
+                        <a href="debugging.html" class="active">🐛 การ Debugging</a>
+                        <a href="problem-solving.html">💡 การแก้ปัญหา</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="nav-practice">🏋️ ฝึกปฏิบัติ</a>
+                    <div class="dropdown-content">
+                        <a href="practice-1.html">📝 ฝึกปฏิบัติ 1</a>
+                        <a href="practice-2.html">🏆 ฝึกปฏิบัติ 2</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="debugging-content">
+            <div class="breadcrumb">
+                <a href="vectors.html">เวกเตอร์ (Vectors)</a> > <span>การจัดรูปแบบโค้ดและการ Debugging</span>
+            </div>
+
+            <div class="intro-banner">
+                <h2>🎯 เป้าหมายของบทนี้</h2>
+                <p>การเขียนโปรแกรมไม่ใช่แค่การทำให้โปรแกรมทำงานได้ แต่ต้องทำให้ <strong>มนุษย์</strong> (ตัวคุณเองและกรรมการ) สามารถอ่านและทำความเข้าใจโค้ดของคุณได้ง่ายด้วย และเมื่อเกิดข้อผิดพลาด คุณจะต้องมีเครื่องมือและเทคนิคในการค้นหาต้นตอของปัญหานั้น</p>
+                
+                <div class="importance-grid">
+                    <div class="importance-card">
+                        <span class="importance-icon">👥</span>
+                        <h4>อ่านง่าย</h4>
+                        <p>กรรมการและเพื่อนร่วมทีมสามารถเข้าใจโค้ดของคุณได้ทันที</p>
+                    </div>
+                    <div class="importance-card">
+                        <span class="importance-icon">⚡</span>
+                        <h4>แก้บั๊กเร็ว</h4>
+                        <p>โค้ดที่จัดระเบียบดีช่วยประหยัดเวลาในการหาข้อผิดพลาด</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Clean Code -->
+            <div class="section-header">
+                1. แนวทางการเขียนโค้ดให้สะอาด (Clean Code)
+            </div>
+            <div class="section-content">
+                <p><strong>"Clean Code"</strong> คือโค้ดที่อ่านง่าย, เข้าใจง่าย, และบำรุงรักษาง่าย แม้ว่าในการแข่งขัน สอวน. เราจะเน้นความเร็ว แต่การจัดระเบียบที่ดีก็ช่วยประหยัดเวลาในการแก้บั๊กได้มาก</p>
+                
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📝</span>1.1 การตั้งชื่อ (Naming Conventions)</h3>
+                    
+                    <table class="naming-table">
+                        <thead>
+                            <tr>
+                                <th>หลักการ</th>
+                                <th>ดี ✅</th>
+                                <th>ไม่ดี ❌</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="principle-name">ตัวแปร</td>
+                                <td class="good-example">studentScore, totalSum</td>
+                                <td class="bad-example">a, b, t</td>
+                            </tr>
+                            <tr>
+                                <td class="principle-name">ฟังก์ชัน</td>
+                                <td class="good-example">calculateArea(), findMax()</td>
+                                <td class="bad-example">func1(), process()</td>
+                            </tr>
+                            <tr>
+                                <td class="principle-name">ค่าคงที่</td>
+                                <td class="good-example">const int MAX_USERS</td>
+                                <td class="bad-example">max_users</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="code-explanation">
+                        <h5>💡 หลักการ:</h5>
+                        <p>ใช้คำที่สื่อความหมาย เพื่อให้คนอื่นเข้าใจได้ทันทีว่าตัวแปรหรือฟังก์ชันนี้ทำอะไร</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">📐</span>1.2 การเว้นวรรคและการเยื้อง (Indentation & Spacing)</h3>
+                    
+                    <div class="interactive-example">
+                        <h4><span class="example-icon">✨</span>ตัวอย่าง: การจัดรูปแบบที่ถูกต้อง</h4>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Good Code Style</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> calculateSum(<span class="keyword">int</span> start, <span class="keyword">int</span> end) {
+    <span class="keyword">int</span> total = <span class="number">0</span>;
+    
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i <span class="operator">&lt;=</span> end; i++) {
+        total <span class="operator">+=</span> i;
+    }
+    
+    <span class="keyword">return</span> total;
+}
+
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> result = calculateSum(<span class="number">1</span>, <span class="number">10</span>);
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Sum: "</span> <span class="operator">&lt;&lt;</span> result <span class="operator">&lt;&lt;</span> endl;
+    
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                            </div>
+                        </div>
+                        
+                        <div class="code-explanation">
+                            <h5>🔑 จุดสำคัญ:</h5>
+                            <p>• ใช้ Indentation (Tab หรือ 4 spaces) อย่างสม่ำเสมอ<br>
+                            • เว้นวรรครอบ ๆ ตัวดำเนินการ (= + <= ฯลฯ)<br>
+                            • แยกบรรทัดให้ชัดเจนระหว่างส่วนต่าง ๆ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><span class="subsection-icon">💬</span>1.3 การใส่ความคิดเห็น (Comments)</h3>
+                    
+                    <div class="syntax-box">
+// ดี: อธิบายความตั้งใจและเหตุผล
+int maxAttempts = 3; // จำกัดการลองไม่เกิน 3 ครั้งเพื่อป้องกัน infinite loop
+
+// ไม่ดี: อธิบายสิ่งที่ชัดเจนอยู่แล้ว
+int i = 0; // กำหนดค่า i เป็น 0
+                    </div>
+                    
+                    <div class="code-explanation">
+                        <h5>📋 แนวทาง:</h5>
+                        <p>• อธิบาย <strong>ทำไม</strong> (Why) และ <strong>ทำอะไร</strong> (What) ไม่ใช่ <strong>ทำอย่างไร</strong> (How)<br>
+                        • หลีกเลี่ยง Comment ที่ซ้ำซ้อนกับโค้ด<br>
+                        • ใช้ Comment เมื่อโค้ดซับซ้อนหรือมีเหตุผลพิเศษ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Debugging -->
+            <div class="section-header">
+                2. เทคนิคการ Debugging (การค้นหาข้อผิดพลาด)
+            </div>
+            <div class="section-content">
+                <p>ข้อผิดพลาด (Bug) แบ่งได้เป็น 2 ประเภทหลัก:</p>
+                
+                <div class="debugging-types">
+                    <div class="bug-card">
+                        <h5><span class="bug-icon">⚠️</span>Syntax Error</h5>
+                        <p><strong>คือ:</strong> ข้อผิดพลาดไวยากรณ์ (เช่น ลืม ;)</p>
+                        <p><strong>การแก้:</strong> Compiler จะแจ้งให้ทราบและแก้ไขง่าย</p>
+                        <div class="code-example">
+<span class="keyword">int</span> x = <span class="number">5</span> <span class="comment">// ← ลืม semicolon</span>
+cout <span class="operator">&lt;&lt;</span> x <span class="operator">&lt;&lt;</span> endl;
+                        </div>
+                    </div>
+
+                    <div class="bug-card">
+                        <h5><span class="bug-icon">🐛</span>Logic Error</h5>
+                        <p><strong>คือ:</strong> โปรแกรมทำงานได้ แต่ให้ผลลัพธ์ผิดพลาด</p>
+                        <p><strong>การแก้:</strong> ยากที่สุด ต้องใช้เทคนิค Debugging</p>
+                        <div class="code-example">
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator">&lt;</span> <span class="number">10</span>; i++) {
+    <span class="comment">// ควรจะเป็น i <= 10 ถึงจะวน 10 ครั้ง</span>
+}
+                        </div>
+                    </div>
+                </div>
+
+                <p>เราจะเน้นการแก้ปัญหา <strong>Logic Error</strong> ด้วย 2 เทคนิค:</p>
+                
+                <div class="debug-techniques">
+                    <div class="technique-card">
+                        <h4><span class="technique-icon">🖨️</span>2.1 Print Debugging</h4>
+                        <p><strong>วิธีพื้นฐานและเร็วที่สุด</strong></p>
+                        <p>คือการใช้ cout เพื่อพิมพ์ค่าตัวแปรสำคัญ ๆ ออกมาดูในช่วงเวลาต่าง ๆ ของโปรแกรม เพื่อติดตามว่าค่ามันเปลี่ยนไปอย่างไร</p>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span>Print Debugging Example</span>
+                                <span>💻 C++</span>
+                            </div>
+                            <div class="code-example">
+<span class="keyword">#include</span> <span class="operator">&lt;</span>iostream<span class="operator">&gt;</span>
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">void</span> process(<span class="keyword">int</span> n) {
+    <span class="keyword">int</span> sum = <span class="number">0</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i <span class="operator">&lt;=</span> n; i++) {
+        sum <span class="operator">+=</span> i;
+        <span class="comment">// >>> เทคนิค Print Debugging: พิมพ์ค่าเพื่อตรวจสอบทุกรอบ</span>
+        cout <span class="operator">&lt;&lt;</span> <span class="string">"[DEBUG] i="</span> <span class="operator">&lt;&lt;</span> i <span class="operator">&lt;&lt;</span> <span class="string">", current sum="</span> <span class="operator">&lt;&lt;</span> sum <span class="operator">&lt;&lt;</span> endl; 
+    }
+    cout <span class="operator">&lt;&lt;</span> <span class="string">"Final Sum: "</span> <span class="operator">&lt;&lt;</span> sum <span class="operator">&lt;&lt;</span> endl;
+}
+
+<span class="keyword">int</span> main() {
+    process(<span class="number">3</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h4><span class="warning-icon">⚠️</span>ข้อควรระวัง</h4>
+                            <p>อย่าลืมลบหรือ Comment โค้ด Debugging ที่ใช้ cout ออกก่อนส่งคำตอบ!</p>
+                        </div>
+                    </div>
+
+                    <div class="technique-card">
+                        <h4><span class="technique-icon">🔧</span>2.2 การใช้ Debugger ของ VS Code</h4>
+                        <p><strong>เครื่องมือทรงพลัง</strong></p>
+                        <p>Debugger เป็นเครื่องมือที่ช่วยให้เรา <strong>หยุดการทำงานของโปรแกรม</strong> ชั่วคราว (Pause) เพื่อตรวจสอบค่าตัวแปรในขณะนั้น และรันโค้ดทีละบรรทัด (Step by Step)</p>
+                        
+                        <div class="debugger-steps">
+                            <h4>🎯 ขั้นตอนการใช้ Debugger ใน VS Code:</h4>
+                            <ol class="step-list">
+                                <li class="step-item">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <strong>ตั้ง Breakpoint:</strong> คลิกที่ขอบด้านซ้ายของหมายเลขบรรทัดที่คุณต้องการให้โปรแกรมหยุด (จะปรากฏเป็นจุดสีแดง)
+                                    </div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <strong>เริ่ม Debug:</strong> ไปที่เมนู Run (รูปแมลง) หรือกดปุ่ม F5 (ถ้าตั้งค่าในชั่วโมงที่ 2 ไว้แล้ว)
+                                    </div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <strong>ตรวจสอบตัวแปร:</strong> เมื่อโปรแกรมหยุดที่ Breakpoint ให้มองไปที่แผง Variables (ด้านซ้ายมือ) เพื่อดูค่าปัจจุบันของตัวแปรทั้งหมด
+                                    </div>
+                                </li>
+                                <li class="step-item">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <strong>ควบคุมการทำงาน:</strong> ใช้ปุ่มควบคุมด้านบนหรือคีย์ลัด:
+                                    </div>
+                                </li>
+                            </ol>
+                            
+                            <table class="controls-table">
+                                <thead>
+                                    <tr>
+                                        <th>ปุ่ม</th>
+                                        <th>คีย์ลัด</th>
+                                        <th>การทำงาน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>▶️ Continue</td>
+                                        <td><span class="control-key">F5</span></td>
+                                        <td>รันต่อไปจนกว่าจะเจอ Breakpoint ถัดไป</td>
+                                    </tr>
+                                    <tr>
+                                        <td>➡️ Step Over</td>
+                                        <td><span class="control-key">F10</span></td>
+                                        <td>รันคำสั่งปัจจุบันและไปที่บรรทัดถัดไป</td>
+                                    </tr>
+                                    <tr>
+                                        <td>⬇️ Step Into</td>
+                                        <td><span class="control-key">F11</span></td>
+                                        <td>เข้าไปในฟังก์ชัน (ถ้าบรรทัดปัจจุบันเป็นการเรียกฟังก์ชัน)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>⬆️ Step Out</td>
+                                        <td><span class="control-key">Shift + F11</span></td>
+                                        <td>ออกจากฟังก์ชันปัจจุบันและกลับไปยังจุดที่เรียกใช้</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="code-explanation">
+                            <h5>🌟 ข้อดีของ Debugger:</h5>
+                            <p>การฝึกใช้ Debugger จะช่วยให้คุณประหยัดเวลาในการหาข้อผิดพลาดใน Loop หรือฟังก์ชันที่ซับซ้อนได้อย่างมาก</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="practice-section">
+                <h3><span class="practice-icon">🏋️</span>สรุปการปฏิบัติ</h3>
+                
+                <div class="practice-problem">
+                    <h4>✅ ก่อนส่งโค้ด:</h4>
+                    <p>ตรวจสอบชื่อตัวแปร, การเยื้อง, และลบโค้ด Debugging ที่ไม่จำเป็นออก</p>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>🐛 เมื่อมีบั๊ก:</h4>
+                    <p>ลองใช้ Print Debugging ก่อนสำหรับปัญหาเล็ก ๆ ถ้ายังหาไม่เจอ ให้ใช้ VS Code Debugger เพื่อรันโค้ดทีละบรรทัดและติดตามค่าตัวแปร</p>
+                </div>
+                
+                <div class="practice-problem">
+                    <h4>🧩 โจทย์ฝึกหัด:</h4>
+                    <p>นำโค้ดการหาผลรวมในชั่วโมงที่ 6 มาลองตั้ง Breakpoint แล้วใช้ F10 (Step Over) รันทีละบรรทัดเพื่อดูว่าค่า sum เปลี่ยนแปลงอย่างไรในแต่ละรอบของ for loop</p>
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h3><span class="practice-icon">🔑</span>จุดสำคัญที่ต้องจำ</h3>
+                <ul>
+                    <li><strong>Clean Code:</strong> ชื่อตัวแปรชัดเจน, การเยื้องสม่ำเสมอ, Comment ที่มีประโยชน์</li>
+                    <li><strong>Print Debugging:</strong> เทคนิคเร็วสำหรับปัญหาง่าย ๆ แต่อย่าลืมลบออกก่อนส่ง</li>
+                    <li><strong>VS Code Debugger:</strong> เครื่องมือทรงพลังสำหรับปัญหาซับซ้อน ใช้ Breakpoint และ Step Over</li>
+                    <li><strong>Logic Error:</strong> ยากกว่า Syntax Error ต้องใช้เทคนิค Debugging เพื่อติดตาม</li>
+                    <li><strong>ความเร็วในการแก้บั๊ก:</strong> โค้ดที่จัดระเบียบดีช่วยประหยัดเวลาในการหาปัญหา</li>
+                </ul>
+            </div>
+
+            <div class="next-topic">
+                <h3>🎯 ขั้นตอนต่อไป</h3>
+                <p>หลังจากนี้ เราจะเข้าสู่หัวข้อการแก้ปัญหาพื้นฐาน ซึ่งจะทำให้คุณรู้ว่าโค้ดที่ถูกต้องอย่างเดียวไม่พอ แต่ต้อง <strong>เร็ว</strong> ด้วยครับ!</p>
+                <p>การเรียนรู้ Time Complexity และเทคนิคการเลือกอัลกอริทึมที่เหมาะสม!</p>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="vectors.html" class="btn btn-secondary">← เวกเตอร์ (Vectors)</a>
+                <a href="problem-solving.html" class="btn btn-primary">การแก้ปัญหา →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 หลักสูตรเตรียมความพร้อม สอวน. คอมพิวเตอร์</p>
+        </div>
+    </footer>
+</body>
+</html>
